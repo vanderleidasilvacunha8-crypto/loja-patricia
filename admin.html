@@ -83,6 +83,46 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
 .btn-cat-del{background:#fff;color:var(--red);border:2px solid var(--red);border-radius:8px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer;}
 .cat-fixed-tag{font-size:10px;background:#f0f0f0;color:#999;padding:2px 8px;border-radius:6px;font-weight:700;}
 
+/* ── FOTO UPLOAD NOVO ── */
+.foto-section-label{font-size:12px;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+.foto-main-wrap{position:relative;border:2px dashed #f0c0d8;border-radius:14px;overflow:hidden;background:#fff5fa;aspect-ratio:4/3;cursor:pointer;transition:border .2s;}
+.foto-main-wrap:hover{border-color:var(--pink);}
+.foto-main-img{width:100%;height:100%;display:block;}
+.foto-main-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--muted);gap:6px;font-size:13px;}
+.foto-main-placeholder .ico{font-size:36px;}
+.foto-main-placeholder span{font-weight:700;color:var(--pink);}
+
+/* botões de ajuste sobre a imagem principal */
+.fit-btns{position:absolute;top:8px;right:8px;display:flex;gap:4px;z-index:2;}
+.fit-btn{background:rgba(45,26,46,.65);color:#fff;border:none;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;font-family:'Quicksand',sans-serif;cursor:pointer;transition:background .15s;}
+.fit-btn.active{background:var(--pink);}
+
+/* badge "ampliar" */
+.zoom-hint{position:absolute;bottom:8px;right:8px;background:rgba(45,26,46,.6);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:8px;pointer-events:none;}
+
+/* miniaturas */
+.foto-thumbs{display:flex;gap:8px;margin-top:10px;align-items:center;}
+.thumb-item{position:relative;width:58px;height:52px;border-radius:10px;overflow:hidden;border:2px solid #f0c0d8;flex-shrink:0;cursor:pointer;background:#fff5fa;}
+.thumb-item.selected{border-color:var(--pink);}
+.thumb-item img{width:100%;height:100%;object-fit:contain;display:block;}
+.thumb-del{position:absolute;top:1px;right:1px;background:rgba(255,68,68,.85);color:#fff;border:none;border-radius:5px;width:16px;height:16px;font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;}
+.thumb-add{width:58px;height:52px;border-radius:10px;border:2px dashed #d0b0d8;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);font-size:10px;font-weight:700;gap:2px;transition:border .18s;background:#fff5fa;}
+.thumb-add:hover{border-color:var(--pink);color:var(--pink);}
+.thumb-add .plus{font-size:20px;line-height:1;}
+.foto-count-note{font-size:10px;color:var(--muted);margin-top:5px;text-align:right;}
+
+/* ── LIGHTBOX ── */
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:500;display:none;flex-direction:column;align-items:center;justify-content:center;}
+#lightbox.open{display:flex;}
+#lbImg{max-width:94vw;max-height:78vh;object-fit:contain;border-radius:10px;}
+#lbClose{position:fixed;top:16px;right:16px;background:rgba(255,255,255,.18);color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:501;}
+#lbPrev,#lbNext{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:501;}
+#lbPrev{left:10px;}
+#lbNext{right:10px;}
+#lbDots{display:flex;gap:8px;margin-top:16px;}
+.lb-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:background .2s;}
+.lb-dot.active{background:#fff;}
+
 /* MODAL FORM */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:none;align-items:flex-end;justify-content:center;}
 .modal-overlay.open{display:flex;}
@@ -96,15 +136,6 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
 .form-group input,.form-group select{width:100%;border:2px solid #eee;border-radius:12px;padding:11px 14px;font-family:'Quicksand',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border .18s;background:#fff;}
 .form-group input:focus,.form-group select:focus{border-color:var(--pink);}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-
-/* FOTO UPLOAD */
-.foto-upload-area{border:2px dashed #eee;border-radius:14px;padding:20px;text-align:center;cursor:pointer;transition:border .18s;position:relative;}
-.foto-upload-area:hover{border-color:var(--pink);}
-.foto-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
-.foto-preview{width:100%;height:140px;object-fit:cover;border-radius:10px;display:none;}
-.foto-placeholder{color:var(--muted);font-size:13px;}
-.foto-placeholder .foto-icon{font-size:40px;display:block;margin-bottom:8px;}
-.foto-placeholder span{font-weight:700;color:var(--pink);}
 
 .form-save-btn{width:100%;background:linear-gradient(90deg,#ff4e8d,#ff7849);color:#fff;border:none;border-radius:14px;padding:15px;font-size:16px;font-weight:800;font-family:'Baloo 2',cursive;cursor:pointer;margin-top:8px;}
 .form-cancel-btn{width:100%;background:#fff;color:var(--muted);border:2px solid #eee;border-radius:14px;padding:13px;font-size:14px;font-weight:700;font-family:'Quicksand',sans-serif;cursor:pointer;margin-top:8px;}
@@ -120,7 +151,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
 .btn-confirm-cancel{flex:1;background:#fff;color:var(--muted);border:2px solid #eee;border-radius:12px;padding:11px;font-size:14px;font-weight:700;font-family:'Quicksand',sans-serif;cursor:pointer;}
 
 /* TOAST */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#2d1a2e;color:#fff;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:700;opacity:0;transition:all .3s;z-index:300;white-space:nowrap;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#2d1a2e;color:#fff;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:700;opacity:0;transition:all .3s;z-index:600;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 </style>
 </head>
@@ -145,13 +176,11 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
     <button class="logout-btn" onclick="logout()">Sair</button>
   </div>
 
-  <!-- TABS -->
   <div class="tabs">
     <div class="tab active" id="tab-prod" onclick="switchTab('prod')">🛍️ Produtos</div>
     <div class="tab" id="tab-cats" onclick="switchTab('cats')">📂 Categorias</div>
   </div>
 
-  <!-- PRODUTOS TAB -->
   <div id="tabProd">
     <div class="stats" id="statsArea"></div>
     <div class="add-area">
@@ -161,7 +190,6 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
     <div class="prod-list" id="prodList"></div>
   </div>
 
-  <!-- CATEGORIAS TAB -->
   <div id="tabCats" style="display:none;">
     <div style="padding:16px;">
       <button class="add-btn-big" onclick="openCatForm()">➕ Nova Categoria</button>
@@ -170,24 +198,47 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
   </div>
 </div>
 
+<!-- ── LIGHTBOX ── -->
+<div id="lightbox" onclick="closeLightbox()">
+  <button id="lbClose" onclick="closeLightbox()">✕</button>
+  <button id="lbPrev" onclick="lbNav(-1);event.stopPropagation()">‹</button>
+  <img id="lbImg" src="" alt="Foto ampliada" onclick="event.stopPropagation()">
+  <div id="lbDots" onclick="event.stopPropagation()"></div>
+  <button id="lbNext" onclick="lbNav(1);event.stopPropagation()">›</button>
+</div>
+
 <!-- FORM PRODUTO -->
 <div class="modal-overlay" id="formModal">
   <div class="form-modal">
     <div class="modal-handle"></div>
     <div class="form-title" id="formTitle">➕ Novo Produto</div>
 
-    <!-- FOTO -->
+    <!-- FOTOS (nova seção multi-imagem) -->
     <div class="form-group">
-      <label>📸 Foto do Produto</label>
-      <div class="foto-upload-area" onclick="triggerFoto()">
-        <input type="file" id="fotoInput" accept="image/*" onchange="previewFoto(event)">
-        <img id="fotoPreview" class="foto-preview">
-        <div class="foto-placeholder" id="fotoPlaceholder">
-          <span class="foto-icon">📷</span>
-          Toque para <span>escolher uma foto</span><br>
+      <div class="foto-section-label">📸 Fotos do Produto <small style="color:#ccc;font-weight:500">(até 4 fotos)</small></div>
+
+      <!-- imagem principal grande -->
+      <div class="foto-main-wrap" id="fotoMainWrap" onclick="openLightboxForm()">
+        <img id="fotoMainImg" class="foto-main-img" src="" alt="" style="display:none;object-fit:contain;">
+        <div class="foto-main-placeholder" id="fotoMainPlaceholder">
+          <span class="ico">📷</span>
+          <div>Toque para <span>escolher fotos</span></div>
           <small style="color:#ccc;font-size:11px">JPG, PNG ou WEBP</small>
         </div>
+        <!-- botões fit -->
+        <div class="fit-btns" id="fitBtns" style="display:none" onclick="event.stopPropagation()">
+          <button class="fit-btn active" id="btnContain" onclick="setFit('contain')">Mostrar tudo</button>
+          <button class="fit-btn" id="btnCover" onclick="setFit('cover')">Preencher</button>
+        </div>
+        <div class="zoom-hint" id="zoomHint" style="display:none">🔍 Toque p/ ampliar</div>
       </div>
+
+      <!-- miniaturas + botão adicionar -->
+      <div class="foto-thumbs" id="fotoThumbs"></div>
+      <div class="foto-count-note" id="fotoCountNote"></div>
+
+      <!-- input file oculto (aceita múltiplos) -->
+      <input type="file" id="fotoInput" accept="image/*" multiple style="display:none" onchange="handleFotos(event)">
     </div>
 
     <div class="form-group">
@@ -274,7 +325,6 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
 <script>
 const SENHA = 'Casa2018@';
 
-// Categorias fixas padrão
 const DEFAULT_CATS = [
   {id:'info',    emoji:'💻', name:'Informática', fixed:true},
   {id:'papelaria',emoji:'📚',name:'Papelaria',   fixed:true},
@@ -285,37 +335,47 @@ const DEFAULT_CATS = [
 ];
 
 const DEFAULT_PRODUCTS = [
-  {id:1,name:'Cabo USB-C 1m',img:null,emoji:'🔌',price:19.90,oldPrice:29.90,unit:'un',cat:'info',desc:'Compatível com celular, tablet e notebook.',badge:'oferta'},
-  {id:2,name:'Mouse Sem Fio',img:null,emoji:'🖱️',price:49.90,oldPrice:null,unit:'un',cat:'info',desc:'Conexão USB, pilha inclusa, 1200 DPI.',badge:'novo'},
-  {id:3,name:'Pendrive 32GB',img:null,emoji:'💾',price:29.90,oldPrice:39.90,unit:'un',cat:'info',desc:'Armazenamento rápido e durável.',badge:'oferta'},
-  {id:4,name:'Fone de Ouvido',img:null,emoji:'🎧',price:39.90,oldPrice:null,unit:'un',cat:'info',desc:'Com microfone, cabo 1,2m.'},
-  {id:5,name:'Carregador 20W',img:null,emoji:'⚡',price:34.90,oldPrice:null,unit:'un',cat:'info',desc:'Carregamento rápido.',badge:'novo'},
-  {id:6,name:'Película de Celular',img:null,emoji:'📱',price:15.00,oldPrice:null,unit:'un',cat:'info',desc:'Vidro temperado 9H.'},
-  {id:7,name:'Caderno Espiral 200f',img:null,emoji:'📓',price:22.90,oldPrice:29.90,unit:'un',cat:'papelaria',desc:'200 folhas pautadas.',badge:'oferta'},
-  {id:8,name:'Caneta Colorida Kit',img:null,emoji:'✏️',price:12.90,oldPrice:null,unit:'kit',cat:'papelaria',desc:'Kit com 12 cores.'},
-  {id:9,name:'Mochila Escolar',img:null,emoji:'🎒',price:89.90,oldPrice:120.0,unit:'un',cat:'papelaria',desc:'Impermeável, 30 litros.',badge:'oferta'},
-  {id:10,name:'Cola Bastão',img:null,emoji:'🖊️',price:5.90,oldPrice:null,unit:'un',cat:'papelaria',desc:'21g, não mancha.'},
-  {id:11,name:'Pasta Arquivo',img:null,emoji:'📂',price:8.90,oldPrice:null,unit:'un',cat:'papelaria',desc:'Com elástico, tamanho ofício.'},
-  {id:12,name:'Camiseta Básica',img:null,emoji:'👕',price:35.00,oldPrice:49.90,unit:'un',cat:'roupas',desc:'100% algodão, P/M/G/GG.',badge:'oferta'},
-  {id:13,name:'Bermuda Jeans',img:null,emoji:'👖',price:59.90,oldPrice:null,unit:'un',cat:'roupas',desc:'Corte moderno.'},
-  {id:14,name:'Meias Kit 6 pares',img:null,emoji:'🧦',price:24.90,oldPrice:34.90,unit:'kit',cat:'roupas',desc:'Cano curto, algodão misto.',badge:'oferta'},
-  {id:15,name:'Blusa Feminina',img:null,emoji:'👚',price:44.90,oldPrice:null,unit:'un',cat:'roupas',desc:'Leve para o dia a dia.',badge:'novo'},
-  {id:16,name:'Xerox P&B',img:null,emoji:'🖨️',price:0.50,oldPrice:null,unit:'fl',cat:'servicos',desc:'Por folha A4.'},
-  {id:17,name:'Xerox Colorida',img:null,emoji:'🌈',price:2.00,oldPrice:null,unit:'fl',cat:'servicos',desc:'Impressão colorida A4.'},
-  {id:18,name:'Plastificação A4',img:null,emoji:'📂',price:5.00,oldPrice:null,unit:'un',cat:'servicos',desc:'Laminação brilho ou fosca.'},
-  {id:19,name:'Formatação PC/Notebook',img:null,emoji:'💻',price:80.00,oldPrice:120.0,unit:'un',cat:'servicos',desc:'Sistema, drivers e programas.',badge:'oferta'},
-  {id:20,name:'Digitação de Texto',img:null,emoji:'⌨️',price:15.00,oldPrice:null,unit:'pág',cat:'servicos',desc:'Por página A4.'},
-  {id:21,name:'Pilha AA Kit 4un',img:null,emoji:'🔋',price:12.90,oldPrice:null,unit:'kit',cat:'utilidades',desc:'Alta durabilidade.'},
-  {id:22,name:'Fita Crepe',img:null,emoji:'📦',price:6.90,oldPrice:null,unit:'un',cat:'utilidades',desc:'48mm × 50m.'},
-  {id:23,name:'Extensão 3 tomadas',img:null,emoji:'🔌',price:29.90,oldPrice:39.90,unit:'un',cat:'utilidades',desc:'Cabo 2m, 10A.',badge:'oferta'},
-  {id:24,name:'Sacola Resistente',img:null,emoji:'🛍️',price:3.50,oldPrice:null,unit:'un',cat:'utilidades',desc:'Ecobag reforçada.'},
-  {id:25,name:'Óculos de Sol',img:null,emoji:'🕶️',price:49.90,oldPrice:79.90,unit:'un',cat:'moda',desc:'Proteção UV400.',badge:'oferta'},
-  {id:26,name:'Bolsa Feminina',img:null,emoji:'👜',price:79.90,oldPrice:null,unit:'un',cat:'moda',desc:'Sintético premium.',badge:'novo'},
-  {id:27,name:'Cinto Couro Sintético',img:null,emoji:'👒',price:25.00,oldPrice:null,unit:'un',cat:'moda',desc:'P/M/G/GG.'},
-  {id:28,name:'Brinco Folheado',img:null,emoji:'💍',price:18.90,oldPrice:29.90,unit:'par',cat:'moda',desc:'Banho de ouro.',badge:'oferta'},
+  {id:1,name:'Cabo USB-C 1m',imgs:[],emoji:'🔌',price:19.90,oldPrice:29.90,unit:'un',cat:'info',desc:'Compatível com celular, tablet e notebook.',badge:'oferta'},
+  {id:2,name:'Mouse Sem Fio',imgs:[],emoji:'🖱️',price:49.90,oldPrice:null,unit:'un',cat:'info',desc:'Conexão USB, pilha inclusa, 1200 DPI.',badge:'novo'},
+  {id:3,name:'Pendrive 32GB',imgs:[],emoji:'💾',price:29.90,oldPrice:39.90,unit:'un',cat:'info',desc:'Armazenamento rápido e durável.',badge:'oferta'},
+  {id:4,name:'Fone de Ouvido',imgs:[],emoji:'🎧',price:39.90,oldPrice:null,unit:'un',cat:'info',desc:'Com microfone, cabo 1,2m.'},
+  {id:5,name:'Carregador 20W',imgs:[],emoji:'⚡',price:34.90,oldPrice:null,unit:'un',cat:'info',desc:'Carregamento rápido.',badge:'novo'},
+  {id:6,name:'Película de Celular',imgs:[],emoji:'📱',price:15.00,oldPrice:null,unit:'un',cat:'info',desc:'Vidro temperado 9H.'},
+  {id:7,name:'Caderno Espiral 200f',imgs:[],emoji:'📓',price:22.90,oldPrice:29.90,unit:'un',cat:'papelaria',desc:'200 folhas pautadas.',badge:'oferta'},
+  {id:8,name:'Caneta Colorida Kit',imgs:[],emoji:'✏️',price:12.90,oldPrice:null,unit:'kit',cat:'papelaria',desc:'Kit com 12 cores.'},
+  {id:9,name:'Mochila Escolar',imgs:[],emoji:'🎒',price:89.90,oldPrice:120.0,unit:'un',cat:'papelaria',desc:'Impermeável, 30 litros.',badge:'oferta'},
+  {id:10,name:'Cola Bastão',imgs:[],emoji:'🖊️',price:5.90,oldPrice:null,unit:'un',cat:'papelaria',desc:'21g, não mancha.'},
+  {id:11,name:'Pasta Arquivo',imgs:[],emoji:'📂',price:8.90,oldPrice:null,unit:'un',cat:'papelaria',desc:'Com elástico, tamanho ofício.'},
+  {id:12,name:'Camiseta Básica',imgs:[],emoji:'👕',price:35.00,oldPrice:49.90,unit:'un',cat:'roupas',desc:'100% algodão, P/M/G/GG.',badge:'oferta'},
+  {id:13,name:'Bermuda Jeans',imgs:[],emoji:'👖',price:59.90,oldPrice:null,unit:'un',cat:'roupas',desc:'Corte moderno.'},
+  {id:14,name:'Meias Kit 6 pares',imgs:[],emoji:'🧦',price:24.90,oldPrice:34.90,unit:'kit',cat:'roupas',desc:'Cano curto, algodão misto.',badge:'oferta'},
+  {id:15,name:'Blusa Feminina',imgs:[],emoji:'👚',price:44.90,oldPrice:null,unit:'un',cat:'roupas',desc:'Leve para o dia a dia.',badge:'novo'},
+  {id:16,name:'Xerox P&B',imgs:[],emoji:'🖨️',price:0.50,oldPrice:null,unit:'fl',cat:'servicos',desc:'Por folha A4.'},
+  {id:17,name:'Xerox Colorida',imgs:[],emoji:'🌈',price:2.00,oldPrice:null,unit:'fl',cat:'servicos',desc:'Impressão colorida A4.'},
+  {id:18,name:'Plastificação A4',imgs:[],emoji:'📂',price:5.00,oldPrice:null,unit:'un',cat:'servicos',desc:'Laminação brilho ou fosca.'},
+  {id:19,name:'Formatação PC/Notebook',imgs:[],emoji:'💻',price:80.00,oldPrice:120.0,unit:'un',cat:'servicos',desc:'Sistema, drivers e programas.',badge:'oferta'},
+  {id:20,name:'Digitação de Texto',imgs:[],emoji:'⌨️',price:15.00,oldPrice:null,unit:'pág',cat:'servicos',desc:'Por página A4.'},
+  {id:21,name:'Pilha AA Kit 4un',imgs:[],emoji:'🔋',price:12.90,oldPrice:null,unit:'kit',cat:'utilidades',desc:'Alta durabilidade.'},
+  {id:22,name:'Fita Crepe',imgs:[],emoji:'📦',price:6.90,oldPrice:null,unit:'un',cat:'utilidades',desc:'48mm × 50m.'},
+  {id:23,name:'Extensão 3 tomadas',imgs:[],emoji:'🔌',price:29.90,oldPrice:39.90,unit:'un',cat:'utilidades',desc:'Cabo 2m, 10A.',badge:'oferta'},
+  {id:24,name:'Sacola Resistente',imgs:[],emoji:'🛍️',price:3.50,oldPrice:null,unit:'un',cat:'utilidades',desc:'Ecobag reforçada.'},
+  {id:25,name:'Óculos de Sol',imgs:[],emoji:'🕶️',price:49.90,oldPrice:79.90,unit:'un',cat:'moda',desc:'Proteção UV400.',badge:'oferta'},
+  {id:26,name:'Bolsa Feminina',imgs:[],emoji:'👜',price:79.90,oldPrice:null,unit:'un',cat:'moda',desc:'Sintético premium.',badge:'novo'},
+  {id:27,name:'Cinto Couro Sintético',imgs:[],emoji:'👒',price:25.00,oldPrice:null,unit:'un',cat:'moda',desc:'P/M/G/GG.'},
+  {id:28,name:'Brinco Folheado',imgs:[],emoji:'💍',price:18.90,oldPrice:29.90,unit:'par',cat:'moda',desc:'Banho de ouro.',badge:'oferta'},
 ];
 
-let products=[], categories=[], filterCat='todos', editingId=null, deletingId=null, deletingType='prod', editingCatId=null, currentTab='prod', fotoBase64=null, editingCatMode=false;
+let products=[], categories=[], filterCat='todos', editingId=null, deletingId=null, deletingType='prod', editingCatId=null, currentTab='prod';
+
+// Estado das fotos no formulário
+let formImgs = [];      // array de base64 strings
+let formImgFit = 'contain';  // 'contain' ou 'cover'
+let formMainIdx = 0;    // qual foto está sendo exibida como principal
+
+// Estado do lightbox
+let lbImgs = [];
+let lbIdx = 0;
+let lbSource = 'form'; // 'form' ou 'prod' (aberto de onde)
 
 function saveStorage(){
   localStorage.setItem('loja_patricia_products', JSON.stringify(products));
@@ -377,14 +437,17 @@ function renderFilterCats(){
 function renderList(){
   let list = filterCat==='todos' ? products : products.filter(p=>p.cat===filterCat);
   if(!list.length){ document.getElementById('prodList').innerHTML='<div class="empty-list">Nenhum produto aqui 😕</div>'; return; }
-  document.getElementById('prodList').innerHTML = list.map(p=>`
+  document.getElementById('prodList').innerHTML = list.map(p=>{
+    const imgs = p.imgs && p.imgs.length ? p.imgs : [];
+    const thumbSrc = imgs[0] || null;
+    return `
     <div class="prod-item">
-      <div class="prod-thumb">
-        ${p.img ? `<img src="${p.img}" alt="${p.name}">` : (p.emoji||'🛍️')}
+      <div class="prod-thumb" ${imgs.length?`onclick="openLightboxProd(${p.id})" style="cursor:pointer"`:''}">
+        ${thumbSrc ? `<img src="${thumbSrc}" alt="${p.name}" style="object-fit:${p.imgFit||'contain'}">` : (p.emoji||'🛍️')}
       </div>
       <div class="prod-info">
         <div class="prod-name">${p.name}</div>
-        <div class="prod-meta">${getCatName(p.cat)} · por ${p.unit}</div>
+        <div class="prod-meta">${getCatName(p.cat)} · por ${p.unit}${imgs.length>1?' · '+imgs.length+' fotos':''}</div>
         <div class="prod-price">R$ ${p.price.toFixed(2).replace('.',',')}${p.oldPrice?` <small style="text-decoration:line-through;color:#ccc;font-size:11px">R$ ${p.oldPrice.toFixed(2).replace('.',',')}</small>`:''}</div>
         ${p.badge?`<span class="prod-badge badge-${p.badge}">${p.badge==='novo'?'🆕 NOVO':'🔥 OFERTA'}</span>`:''}
       </div>
@@ -392,8 +455,8 @@ function renderList(){
         <button class="btn-edit" onclick="openEdit(${p.id})">✏️ Editar</button>
         <button class="btn-del" onclick="openConfirmDelete(${p.id},'prod')">🗑️ Excluir</button>
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 
 function renderCatList(){
@@ -417,28 +480,185 @@ function renderCatList(){
 
 function setFilter(cat){ filterCat=cat; renderFilterCats(); renderList(); }
 
-// ── foto ──
-function triggerFoto(){ document.getElementById('fotoInput').click(); }
-function previewFoto(e){
-  const file=e.target.files[0]; if(!file) return;
-  const reader=new FileReader();
-  reader.onload=function(ev){
-    fotoBase64=ev.target.result;
-    const img=document.getElementById('fotoPreview');
-    img.src=fotoBase64; img.style.display='block';
-    document.getElementById('fotoPlaceholder').style.display='none';
-  };
-  reader.readAsDataURL(file);
+// ── GESTÃO DE FOTOS NO FORM ──────────────────────────────────────
+
+function handleFotos(e){
+  const files = Array.from(e.target.files);
+  const slots = 4 - formImgs.length;
+  const toLoad = files.slice(0, slots);
+  if(!toLoad.length){ showToast('⚠️ Máximo de 4 fotos!'); return; }
+
+  let loaded = 0;
+  toLoad.forEach(file=>{
+    const reader = new FileReader();
+    reader.onload = ev => {
+      formImgs.push(ev.target.result);
+      loaded++;
+      if(loaded === toLoad.length){
+        formMainIdx = 0;
+        renderFotoSection();
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+  e.target.value = ''; // reset para poder selecionar a mesma imagem novamente
 }
 
-// ── form produto ──
+function triggerFotoInput(){
+  document.getElementById('fotoInput').click();
+}
+
+function setMainThumb(idx){
+  formMainIdx = idx;
+  renderFotoSection();
+}
+
+function removeFormImg(idx, e){
+  e.stopPropagation();
+  formImgs.splice(idx, 1);
+  if(formMainIdx >= formImgs.length) formMainIdx = Math.max(0, formImgs.length-1);
+  renderFotoSection();
+}
+
+function setFit(mode){
+  formImgFit = mode;
+  const img = document.getElementById('fotoMainImg');
+  img.style.objectFit = mode;
+  document.getElementById('btnContain').classList.toggle('active', mode==='contain');
+  document.getElementById('btnCover').classList.toggle('active', mode==='cover');
+}
+
+function renderFotoSection(){
+  const mainImg  = document.getElementById('fotoMainImg');
+  const placeholder = document.getElementById('fotoMainPlaceholder');
+  const fitBtns  = document.getElementById('fitBtns');
+  const zoomHint = document.getElementById('zoomHint');
+  const thumbRow = document.getElementById('fotoThumbs');
+  const countNote= document.getElementById('fotoCountNote');
+
+  if(formImgs.length === 0){
+    mainImg.style.display='none';
+    mainImg.src='';
+    placeholder.style.display='flex';
+    fitBtns.style.display='none';
+    zoomHint.style.display='none';
+    // principal wrap vira botão de adicionar
+    document.getElementById('fotoMainWrap').onclick = triggerFotoInput;
+  } else {
+    mainImg.src = formImgs[formMainIdx];
+    mainImg.style.display='block';
+    mainImg.style.objectFit = formImgFit;
+    placeholder.style.display='none';
+    fitBtns.style.display='flex';
+    zoomHint.style.display='block';
+    document.getElementById('fotoMainWrap').onclick = openLightboxForm;
+    // sincroniza botões fit
+    document.getElementById('btnContain').classList.toggle('active', formImgFit==='contain');
+    document.getElementById('btnCover').classList.toggle('active', formImgFit==='cover');
+  }
+
+  // miniaturas
+  thumbRow.innerHTML = '';
+  formImgs.forEach((src, i)=>{
+    const wrap = document.createElement('div');
+    wrap.className = 'thumb-item' + (i===formMainIdx?' selected':'');
+    wrap.onclick = () => setMainThumb(i);
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = 'Foto '+(i+1);
+    const del = document.createElement('button');
+    del.className = 'thumb-del';
+    del.textContent = '✕';
+    del.title = 'Remover foto';
+    del.onclick = (ev) => removeFormImg(i, ev);
+    wrap.appendChild(img);
+    wrap.appendChild(del);
+    thumbRow.appendChild(wrap);
+  });
+
+  // botão adicionar (se tiver espaço)
+  if(formImgs.length < 4){
+    const add = document.createElement('div');
+    add.className = 'thumb-add';
+    add.title = 'Adicionar foto';
+    add.onclick = triggerFotoInput;
+    add.innerHTML = '<span class="plus">+</span><span>Foto</span>';
+    thumbRow.appendChild(add);
+  }
+
+  countNote.textContent = formImgs.length > 0 ? formImgs.length+'/4 fotos adicionadas' : '';
+}
+
+// ── LIGHTBOX ──────────────────────────────────────────────────────
+
+function openLightboxForm(){
+  if(formImgs.length===0) return;
+  lbImgs = formImgs;
+  lbIdx = formMainIdx;
+  lbSource = 'form';
+  showLightbox();
+}
+
+function openLightboxProd(prodId){
+  const p = products.find(x=>x.id===prodId);
+  if(!p || !p.imgs || !p.imgs.length) return;
+  lbImgs = p.imgs;
+  lbIdx = 0;
+  lbSource = 'prod';
+  showLightbox();
+}
+
+function showLightbox(){
+  document.getElementById('lbImg').src = lbImgs[lbIdx];
+  renderLbDots();
+  document.getElementById('lbPrev').style.display = lbImgs.length>1?'flex':'none';
+  document.getElementById('lbNext').style.display = lbImgs.length>1?'flex':'none';
+  document.getElementById('lightbox').classList.add('open');
+}
+
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+}
+
+function lbNav(dir){
+  lbIdx = (lbIdx + dir + lbImgs.length) % lbImgs.length;
+  document.getElementById('lbImg').src = lbImgs[lbIdx];
+  // se lightbox aberto do form, sincroniza miniatura selecionada
+  if(lbSource==='form'){
+    formMainIdx = lbIdx;
+    renderFotoSection();
+  }
+  renderLbDots();
+}
+
+function renderLbDots(){
+  const el = document.getElementById('lbDots');
+  el.innerHTML = '';
+  lbImgs.forEach((_,i)=>{
+    const d = document.createElement('div');
+    d.className = 'lb-dot' + (i===lbIdx?' active':'');
+    d.onclick = () => { lbIdx=i; document.getElementById('lbImg').src=lbImgs[i]; if(lbSource==='form'){formMainIdx=i;renderFotoSection();} renderLbDots(); };
+    el.appendChild(d);
+  });
+}
+
+// ── FORM PRODUTO ──────────────────────────────────────────────────
+
 function populateCatSelect(){
   const sel=document.getElementById('fCat');
   sel.innerHTML=categories.map(c=>`<option value="${c.id}">${c.emoji} ${c.name}</option>`).join('');
 }
 
+function resetFormFotos(){
+  formImgs=[];
+  formMainIdx=0;
+  formImgFit='contain';
+  document.getElementById('fotoInput').value='';
+  renderFotoSection();
+}
+
 function openForm(){
-  editingId=null; fotoBase64=null;
+  editingId=null;
   document.getElementById('formTitle').textContent='➕ Novo Produto';
   document.getElementById('fName').value='';
   document.getElementById('fDesc').value='';
@@ -446,17 +666,14 @@ function openForm(){
   document.getElementById('fOldPrice').value='';
   document.getElementById('fUnit').value='un';
   document.getElementById('fBadge').value='';
-  document.getElementById('fotoPreview').style.display='none';
-  document.getElementById('fotoPreview').src='';
-  document.getElementById('fotoPlaceholder').style.display='block';
-  document.getElementById('fotoInput').value='';
+  resetFormFotos();
   populateCatSelect();
   document.getElementById('formModal').classList.add('open');
 }
 
 function openEdit(id){
   const p=products.find(x=>x.id===id);
-  editingId=id; fotoBase64=p.img||null;
+  editingId=id;
   document.getElementById('formTitle').textContent='✏️ Editar Produto';
   document.getElementById('fName').value=p.name;
   document.getElementById('fDesc').value=p.desc||'';
@@ -464,10 +681,12 @@ function openEdit(id){
   document.getElementById('fOldPrice').value=p.oldPrice||'';
   document.getElementById('fUnit').value=p.unit;
   document.getElementById('fBadge').value=p.badge||'';
-  const img=document.getElementById('fotoPreview');
-  if(p.img){ img.src=p.img; img.style.display='block'; document.getElementById('fotoPlaceholder').style.display='none'; }
-  else { img.style.display='none'; document.getElementById('fotoPlaceholder').style.display='block'; }
+  // carregar fotos existentes
+  formImgs = p.imgs ? [...p.imgs] : (p.img ? [p.img] : []);
+  formMainIdx = 0;
+  formImgFit = p.imgFit || 'contain';
   document.getElementById('fotoInput').value='';
+  renderFotoSection();
   populateCatSelect();
   document.getElementById('fCat').value=p.cat;
   document.getElementById('formModal').classList.add('open');
@@ -480,10 +699,13 @@ function saveProduct(){
   const price=parseFloat(document.getElementById('fPrice').value);
   if(!name){ showToast('⚠️ Digite o nome!'); return; }
   if(isNaN(price)||price<0){ showToast('⚠️ Preço inválido!'); return; }
+
   const prod={
     id: editingId||Date.now(),
-    name, img: fotoBase64||null,
-    emoji: fotoBase64?null:(editingId?products.find(x=>x.id===editingId)?.emoji||'🛍️':'🛍️'),
+    name,
+    imgs: [...formImgs],
+    imgFit: formImgFit,
+    emoji: formImgs.length ? null : (editingId ? products.find(x=>x.id===editingId)?.emoji||'🛍️' : '🛍️'),
     price,
     oldPrice: parseFloat(document.getElementById('fOldPrice').value)||null,
     unit: document.getElementById('fUnit').value,
@@ -491,12 +713,14 @@ function saveProduct(){
     desc: document.getElementById('fDesc').value.trim(),
     badge: document.getElementById('fBadge').value||null,
   };
+
   if(editingId){ const i=products.findIndex(x=>x.id===editingId); products[i]=prod; showToast('✅ Produto atualizado!'); }
   else { products.push(prod); showToast('✅ Produto adicionado!'); }
   saveStorage(); closeForm(); renderAll();
 }
 
-// ── form categoria ──
+// ── FORM CATEGORIA ────────────────────────────────────────────────
+
 function openCatForm(){
   editingCatId=null;
   document.getElementById('catFormTitle').textContent='📂 Nova Categoria';
@@ -529,7 +753,8 @@ function saveCat(){
   saveStorage(); closeCatForm(); renderAll(); renderCatList();
 }
 
-// ── delete ──
+// ── DELETE ────────────────────────────────────────────────────────
+
 function openConfirmDelete(id,type){
   deletingId=id; deletingType=type;
   if(type==='prod'){
@@ -556,6 +781,17 @@ function showToast(msg){
   t.textContent=msg; t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
+
+// swipe no lightbox (mobile)
+(function(){
+  let sx=0;
+  const lb = document.getElementById('lightbox');
+  lb.addEventListener('touchstart',e=>{ sx=e.touches[0].clientX; },{passive:true});
+  lb.addEventListener('touchend',e=>{
+    const dx = e.changedTouches[0].clientX - sx;
+    if(Math.abs(dx)>50){ lbNav(dx<0?1:-1); }
+  },{passive:true});
+})();
 
 document.getElementById('senhaInput').addEventListener('keydown',e=>{ if(e.key==='Enter') login(); });
 </script>
