@@ -429,6 +429,14 @@ const products = [
   { id:28, name:'Brinco Folheado',       emoji:'💍', price:18.90, oldPrice:29.90, unit:'par', cat:'moda',     desc:'Banho de ouro, hipoalergênico. Vários modelos.', badge:'oferta' },
 ];
 
+// ── carregar produtos do admin (localStorage) ──
+function loadProducts(){
+  const saved = localStorage.getItem('loja_patricia_products');
+  if(saved){ try{ return JSON.parse(saved); }catch(e){} }
+  return products;
+}
+const allProducts = loadProducts();
+
 // ── estado ──
 let cart = [];
 let currentCat = 'todos';
@@ -445,7 +453,7 @@ function fmt(v){ return 'R$ ' + v.toFixed(2).replace('.',','); }
 // ── render ──
 function renderProducts(){
   const grid = document.getElementById('grid');
-  let list = products;
+  let list = allProducts;
   if(currentCat !== 'todos') list = list.filter(p=>p.cat===currentCat);
   if(currentSearch) list = list.filter(p=>p.name.toLowerCase().includes(currentSearch.toLowerCase()));
   document.getElementById('sectionLabel').textContent = catNames[currentCat]||'Produtos';
@@ -480,7 +488,7 @@ function filterProducts(){ currentSearch=document.getElementById('searchInput').
 
 // ── modal produto ──
 function openModal(id){
-  const p=products.find(x=>x.id===id);
+  const p=allProducts.find(x=>x.id===id);
   modalProduct=p; modalQty=1;
   document.getElementById('mEmoji').textContent=p.emoji;
   document.getElementById('mName').textContent=p.name;
@@ -499,7 +507,7 @@ function addToCart(){
   updateBar();
 }
 function quickAdd(id){
-  const p=products.find(x=>x.id===id);
+  const p=allProducts.find(x=>x.id===id);
   const ex=cart.find(c=>c.id===id);
   if(ex) ex.qty++; else cart.push({...p,qty:1});
   updateBar();
