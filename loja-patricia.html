@@ -429,13 +429,19 @@ const products = [
   { id:28, name:'Brinco Folheado',       emoji:'💍', price:18.90, oldPrice:29.90, unit:'par', cat:'moda',     desc:'Banho de ouro, hipoalergênico. Vários modelos.', badge:'oferta' },
 ];
 
-// ── carregar produtos do admin (localStorage) ──
+// ── carregar produtos e categorias do admin (localStorage) ──
 function loadProducts(){
   const saved = localStorage.getItem('loja_patricia_products');
   if(saved){ try{ return JSON.parse(saved); }catch(e){} }
   return products;
 }
+function loadCategories(){
+  const saved = localStorage.getItem('loja_patricia_cats');
+  if(saved){ try{ return JSON.parse(saved); }catch(e){} }
+  return [{id:'info',emoji:'💻',name:'Informática'},{id:'papelaria',emoji:'📚',name:'Papelaria'},{id:'roupas',emoji:'👕',name:'Roupas'},{id:'servicos',emoji:'🖨️',name:'Serviços'},{id:'utilidades',emoji:'🏠',name:'Utilidades'},{id:'moda',emoji:'👗',name:'Moda'}];
+}
 const allProducts = loadProducts();
+const allCategories = loadCategories();
 
 // ── estado ──
 let cart = [];
@@ -445,10 +451,17 @@ let modalProduct = null;
 let modalQty = 1;
 let selectedPay = 'pix';
 
-const catNames = {todos:'Todos os Produtos',info:'💻 Informática',papelaria:'📚 Papelaria',roupas:'👕 Roupas',servicos:'🖨️ Serviços',utilidades:'🏠 Utilidades',moda:'👗 Moda'};
+function getCatLabel(id){ const c=allCategories.find(x=>x.id===id); return c?c.emoji+' '+c.name:id; }
 const catColors = {info:'cat-color-info',papelaria:'cat-color-papelaria',roupas:'cat-color-roupas',servicos:'cat-color-servicos',utilidades:'cat-color-utilidades',moda:'cat-color-moda'};
 
 function fmt(v){ return 'R$ ' + v.toFixed(2).replace('.',','); }
+
+// ── render categorias dinâmicas ──
+function renderCatButtons(){
+  const el=document.getElementById('catsEl');
+  el.innerHTML=`<div class="cat active" id="cat-todos" onclick="filterCat('todos',this)"><div class="cat-icon">🛒</div><div class="cat-label">Todos</div></div>`
+    +allCategories.map(c=>`<div class="cat" id="cat-${c.id}" onclick="filterCat('${c.id}',this)"><div class="cat-icon">${c.emoji}</div><div class="cat-label">${c.name}</div></div>`).join('');
+}
 
 // ── render ──
 function renderProducts(){
@@ -456,12 +469,14 @@ function renderProducts(){
   let list = allProducts;
   if(currentCat !== 'todos') list = list.filter(p=>p.cat===currentCat);
   if(currentSearch) list = list.filter(p=>p.name.toLowerCase().includes(currentSearch.toLowerCase()));
-  document.getElementById('sectionLabel').textContent = catNames[currentCat]||'Produtos';
+  document.getElementById('sectionLabel').textContent = currentCat==='todos'?'Todos os Produtos':getCatLabel(currentCat);
   if(!list.length){ grid.innerHTML='<div class="no-results">Nenhum produto encontrado 😕</div>'; return; }
   grid.innerHTML = list.map(p=>`
     <div class="card" onclick="openModal(${p.id})">
       ${p.badge==='novo'?'<div class="badge-novo">NOVO</div>':p.badge==='oferta'?'<div class="badge-oferta">OFERTA</div>':''}
-      <div class="card-img ${catColors[p.cat]||''}">${p.emoji}</div>
+      <div class="card-img ${catColors[p.cat]||''}">
+        ${p.img ? `<img src="${p.img}" style="width:100%;height:100%;object-fit:cover;display:block;" alt="${p.name}">` : (p.emoji||'🛍️')}
+      </div>
       <div class="card-body">
         <div class="card-name">${p.name}</div>
         <div class="card-unit">por ${p.unit}</div>
@@ -490,7 +505,9 @@ function filterProducts(){ currentSearch=document.getElementById('searchInput').
 function openModal(id){
   const p=allProducts.find(x=>x.id===id);
   modalProduct=p; modalQty=1;
-  document.getElementById('mEmoji').textContent=p.emoji;
+  const mEmoji=document.getElementById('mEmoji');
+  if(p.img){ mEmoji.innerHTML=`<img src="${p.img}" style="width:100px;height:100px;object-fit:cover;border-radius:16px;" alt="${p.name}">`; }
+  else { mEmoji.textContent=p.emoji||'🛍️'; }
   document.getElementById('mName').textContent=p.name;
   document.getElementById('mDesc').textContent=p.desc||'';
   document.getElementById('mPrice').textContent=fmt(p.price)+' / '+p.unit;
@@ -578,6 +595,7 @@ function sendWhatsApp(){
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
+renderCatButtons();
 renderProducts();
 </script>
 </body>
