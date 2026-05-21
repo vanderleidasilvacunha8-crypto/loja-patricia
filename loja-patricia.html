@@ -440,8 +440,29 @@ function loadCategories(){
   if(saved){ try{ return JSON.parse(saved); }catch(e){} }
   return [{id:'info',emoji:'💻',name:'Informática'},{id:'papelaria',emoji:'📚',name:'Papelaria'},{id:'roupas',emoji:'👕',name:'Roupas'},{id:'servicos',emoji:'🖨️',name:'Serviços'},{id:'utilidades',emoji:'🏠',name:'Utilidades'},{id:'moda',emoji:'👗',name:'Moda'}];
 }
-const allProducts = loadProducts();
-const allCategories = loadCategories();
+
+// Recarrega dados toda vez que a aba fica visível novamente
+// (útil quando admin e loja são abertos na mesma origem)
+document.addEventListener('visibilitychange', function(){
+  if(document.visibilityState === 'visible'){
+    const savedP = localStorage.getItem('loja_patricia_products');
+    const savedC = localStorage.getItem('loja_patricia_cats');
+    if(savedP) try {
+      const parsed = JSON.parse(savedP);
+      allProducts.length = 0;
+      parsed.forEach(p => allProducts.push(p));
+    } catch(e){}
+    if(savedC) try {
+      const parsedC = JSON.parse(savedC);
+      allCategories.length = 0;
+      parsedC.forEach(c => allCategories.push(c));
+    } catch(e){}
+    renderCatButtons();
+    renderProducts();
+  }
+});
+let allProducts = loadProducts();
+let allCategories = loadCategories();
 
 // ── estado ──
 let cart = [];
@@ -471,11 +492,14 @@ function renderProducts(){
   if(currentSearch) list = list.filter(p=>p.name.toLowerCase().includes(currentSearch.toLowerCase()));
   document.getElementById('sectionLabel').textContent = currentCat==='todos'?'Todos os Produtos':getCatLabel(currentCat);
   if(!list.length){ grid.innerHTML='<div class="no-results">Nenhum produto encontrado 😕</div>'; return; }
-  grid.innerHTML = list.map(p=>`
+  grid.innerHTML = list.map(p=>{
+    const thumbSrc = (p.imgs && p.imgs.length) ? p.imgs[0] : (p.img || null);
+    const fit = p.imgFit || 'contain';
+    return `
     <div class="card" onclick="openModal(${p.id})">
       ${p.badge==='novo'?'<div class="badge-novo">NOVO</div>':p.badge==='oferta'?'<div class="badge-oferta">OFERTA</div>':''}
-      <div class="card-img ${catColors[p.cat]||''}">
-        ${p.img ? `<img src="${p.img}" style="width:100%;height:100%;object-fit:cover;display:block;" alt="${p.name}">` : (p.emoji||'🛍️')}
+      <div class="card-img ${thumbSrc?'':catColors[p.cat]||''}">
+        ${thumbSrc ? `<img src="${thumbSrc}" style="width:100%;height:100%;object-fit:${fit};display:block;" alt="${p.name}">` : (p.emoji||'🛍️')}
       </div>
       <div class="card-body">
         <div class="card-name">${p.name}</div>
@@ -488,8 +512,8 @@ function renderProducts(){
           <button class="add-btn" onclick="event.stopPropagation();quickAdd(${p.id})">+</button>
         </div>
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 
 // ── filtros ──
@@ -506,7 +530,9 @@ function openModal(id){
   const p=allProducts.find(x=>x.id===id);
   modalProduct=p; modalQty=1;
   const mEmoji=document.getElementById('mEmoji');
-  if(p.img){ mEmoji.innerHTML=`<img src="${p.img}" style="width:100px;height:100px;object-fit:cover;border-radius:16px;" alt="${p.name}">`; }
+  const mSrc = (p.imgs && p.imgs.length) ? p.imgs[0] : (p.img || null);
+  const mFit = p.imgFit || 'contain';
+  if(mSrc){ mEmoji.innerHTML=`<img src="${mSrc}" style="width:100px;height:100px;object-fit:${mFit};border-radius:16px;" alt="${p.name}">`; }
   else { mEmoji.textContent=p.emoji||'🛍️'; }
   document.getElementById('mName').textContent=p.name;
   document.getElementById('mDesc').textContent=p.desc||'';
@@ -545,10 +571,16 @@ function openCheckout(){
   const el=document.getElementById('cartItemsList');
   if(!cart.length){ el.innerHTML='<div class="empty-cart">🛒 Carrinho vazio<br>Adicione produtos para continuar!</div>'; }
   else {
-    el.innerHTML=cart.map(c=>`
+    el.innerHTML=cart.map(c=>{
+      const cSrc = (c.imgs && c.imgs.length) ? c.imgs[0] : (c.img || null);
+      const cFit = c.imgFit || 'contain';
+      const cThumb = cSrc
+        ? `<img src="${cSrc}" style="width:36px;height:36px;object-fit:${cFit};border-radius:8px;" alt="${c.name}">`
+        : `<span style="font-size:26px">${c.emoji||'🛍️'}</span>`;
+      return `
       <div class="cart-item">
         <div class="cart-item-left">
-          <div class="cart-item-emoji">${c.emoji}</div>
+          <div class="cart-item-emoji">${cThumb}</div>
           <div class="cart-item-info">
             <div class="cart-item-name">${c.name}</div>
             <div class="cart-item-qty">${c.qty}× ${fmt(c.price)} / ${c.unit}</div>
@@ -558,8 +590,8 @@ function openCheckout(){
           <div class="cart-item-price">${fmt(c.price*c.qty)}</div>
           <button class="cart-item-remove" onclick="removeItem(${c.id})">✕</button>
         </div>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
   }
   const total=cart.reduce((s,c)=>s+c.price*c.qty,0);
   document.getElementById('subtotalVal').textContent=fmt(total);
@@ -587,7 +619,7 @@ function sendWhatsApp(){
   if(nome) msg+=`👤 *Cliente:* ${nome}\n`;
   if(end) msg+=`📍 *Endereço:* ${end}\n`;
   msg+=`\n*Itens do Pedido:*\n`;
-  cart.forEach(c=>{ msg+=`  • ${c.emoji} ${c.name} × ${c.qty} ........................ ${fmt(c.price*c.qty)}\n`; });
+  cart.forEach(c=>{ msg+=`  • ${c.emoji||'🛍️'} ${c.name} × ${c.qty} ........................ ${fmt(c.price*c.qty)}\n`; });
   msg+=`\n🚚 Entrega: *GRÁTIS*`;
   msg+=`\n💰 *Total: ${fmt(total)}*`;
   msg+=`\n💳 *Pagamento:* ${payLabel[selectedPay]}`;
