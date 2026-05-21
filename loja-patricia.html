@@ -6,21 +6,20 @@
 <title>Loja da Patrícia</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
+:root{
   --pink:#ff4e8d;--pink-light:#ff80b0;--pink-pale:#fff0f6;
   --yellow:#ffd93d;--teal:#00c9a7;--blue:#4e8bff;
-  --purple:#a855f7;--orange:#ff7849;
-  --bg:#fff5fb;--card:#ffffff;--text:#2d1a2e;--muted:#9b7fa0;
-  --radius:18px;--shadow:0 4px 24px rgba(255,78,141,0.10);
+  --orange:#ff7849;--bg:#fff5fb;--card:#fff;--text:#2d1a2e;--muted:#9b7fa0;
+  --radius:18px;--shadow:0 4px 24px rgba(255,78,141,.10);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);max-width:480px;margin:0 auto;min-height:100vh;overflow-x:hidden;}
 
-/* ── HERO ── */
+/* HERO */
 .hero{background:linear-gradient(145deg,#b5005b 0%,#ff4e8d 50%,#ff8a50 100%);padding:28px 18px 68px;position:relative;overflow:hidden;}
 .hero-bubbles span{position:absolute;border-radius:50%;opacity:.10;}
 .b1{width:200px;height:200px;background:#fff;top:-70px;right:-60px;}
-.b2{width:100px;height:100px;background:#ffd93d;bottom:0px;left:-30px;}
+.b2{width:100px;height:100px;background:#ffd93d;bottom:0;left:-30px;}
 .b3{width:55px;height:55px;background:#fff;top:55px;left:52%;}
 .b4{width:32px;height:32px;background:#ffd93d;top:18px;left:28%;}
 .hero-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;}
@@ -30,55 +29,49 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
 .dot{width:7px;height:7px;background:#a8ffca;border-radius:50%;animation:pulse 1.5s infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .hero-body{position:relative;z-index:2;margin-top:18px;}
-.hero-body h1{font-family:'Baloo 2',cursive;font-size:26px;font-weight:900;color:#fff;margin-bottom:6px;text-shadow:0 2px 8px rgba(0,0,0,.15);}
+.hero-body h1{font-family:'Baloo 2',cursive;font-size:26px;font-weight:900;color:#fff;margin-bottom:6px;}
 .hero-body p{color:rgba(255,255,255,.88);font-size:13px;}
 .hero-tags{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
 .hero-tag{background:rgba(255,255,255,.18);color:#fff;font-size:11px;font-weight:800;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.25);}
 .hero-tag.amarelo{background:#ffd93d;color:#b5005b;border-color:#ffd93d;}
 
-/* ── CURVE ── */
+/* CURVE */
 .curve{height:42px;background:var(--bg);border-radius:50% 50% 0 0/42px 42px 0 0;margin-top:-42px;position:relative;z-index:3;}
 
-/* ── SEARCH ── */
+/* SEARCH — fundo amarelo */
 .search-wrap{padding:0 16px;margin-top:-22px;position:relative;z-index:10;}
-.search-box{background:#fff;border-radius:16px;box-shadow:0 6px 30px rgba(255,78,141,.18);display:flex;align-items:center;padding:13px 18px;gap:10px;border:1.5px solid #ffd6ea;}
-.search-box input{border:none;outline:none;flex:1;font-family:'Quicksand',sans-serif;font-size:14px;color:var(--text);background:transparent;}
-.search-box input::placeholder{color:#ccc;}
+.search-box{background:#ffd93d;border-radius:16px;box-shadow:0 6px 24px rgba(255,217,61,.35);display:flex;align-items:center;padding:13px 18px;gap:10px;border:2px solid #f5c800;}
+.search-box input{border:none;outline:none;flex:1;font-family:'Quicksand',sans-serif;font-size:14px;color:#2d1a2e;background:transparent;font-weight:700;}
+.search-box input::placeholder{color:#b5960a;font-weight:600;}
 
-/* ── BANNERS INFO ── */
+/* BANNERS */
 .info-banners{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 16px 0;}
 .info-card{border-radius:16px;padding:14px 12px;display:flex;align-items:center;gap:10px;}
-.info-card.frete{background:linear-gradient(135deg,#00b894,#00c9a7);}
+.info-card.frete{background:linear-gradient(135deg,#00b894,#00c9a7);cursor:pointer;}
 .info-card.pag{background:linear-gradient(135deg,#4e8bff,#a855f7);}
 .info-card .ico{font-size:26px;flex-shrink:0;}
-.info-card .txt h3{color:#fff;font-size:12px;font-weight:900;font-family:'Baloo 2',cursive;line-height:1.3;}
-.info-card .txt p{color:rgba(255,255,255,.85);font-size:10px;margin-top:2px;line-height:1.4;}
+.info-card .txt h3{color:#000;font-size:13px;font-weight:900;font-family:'Baloo 2',cursive;line-height:1.3;}
+.info-card .txt p{color:rgba(0,0,0,.65);font-size:10px;margin-top:2px;line-height:1.4;font-weight:700;}
 
-/* ── PAGAMENTOS ── */
+/* CHIPS */
 .pay-row{display:flex;gap:8px;padding:10px 16px 0;flex-wrap:wrap;}
 .pay-chip{display:flex;align-items:center;gap:5px;background:#fff;color:var(--pink);font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;box-shadow:0 2px 8px rgba(255,78,141,.10);border:1.5px solid #ffd6ea;}
 
-/* ── CATEGORIAS DESTACADAS ── */
-.cats-section{background:#fff;margin:16px 16px 0;border-radius:20px;box-shadow:0 6px 24px rgba(255,78,141,.12);padding:16px 14px 12px;border:1.5px solid #ffd6ea;}
-.cats-title{font-family:'Baloo 2',cursive;font-size:16px;font-weight:900;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
-.cats-title span{font-size:18px;}
-.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
-.cat{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;border-radius:14px;padding:10px 4px 8px;transition:background .18s,transform .15s;border:2px solid transparent;}
-.cat:active{transform:scale(.93);}
-.cat-icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--bg);box-shadow:0 2px 8px rgba(0,0,0,.07);transition:transform .18s,box-shadow .18s;}
-.cat.active{background:var(--pink-pale);border-color:#ffc0d8;}
-.cat.active .cat-icon{box-shadow:0 4px 14px rgba(255,78,141,.28);transform:scale(1.08);}
-.cat-label{font-size:9.5px;font-weight:700;color:var(--muted);text-align:center;line-height:1.2;}
+/* CATEGORIAS — estilo original mas letras maiores */
+.section-label{font-family:'Baloo 2',cursive;font-size:18px;font-weight:900;color:var(--text);padding:18px 16px 10px;}
+.cats{display:flex;gap:10px;padding:0 16px 4px;overflow-x:auto;scrollbar-width:none;}
+.cats::-webkit-scrollbar{display:none;}
+.cat{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;min-width:76px;flex-shrink:0;}
+.cat-icon{width:62px;height:62px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08);transition:transform .18s,box-shadow .18s;border:2.5px solid transparent;}
+.cat.active .cat-icon{border-color:var(--pink);box-shadow:0 4px 16px rgba(255,78,141,.3);transform:scale(1.08);}
+.cat-label{font-size:12px;font-weight:800;color:var(--muted);text-align:center;line-height:1.2;}
 .cat.active .cat-label{color:var(--pink);}
 
-/* ── SECTION LABEL ── */
-.section-label{font-family:'Baloo 2',cursive;font-size:17px;font-weight:800;color:var(--text);padding:18px 16px 10px;display:flex;align-items:center;gap:6px;}
-
-/* ── GRID ── */
+/* GRID */
 .products-wrap{padding:0 16px 110px;}
 .products-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 
-/* ── CARD ── */
+/* CARD */
 .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;position:relative;cursor:pointer;transition:transform .15s;border:1px solid #fff0f8;}
 .card:active{transform:scale(.97);}
 .card-img{width:100%;height:120px;display:flex;align-items:center;justify-content:center;font-size:52px;position:relative;overflow:hidden;}
@@ -99,14 +92,14 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
 .badge-novo{position:absolute;top:8px;left:8px;background:var(--teal);color:#fff;font-size:9px;font-weight:800;padding:3px 8px;border-radius:8px;}
 .badge-oferta{position:absolute;top:8px;left:8px;background:var(--orange);color:#fff;font-size:9px;font-weight:800;padding:3px 8px;border-radius:8px;}
 
-/* ── CART BAR ── */
+/* CART BAR */
 .cart-bar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%) translateY(20px);width:calc(100% - 32px);max-width:448px;background:linear-gradient(90deg,#ff4e8d,#ff7849);border-radius:16px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 8px 32px rgba(255,78,141,.4);cursor:pointer;transition:opacity .3s,transform .3s;opacity:0;pointer-events:none;z-index:50;}
 .cart-bar.visible{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:all;}
 .cart-count{background:#fff;color:var(--pink);font-size:12px;font-weight:800;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;}
 .cart-text{flex:1;text-align:center;color:#fff;font-size:14px;font-weight:800;font-family:'Baloo 2',cursive;}
 .cart-total-bar{color:#ffd93d;font-size:14px;font-weight:800;font-family:'Baloo 2',cursive;}
 
-/* ── OVERLAY PRODUTO ── */
+/* MODAL PRODUTO */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:100;display:none;align-items:flex-end;justify-content:center;}
 .overlay.open{display:flex;}
 .modal{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:480px;padding:0 0 40px;animation:slideUp .3s ease;overflow:hidden;max-height:92vh;overflow-y:auto;}
@@ -135,7 +128,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
 .qty-num{font-size:24px;font-weight:900;min-width:32px;text-align:center;font-family:'Baloo 2',cursive;}
 .modal-add-btn{width:100%;background:linear-gradient(90deg,#ff4e8d,#ff7849);color:#fff;border:none;border-radius:14px;padding:16px;font-size:16px;font-weight:800;font-family:'Baloo 2',cursive;cursor:pointer;}
 
-/* ── CHECKOUT ── */
+/* CHECKOUT */
 .checkout-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:none;align-items:flex-end;justify-content:center;}
 .checkout-overlay.open{display:flex;}
 .checkout-modal{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:480px;padding:24px 20px 40px;max-height:85vh;overflow-y:auto;animation:slideUp .3s ease;}
@@ -170,7 +163,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
 .empty-cart{text-align:center;color:var(--muted);padding:30px 0;font-size:14px;}
 .no-results{grid-column:1/-1;text-align:center;color:#ccc;padding:32px 0;font-size:14px;}
 
-/* ── FRETE MODAL ── */
+/* MODAL FRETE */
 .frete-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:300;display:none;align-items:center;justify-content:center;padding:20px;}
 .frete-overlay.open{display:flex;}
 .frete-box{background:#fff;border-radius:24px;padding:28px 22px;width:100%;max-width:360px;text-align:center;}
@@ -188,7 +181,6 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
 </head>
 <body>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-bubbles">
     <span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span>
@@ -210,7 +202,6 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
 </div>
 <div class="curve"></div>
 
-<!-- SEARCH -->
 <div class="search-wrap">
   <div class="search-box">
     <span style="font-size:18px">🔍</span>
@@ -218,13 +209,12 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
   </div>
 </div>
 
-<!-- BANNERS INFO -->
 <div class="info-banners">
-  <div class="info-card frete" onclick="abrirFrete()" style="cursor:pointer">
+  <div class="info-card frete" onclick="abrirFrete()">
     <div class="ico">🚚</div>
     <div class="txt">
       <h3>Frete Grátis!</h3>
-      <p>Até 3km de distância · Toque p/ verificar</p>
+      <p>Até 3km · Toque p/ verificar</p>
     </div>
   </div>
   <div class="info-card pag">
@@ -236,7 +226,6 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
   </div>
 </div>
 
-<!-- CHIPS PAGAMENTOS -->
 <div class="pay-row">
   <div class="pay-chip">📱 Pix</div>
   <div class="pay-chip">💳 Crédito</div>
@@ -244,31 +233,25 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
   <div class="pay-chip">💵 Dinheiro</div>
 </div>
 
-<!-- CATEGORIAS DESTACADAS -->
-<div class="cats-section">
-  <div class="cats-title"><span>📂</span> Categorias</div>
-  <div class="cats" id="catsEl">
-    <div class="cat active" onclick="filterCat('todos',this)">
-      <div class="cat-icon">🛒</div>
-      <div class="cat-label">Todos</div>
-    </div>
+<div class="section-label">📂 Categorias</div>
+<div class="cats" id="catsEl">
+  <div class="cat active" onclick="filterCat('todos',this)">
+    <div class="cat-icon">🛒</div>
+    <div class="cat-label">Todos</div>
   </div>
 </div>
 
-<!-- PRODUTOS -->
 <div class="section-label" id="sectionLabel">🛍️ Todos os Produtos</div>
 <div class="products-wrap">
   <div class="products-grid" id="grid"></div>
 </div>
 
-<!-- CART BAR -->
 <div class="cart-bar" id="cartBar" onclick="openCheckout()">
   <div class="cart-count" id="cartCount">0</div>
   <div class="cart-text">Ver Carrinho</div>
   <div class="cart-total-bar" id="cartTotalBar">R$ 0,00</div>
 </div>
 
-<!-- MODAL PRODUTO -->
 <div class="overlay" id="productModal" onclick="closeModalBg(event)">
   <div class="modal">
     <div class="modal-handle"></div>
@@ -287,7 +270,6 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
   </div>
 </div>
 
-<!-- CHECKOUT -->
 <div class="checkout-overlay" id="checkoutOverlay" onclick="closeCheckoutBg(event)">
   <div class="checkout-modal">
     <div class="modal-handle" style="margin:0 auto 20px;"></div>
@@ -295,15 +277,9 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
     <div class="checkout-sub">Revise seu pedido antes de enviar</div>
     <div id="cartItemsList"></div>
     <hr class="checkout-divider">
-    <div class="checkout-total-row">
-      <span>Subtotal</span><span id="subtotalVal">R$ 0,00</span>
-    </div>
-    <div class="checkout-total-row">
-      <span>Entrega</span><span class="frete-gratis-tag">✅ GRÁTIS</span>
-    </div>
-    <div class="checkout-total-row grand">
-      <span>Total</span><span id="totalVal">R$ 0,00</span>
-    </div>
+    <div class="checkout-total-row"><span>Subtotal</span><span id="subtotalVal">R$ 0,00</span></div>
+    <div class="checkout-total-row"><span>Entrega</span><span class="frete-gratis-tag">✅ GRÁTIS</span></div>
+    <div class="checkout-total-row grand"><span>Total</span><span id="totalVal">R$ 0,00</span></div>
     <div class="pay-section">
       <div class="pay-section-title">💳 Forma de Pagamento</div>
       <div class="pay-options">
@@ -313,14 +289,8 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
         <div class="pay-opt" id="pay-dinheiro" onclick="selectPay('dinheiro')"><span class="pay-icon">💵</span>Dinheiro</div>
       </div>
     </div>
-    <div class="input-group">
-      <label>Seu nome</label>
-      <input type="text" id="clienteName" placeholder="Ex: Maria Silva">
-    </div>
-    <div class="input-group">
-      <label>Endereço de entrega</label>
-      <textarea id="clienteEnd" placeholder="Rua, número, bairro..."></textarea>
-    </div>
+    <div class="input-group"><label>Seu nome</label><input type="text" id="clienteName" placeholder="Ex: Maria Silva"></div>
+    <div class="input-group"><label>Endereço de entrega</label><textarea id="clienteEnd" placeholder="Rua, número, bairro..."></textarea></div>
     <button class="whatsapp-btn" onclick="sendWhatsApp()">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Enviar Pedido pelo WhatsApp
@@ -328,14 +298,13 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
   </div>
 </div>
 
-<!-- MODAL FRETE -->
 <div class="frete-overlay" id="freteOverlay">
   <div class="frete-box">
     <div style="font-size:48px;margin-bottom:8px;">🚚</div>
     <h2>Verificar Frete</h2>
-    <p>Digite seu endereço ou bairro para verificar se você está na área de entrega gratuita (até 3km).</p>
+    <p>Digite seu bairro para saber se está na área de <strong>entrega gratuita</strong> (até 3km).</p>
     <div class="frete-input-wrap">
-      <input type="text" id="freteEnd" placeholder="Seu bairro ou rua...">
+      <input type="text" id="freteEnd" placeholder="Seu bairro...">
       <button class="frete-check-btn" onclick="verificarFrete()">Verificar</button>
     </div>
     <div class="frete-resultado" id="freteResultado"></div>
@@ -346,138 +315,140 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
 <script>
 const WHATSAPP = '5531989892315';
 const LOJA = 'Loja da Patrícia';
-const RAIO_KM = 3;
 
-// Bairros e regiões dentro do raio de 3km — ajuste conforme necessário
 const BAIRROS_GRATIS = [
-  'ribeirão das neves','ribeirao das neves','neves','
-  'justinópolis','justinopolis','
-  'areias','sevilha','beira rio','bom jesus','campos de são pedro',
+  'ribeirao das neves','ribeirão das neves','neves',
+  'justinopolis','justinópolis',
+  'areias','sevilha','beira rio','bom jesus','campos de sao pedro',
   'novo horizonte','jardim colonial','copacabana','europa',
-  'paulo vi','paulo 6','veneza','savassi neves','alterosas'
+  'paulo vi','paulo 6','veneza','alterosas','savassi'
 ];
 
 const products = [
-  { id:1,  name:'Cabo USB-C 1m',        emoji:'🔌', price:19.90, oldPrice:29.90, unit:'un', cat:'info',      desc:'Compatível com celular, tablet e notebook.', badge:'oferta' },
-  { id:2,  name:'Mouse Sem Fio',         emoji:'🖱️', price:49.90, oldPrice:null,  unit:'un', cat:'info',      desc:'Conexão USB, pilha inclusa, 1200 DPI.', badge:'novo' },
-  { id:3,  name:'Pendrive 32GB',         emoji:'💾', price:29.90, oldPrice:39.90, unit:'un', cat:'info',      desc:'Armazenamento rápido e durável. USB 3.0.', badge:'oferta' },
-  { id:4,  name:'Fone de Ouvido',        emoji:'🎧', price:39.90, oldPrice:null,  unit:'un', cat:'info',      desc:'Com microfone, cabo 1,2m, plug P2 universal.' },
-  { id:5,  name:'Carregador 20W',        emoji:'⚡', price:34.90, oldPrice:null,  unit:'un', cat:'info',      desc:'Carregamento rápido para celular.', badge:'novo' },
-  { id:6,  name:'Película de Celular',   emoji:'📱', price:15.00, oldPrice:null,  unit:'un', cat:'info',      desc:'Vidro temperado 9H, anti-risco.' },
-  { id:7,  name:'Caderno Espiral 200f',  emoji:'📓', price:22.90, oldPrice:29.90, unit:'un', cat:'papelaria', desc:'200 folhas pautadas, capa dura colorida.', badge:'oferta' },
-  { id:8,  name:'Caneta Colorida Kit',   emoji:'✏️', price:12.90, oldPrice:null,  unit:'kit', cat:'papelaria', desc:'Kit com 12 cores vibrantes, ponta fina.' },
-  { id:9,  name:'Mochila Escolar',       emoji:'🎒', price:89.90, oldPrice:120.0, unit:'un', cat:'papelaria', desc:'Impermeável, 2 compartimentos, 30 litros.', badge:'oferta' },
-  { id:10, name:'Cola Bastão',           emoji:'🖊️', price:5.90,  oldPrice:null,  unit:'un', cat:'papelaria', desc:'21g, não mancha.' },
-  { id:11, name:'Pasta Arquivo',         emoji:'📂', price:8.90,  oldPrice:null,  unit:'un', cat:'papelaria', desc:'Com elástico, tamanho ofício.' },
-  { id:12, name:'Camiseta Básica',       emoji:'👕', price:35.00, oldPrice:49.90, unit:'un', cat:'roupas',    desc:'100% algodão, vários tamanhos P/M/G/GG.', badge:'oferta' },
-  { id:13, name:'Bermuda Jeans',         emoji:'👖', price:59.90, oldPrice:null,  unit:'un', cat:'roupas',    desc:'Corte moderno, tecido resistente.' },
-  { id:14, name:'Meias Kit 6 pares',     emoji:'🧦', price:24.90, oldPrice:34.90, unit:'kit', cat:'roupas',   desc:'Cano curto, algodão misto.', badge:'oferta' },
-  { id:15, name:'Blusa Feminina',        emoji:'👚', price:44.90, oldPrice:null,  unit:'un', cat:'roupas',    desc:'Leve para o dia a dia. P/M/G.', badge:'novo' },
-  { id:16, name:'Xerox P&B (por folha)', emoji:'🖨️', price:0.50,  oldPrice:null,  unit:'fl', cat:'servicos',  desc:'Impressão preto e branco, A4.' },
-  { id:17, name:'Xerox Colorida',        emoji:'🌈', price:2.00,  oldPrice:null,  unit:'fl', cat:'servicos',  desc:'Impressão colorida A4.' },
-  { id:18, name:'Plastificação A4',      emoji:'🗂️', price:5.00,  oldPrice:null,  unit:'un', cat:'servicos',  desc:'Laminação brilho ou fosca.' },
-  { id:19, name:'Formatação PC/Notebook',emoji:'💻', price:80.00, oldPrice:120.0, unit:'un', cat:'servicos',  desc:'Sistema, drivers e programas básicos.', badge:'oferta' },
-  { id:20, name:'Digitação de Texto',    emoji:'⌨️', price:15.00, oldPrice:null,  unit:'pág',cat:'servicos',  desc:'Por página A4.' },
-  { id:21, name:'Pilha AA Kit 4un',      emoji:'🔋', price:12.90, oldPrice:null,  unit:'kit', cat:'utilidades', desc:'Alta durabilidade.' },
-  { id:22, name:'Fita Crepe',            emoji:'📦', price:6.90,  oldPrice:null,  unit:'un', cat:'utilidades', desc:'48mm × 50m.' },
-  { id:23, name:'Extensão 3 tomadas',    emoji:'🔌', price:29.90, oldPrice:39.90, unit:'un', cat:'utilidades', desc:'Cabo 2m, 10A.', badge:'oferta' },
-  { id:24, name:'Sacola Resistente',     emoji:'🛍️', price:3.50,  oldPrice:null,  unit:'un', cat:'utilidades', desc:'Ecobag reforçada.' },
-  { id:25, name:'Óculos de Sol',         emoji:'🕶️', price:49.90, oldPrice:79.90, unit:'un', cat:'moda',      desc:'Proteção UV400.', badge:'oferta' },
-  { id:26, name:'Bolsa Feminina',        emoji:'👜', price:79.90, oldPrice:null,  unit:'un', cat:'moda',      desc:'Sintético premium, alça regulável.', badge:'novo' },
-  { id:27, name:'Cinto Couro Sintético', emoji:'👒', price:25.00, oldPrice:null,  unit:'un', cat:'moda',      desc:'Tamanhos P/M/G/GG.' },
-  { id:28, name:'Brinco Folheado',       emoji:'💍', price:18.90, oldPrice:29.90, unit:'par', cat:'moda',     desc:'Banho de ouro, hipoalergênico.', badge:'oferta' },
+  {id:1,name:'Cabo USB-C 1m',emoji:'🔌',price:19.90,oldPrice:29.90,unit:'un',cat:'info',desc:'Compatível com celular, tablet e notebook.',badge:'oferta'},
+  {id:2,name:'Mouse Sem Fio',emoji:'🖱️',price:49.90,oldPrice:null,unit:'un',cat:'info',desc:'Conexão USB, pilha inclusa, 1200 DPI.',badge:'novo'},
+  {id:3,name:'Pendrive 32GB',emoji:'💾',price:29.90,oldPrice:39.90,unit:'un',cat:'info',desc:'Armazenamento rápido e durável.',badge:'oferta'},
+  {id:4,name:'Fone de Ouvido',emoji:'🎧',price:39.90,oldPrice:null,unit:'un',cat:'info',desc:'Com microfone, cabo 1,2m.'},
+  {id:5,name:'Carregador 20W',emoji:'⚡',price:34.90,oldPrice:null,unit:'un',cat:'info',desc:'Carregamento rápido para celular.',badge:'novo'},
+  {id:6,name:'Película de Celular',emoji:'📱',price:15.00,oldPrice:null,unit:'un',cat:'info',desc:'Vidro temperado 9H.'},
+  {id:7,name:'Caderno Espiral 200f',emoji:'📓',price:22.90,oldPrice:29.90,unit:'un',cat:'papelaria',desc:'200 folhas pautadas.',badge:'oferta'},
+  {id:8,name:'Caneta Colorida Kit',emoji:'✏️',price:12.90,oldPrice:null,unit:'kit',cat:'papelaria',desc:'Kit com 12 cores.'},
+  {id:9,name:'Mochila Escolar',emoji:'🎒',price:89.90,oldPrice:120.0,unit:'un',cat:'papelaria',desc:'Impermeável, 30 litros.',badge:'oferta'},
+  {id:10,name:'Cola Bastão',emoji:'🖊️',price:5.90,oldPrice:null,unit:'un',cat:'papelaria',desc:'21g, não mancha.'},
+  {id:11,name:'Pasta Arquivo',emoji:'📂',price:8.90,oldPrice:null,unit:'un',cat:'papelaria',desc:'Com elástico, tamanho ofício.'},
+  {id:12,name:'Camiseta Básica',emoji:'👕',price:35.00,oldPrice:49.90,unit:'un',cat:'roupas',desc:'100% algodão, P/M/G/GG.',badge:'oferta'},
+  {id:13,name:'Bermuda Jeans',emoji:'👖',price:59.90,oldPrice:null,unit:'un',cat:'roupas',desc:'Corte moderno.'},
+  {id:14,name:'Meias Kit 6 pares',emoji:'🧦',price:24.90,oldPrice:34.90,unit:'kit',cat:'roupas',desc:'Cano curto.',badge:'oferta'},
+  {id:15,name:'Blusa Feminina',emoji:'👚',price:44.90,oldPrice:null,unit:'un',cat:'roupas',desc:'Leve para o dia a dia.',badge:'novo'},
+  {id:16,name:'Xerox P&B (por folha)',emoji:'🖨️',price:0.50,oldPrice:null,unit:'fl',cat:'servicos',desc:'Impressão preto e branco, A4.'},
+  {id:17,name:'Xerox Colorida',emoji:'🌈',price:2.00,oldPrice:null,unit:'fl',cat:'servicos',desc:'Impressão colorida A4.'},
+  {id:18,name:'Plastificação A4',emoji:'🗂️',price:5.00,oldPrice:null,unit:'un',cat:'servicos',desc:'Laminação brilho ou fosca.'},
+  {id:19,name:'Formatação PC/Notebook',emoji:'💻',price:80.00,oldPrice:120.0,unit:'un',cat:'servicos',desc:'Sistema, drivers e programas.',badge:'oferta'},
+  {id:20,name:'Digitação de Texto',emoji:'⌨️',price:15.00,oldPrice:null,unit:'pág',cat:'servicos',desc:'Por página A4.'},
+  {id:21,name:'Pilha AA Kit 4un',emoji:'🔋',price:12.90,oldPrice:null,unit:'kit',cat:'utilidades',desc:'Alta durabilidade.'},
+  {id:22,name:'Fita Crepe',emoji:'📦',price:6.90,oldPrice:null,unit:'un',cat:'utilidades',desc:'48mm x 50m.'},
+  {id:23,name:'Extensão 3 tomadas',emoji:'🔌',price:29.90,oldPrice:39.90,unit:'un',cat:'utilidades',desc:'Cabo 2m, 10A.',badge:'oferta'},
+  {id:24,name:'Sacola Resistente',emoji:'🛍️',price:3.50,oldPrice:null,unit:'un',cat:'utilidades',desc:'Ecobag reforçada.'},
+  {id:25,name:'Óculos de Sol',emoji:'🕶️',price:49.90,oldPrice:79.90,unit:'un',cat:'moda',desc:'Proteção UV400.',badge:'oferta'},
+  {id:26,name:'Bolsa Feminina',emoji:'👜',price:79.90,oldPrice:null,unit:'un',cat:'moda',desc:'Sintético premium.',badge:'novo'},
+  {id:27,name:'Cinto Couro Sintético',emoji:'👒',price:25.00,oldPrice:null,unit:'un',cat:'moda',desc:'P/M/G/GG.'},
+  {id:28,name:'Brinco Folheado',emoji:'💍',price:18.90,oldPrice:29.90,unit:'par',cat:'moda',desc:'Banho de ouro.',badge:'oferta'}
 ];
 
-function loadProducts(){
-  const s=localStorage.getItem('loja_patricia_products');
-  if(s){try{return JSON.parse(s);}catch(e){}}
-  return products;
-}
-function loadCategories(){
-  const s=localStorage.getItem('loja_patricia_cats');
-  if(s){try{return JSON.parse(s);}catch(e){}}
-  return [{id:'info',emoji:'💻',name:'Informática'},{id:'papelaria',emoji:'📚',name:'Papelaria'},{id:'roupas',emoji:'👕',name:'Roupas'},{id:'servicos',emoji:'🖨️',name:'Serviços'},{id:'utilidades',emoji:'🏠',name:'Utilidades'},{id:'moda',emoji:'👗',name:'Moda'}];
-}
+function loadProducts(){const s=localStorage.getItem('loja_patricia_products');if(s){try{return JSON.parse(s);}catch(e){}}return products;}
+function loadCategories(){const s=localStorage.getItem('loja_patricia_cats');if(s){try{return JSON.parse(s);}catch(e){}}return [{id:'info',emoji:'💻',name:'Informática'},{id:'papelaria',emoji:'📚',name:'Papelaria'},{id:'roupas',emoji:'👕',name:'Roupas'},{id:'servicos',emoji:'🖨️',name:'Serviços'},{id:'utilidades',emoji:'🏠',name:'Utilidades'},{id:'moda',emoji:'👗',name:'Moda'}];}
+
 document.addEventListener('visibilitychange',function(){
   if(document.visibilityState==='visible'){
-    const sP=localStorage.getItem('loja_patricia_products');
-    const sC=localStorage.getItem('loja_patricia_cats');
-    if(sP)try{const p=JSON.parse(sP);allProducts.length=0;p.forEach(x=>allProducts.push(x));}catch(e){}
-    if(sC)try{const c=JSON.parse(sC);allCategories.length=0;c.forEach(x=>allCategories.push(x));}catch(e){}
+    var sP=localStorage.getItem('loja_patricia_products');
+    var sC=localStorage.getItem('loja_patricia_cats');
+    if(sP)try{var p=JSON.parse(sP);allProducts.length=0;p.forEach(function(x){allProducts.push(x);});}catch(e){}
+    if(sC)try{var c=JSON.parse(sC);allCategories.length=0;c.forEach(function(x){allCategories.push(x);});}catch(e){}
     renderCatButtons();renderProducts();
   }
 });
 
-let allProducts=loadProducts();
-let allCategories=loadCategories();
-let cart=[],currentCat='todos',currentSearch='',modalProduct=null,modalQty=1,selectedPay='pix';
-let mImgs=[],mIdx=0;
+var allProducts=loadProducts();
+var allCategories=loadCategories();
+var cart=[],currentCat='todos',currentSearch='',modalProduct=null,modalQty=1,selectedPay='pix';
+var mImgs=[],mIdx=0;
 
 function fmt(v){return 'R$ '+v.toFixed(2).replace('.',',');}
-function getCatLabel(id){const c=allCategories.find(x=>x.id===id);return c?c.emoji+' '+c.name:id;}
-const catColors={info:'cat-color-info',papelaria:'cat-color-papelaria',roupas:'cat-color-roupas',servicos:'cat-color-servicos',utilidades:'cat-color-utilidades',moda:'cat-color-moda'};
+function getCatLabel(id){var c=allCategories.find(function(x){return x.id===id;});return c?c.emoji+' '+c.name:id;}
+var catColors={info:'cat-color-info',papelaria:'cat-color-papelaria',roupas:'cat-color-roupas',servicos:'cat-color-servicos',utilidades:'cat-color-utilidades',moda:'cat-color-moda'};
 
 function renderCatButtons(){
-  const el=document.getElementById('catsEl');
-  el.innerHTML=`<div class="cat active" id="cat-todos" onclick="filterCat('todos',this)"><div class="cat-icon">🛒</div><div class="cat-label">Todos</div></div>`
-    +allCategories.map(c=>`<div class="cat" id="cat-${c.id}" onclick="filterCat('${c.id}',this)"><div class="cat-icon">${c.emoji}</div><div class="cat-label">${c.name}</div></div>`).join('');
+  var el=document.getElementById('catsEl');
+  var html='<div class="cat active" id="cat-todos" onclick="filterCat(\'todos\',this)"><div class="cat-icon">🛒</div><div class="cat-label">Todos</div></div>';
+  allCategories.forEach(function(c){
+    html+='<div class="cat" id="cat-'+c.id+'" onclick="filterCat(\''+c.id+'\',this)"><div class="cat-icon">'+c.emoji+'</div><div class="cat-label">'+c.name+'</div></div>';
+  });
+  el.innerHTML=html;
 }
 
 function renderProducts(){
-  const grid=document.getElementById('grid');
-  let list=allProducts;
-  if(currentCat!=='todos') list=list.filter(p=>p.cat===currentCat);
-  if(currentSearch) list=list.filter(p=>p.name.toLowerCase().includes(currentSearch.toLowerCase()));
-  const label=currentCat==='todos'?'🛍️ Todos os Produtos':getCatLabel(currentCat);
-  document.getElementById('sectionLabel').textContent=label;
+  var grid=document.getElementById('grid');
+  var list=allProducts.slice();
+  if(currentCat!=='todos') list=list.filter(function(p){return p.cat===currentCat;});
+  if(currentSearch) list=list.filter(function(p){return p.name.toLowerCase().indexOf(currentSearch.toLowerCase())>=0;});
+  document.getElementById('sectionLabel').textContent=currentCat==='todos'?'🛍️ Todos os Produtos':getCatLabel(currentCat);
   if(!list.length){grid.innerHTML='<div class="no-results">Nenhum produto encontrado 😕</div>';return;}
-  grid.innerHTML=list.map(p=>{
-    const thumbSrc=(p.imgs&&p.imgs.length)?p.imgs[0]:(p.img||null);
-    const fit=p.imgFit||'contain';
-    return `<div class="card" onclick="openModal(${p.id})">
-      ${p.badge==='novo'?'<div class="badge-novo">NOVO</div>':p.badge==='oferta'?'<div class="badge-oferta">OFERTA</div>':''}
-      <div class="card-img ${thumbSrc?'':catColors[p.cat]||''}">
-        ${thumbSrc?`<img src="${thumbSrc}" style="width:100%;height:100%;object-fit:${fit};display:block;" alt="${p.name}">`:(p.emoji||'🛍️')}
-      </div>
-      <div class="card-body">
-        <div class="card-name">${p.name}</div>
-        <div class="card-unit">por ${p.unit}</div>
-        <div class="card-footer">
-          <div class="card-price">${p.oldPrice?`<small>${fmt(p.oldPrice)}</small>`:''} ${fmt(p.price)}</div>
-          <button class="add-btn" onclick="event.stopPropagation();quickAdd(${p.id})">+</button>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
+  var html='';
+  list.forEach(function(p){
+    var thumbSrc=(p.imgs&&p.imgs.length)?p.imgs[0]:(p.img||null);
+    var fit=p.imgFit||'contain';
+    var badge=p.badge==='novo'?'<div class="badge-novo">NOVO</div>':p.badge==='oferta'?'<div class="badge-oferta">OFERTA</div>':'';
+    var imgHtml=thumbSrc?('<img src="'+thumbSrc+'" style="width:100%;height:100%;object-fit:'+fit+';display:block;" alt="'+p.name+'">'):(p.emoji||'🛍️');
+    var oldP=p.oldPrice?('<small>'+fmt(p.oldPrice)+'</small>'):'';
+    html+='<div class="card" onclick="openModal('+p.id+')">';
+    html+=badge;
+    html+='<div class="card-img '+(thumbSrc?'':catColors[p.cat]||'')+'">'+imgHtml+'</div>';
+    html+='<div class="card-body">';
+    html+='<div class="card-name">'+p.name+'</div>';
+    html+='<div class="card-unit">por '+p.unit+'</div>';
+    html+='<div class="card-footer"><div class="card-price">'+oldP+' '+fmt(p.price)+'</div>';
+    html+='<button class="add-btn" onclick="event.stopPropagation();quickAdd('+p.id+')">+</button></div>';
+    html+='</div></div>';
+  });
+  grid.innerHTML=html;
 }
 
 function filterCat(cat,el){
   currentCat=cat;
-  document.querySelectorAll('.cat').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.cat').forEach(function(c){c.classList.remove('active');});
   el.classList.add('active');
   renderProducts();
 }
 function filterProducts(){currentSearch=document.getElementById('searchInput').value;renderProducts();}
 
 function renderModalFoto(){
-  const wrap=document.getElementById('mFotoWrap');
-  if(!mImgs.length){wrap.innerHTML=`<div class="modal-foto-emoji">${modalProduct.emoji||'🛍️'}</div>`;return;}
-  const fit=modalProduct.imgFit||'contain';
-  const dots=mImgs.length>1?`<div class="modal-foto-dots">${mImgs.map((_,i)=>`<div class="modal-foto-dot${i===mIdx?' active':''}" onclick="mNav(${i})"></div>`).join('')}</div>`:'';
-  const thumbs=mImgs.length>1?`<div class="modal-foto-thumbs">${mImgs.map((s,i)=>`<img class="modal-foto-thumb${i===mIdx?' active':''}" src="${s}" onclick="mNav(${i})" alt="Foto ${i+1}">`).join('')}</div>`:'';
-  const navs=mImgs.length>1?`<button class="modal-foto-nav prev" onclick="mNav(mIdx-1)">‹</button><button class="modal-foto-nav next" onclick="mNav(mIdx+1)">›</button>`:'';
-  wrap.innerHTML=`<img class="modal-foto-main" src="${mImgs[mIdx]}" alt="${modalProduct.name}" style="object-fit:${fit}">${navs}${dots}${thumbs}`;
+  var wrap=document.getElementById('mFotoWrap');
+  if(!mImgs.length){wrap.innerHTML='<div class="modal-foto-emoji">'+(modalProduct.emoji||'🛍️')+'</div>';return;}
+  var fit=modalProduct.imgFit||'contain';
+  var html='<img class="modal-foto-main" src="'+mImgs[mIdx]+'" alt="'+modalProduct.name+'" style="object-fit:'+fit+'">';
+  if(mImgs.length>1){
+    html+='<button class="modal-foto-nav prev" onclick="mNav(mIdx-1)">&#8249;</button>';
+    html+='<button class="modal-foto-nav next" onclick="mNav(mIdx+1)">&#8250;</button>';
+    html+='<div class="modal-foto-dots">';
+    for(var i=0;i<mImgs.length;i++){html+='<div class="modal-foto-dot'+(i===mIdx?' active':'')+'" onclick="mNav('+i+')"></div>';}
+    html+='</div>';
+    html+='<div class="modal-foto-thumbs">';
+    for(var j=0;j<mImgs.length;j++){html+='<img class="modal-foto-thumb'+(j===mIdx?' active':'')+'" src="'+mImgs[j]+'" onclick="mNav('+j+')" alt="Foto '+(j+1)+'">';}
+    html+='</div>';
+  }
+  wrap.innerHTML=html;
 }
 function mNav(i){mIdx=((i%mImgs.length)+mImgs.length)%mImgs.length;renderModalFoto();}
 
 function openModal(id){
-  const p=allProducts.find(x=>x.id===id);
+  var p=allProducts.find(function(x){return x.id===id;});
   modalProduct=p;modalQty=1;
   mImgs=(p.imgs&&p.imgs.length)?p.imgs:(p.img?[p.img]:[]);
   mIdx=0;renderModalFoto();
   document.getElementById('mName').textContent=p.name;
   document.getElementById('mDesc').textContent=p.desc||'';
-  document.getElementById('mPrice').innerHTML=fmt(p.price)+' / '+p.unit+(p.oldPrice?`<span class="modal-old-price">${fmt(p.oldPrice)}</span>`:'');
+  var oldPriceHtml=p.oldPrice?('<span class="modal-old-price">'+fmt(p.oldPrice)+'</span>'):'';
+  document.getElementById('mPrice').innerHTML=fmt(p.price)+' / '+p.unit+oldPriceHtml;
   document.getElementById('qtyNum').textContent=1;
   document.getElementById('productModal').classList.add('open');
 }
@@ -485,92 +456,92 @@ function closeModalBg(e){if(e.target===document.getElementById('productModal'))d
 function changeQty(d){modalQty=Math.max(1,modalQty+d);document.getElementById('qtyNum').textContent=modalQty;}
 function addToCart(){
   if(!modalProduct)return;
-  const ex=cart.find(c=>c.id===modalProduct.id);
-  if(ex)ex.qty+=modalQty;else cart.push({...modalProduct,qty:modalQty});
+  var ex=cart.find(function(c){return c.id===modalProduct.id;});
+  if(ex)ex.qty+=modalQty;else cart.push(Object.assign({},modalProduct,{qty:modalQty}));
   document.getElementById('productModal').classList.remove('open');
   updateBar();
 }
 function quickAdd(id){
-  const p=allProducts.find(x=>x.id===id);
-  const ex=cart.find(c=>c.id===id);
-  if(ex)ex.qty++;else cart.push({...p,qty:1});
+  var p=allProducts.find(function(x){return x.id===id;});
+  var ex=cart.find(function(c){return c.id===id;});
+  if(ex)ex.qty++;else cart.push(Object.assign({},p,{qty:1}));
   updateBar();
 }
 function updateBar(){
-  const total=cart.reduce((s,c)=>s+c.price*c.qty,0);
-  const count=cart.reduce((s,c)=>s+c.qty,0);
+  var total=cart.reduce(function(s,c){return s+c.price*c.qty;},0);
+  var count=cart.reduce(function(s,c){return s+c.qty;},0);
   document.getElementById('cartCount').textContent=count;
   document.getElementById('cartTotalBar').textContent=fmt(total);
-  const bar=document.getElementById('cartBar');
+  var bar=document.getElementById('cartBar');
   count>0?bar.classList.add('visible'):bar.classList.remove('visible');
 }
 function openCheckout(){
-  const el=document.getElementById('cartItemsList');
-  if(!cart.length){el.innerHTML='<div class="empty-cart">🛒 Carrinho vazio<br>Adicione produtos para continuar!</div>';}
+  var el=document.getElementById('cartItemsList');
+  if(!cart.length){el.innerHTML='<div class="empty-cart">🛒 Carrinho vazio<br>Adicione produtos!</div>';}
   else{
-    el.innerHTML=cart.map(c=>{
-      const cSrc=(c.imgs&&c.imgs.length)?c.imgs[0]:(c.img||null);
-      const cFit=c.imgFit||'contain';
-      const cThumb=cSrc?`<img src="${cSrc}" style="width:36px;height:36px;object-fit:${cFit};border-radius:8px;" alt="${c.name}">`:`<span style="font-size:26px">${c.emoji||'🛍️'}</span>`;
-      return `<div class="cart-item"><div class="cart-item-left"><div class="cart-item-emoji">${cThumb}</div><div><div class="cart-item-name">${c.name}</div><div class="cart-item-qty">${c.qty}× ${fmt(c.price)} / ${c.unit}</div></div></div><div style="display:flex;align-items:center;gap:6px;"><div class="cart-item-price">${fmt(c.price*c.qty)}</div><button class="cart-item-remove" onclick="removeItem(${c.id})">✕</button></div></div>`;
-    }).join('');
+    var html='';
+    cart.forEach(function(c){
+      var cSrc=(c.imgs&&c.imgs.length)?c.imgs[0]:(c.img||null);
+      var cFit=c.imgFit||'contain';
+      var cThumb=cSrc?('<img src="'+cSrc+'" style="width:36px;height:36px;object-fit:'+cFit+';border-radius:8px;" alt="'+c.name+'">'):'<span style="font-size:26px">'+(c.emoji||'🛍️')+'</span>';
+      html+='<div class="cart-item"><div class="cart-item-left"><div class="cart-item-emoji">'+cThumb+'</div><div><div class="cart-item-name">'+c.name+'</div><div class="cart-item-qty">'+c.qty+'x '+fmt(c.price)+' / '+c.unit+'</div></div></div>';
+      html+='<div style="display:flex;align-items:center;gap:6px;"><div class="cart-item-price">'+fmt(c.price*c.qty)+'</div><button class="cart-item-remove" onclick="removeItem('+c.id+')">✕</button></div></div>';
+    });
+    el.innerHTML=html;
   }
-  const total=cart.reduce((s,c)=>s+c.price*c.qty,0);
+  var total=cart.reduce(function(s,c){return s+c.price*c.qty;},0);
   document.getElementById('subtotalVal').textContent=fmt(total);
   document.getElementById('totalVal').textContent=fmt(total);
   document.getElementById('checkoutOverlay').classList.add('open');
 }
 function closeCheckoutBg(e){if(e.target===document.getElementById('checkoutOverlay'))document.getElementById('checkoutOverlay').classList.remove('open');}
-function removeItem(id){cart=cart.filter(c=>c.id!==id);openCheckout();updateBar();}
+function removeItem(id){cart=cart.filter(function(c){return c.id!==id;});openCheckout();updateBar();}
 function selectPay(p){
   selectedPay=p;
-  ['pix','credito','debito','dinheiro'].forEach(x=>document.getElementById('pay-'+x).classList.remove('selected'));
+  ['pix','credito','debito','dinheiro'].forEach(function(x){document.getElementById('pay-'+x).classList.remove('selected');});
   document.getElementById('pay-'+p).classList.add('selected');
 }
 
-// ── FRETE ──
 function abrirFrete(){document.getElementById('freteOverlay').classList.add('open');}
 function fecharFrete(){document.getElementById('freteOverlay').classList.remove('open');document.getElementById('freteResultado').style.display='none';}
 function verificarFrete(){
-  const end=document.getElementById('freteEnd').value.trim().toLowerCase();
+  var end=document.getElementById('freteEnd').value.trim().toLowerCase();
   if(!end)return;
-  const res=document.getElementById('freteResultado');
-  const gratis=BAIRROS_GRATIS.some(b=>end.includes(b)||b.includes(end));
+  var res=document.getElementById('freteResultado');
+  var gratis=BAIRROS_GRATIS.some(function(b){return end.indexOf(b)>=0||b.indexOf(end)>=0;});
   res.style.display='block';
   if(gratis){
     res.className='frete-resultado gratis';
     res.innerHTML='✅ Ótima notícia! Seu endereço está dentro da área de <strong>frete grátis</strong> (até 3km)! 🎉';
   } else {
     res.className='frete-resultado pago';
-    res.innerHTML='📍 Seu endereço pode estar fora da área de frete grátis. Entre em contato pelo WhatsApp para confirmar o valor da entrega.';
+    res.innerHTML='📍 Seu endereço pode estar fora da área de frete grátis. Entre em contato pelo WhatsApp para confirmar!';
   }
 }
 
-// ── WHATSAPP ──
-const payLabel={pix:'📱 Pix',credito:'💳 Cartão de Crédito',debito:'💳 Cartão de Débito',dinheiro:'💵 Dinheiro'};
+var payLabel={pix:'📱 Pix',credito:'💳 Cartão de Crédito',debito:'💳 Cartão de Débito',dinheiro:'💵 Dinheiro'};
 function sendWhatsApp(){
   if(!cart.length){alert('Adicione produtos ao carrinho primeiro!');return;}
-  const nome=document.getElementById('clienteName').value.trim();
-  const end=document.getElementById('clienteEnd').value.trim();
-  const total=cart.reduce((s,c)=>s+c.price*c.qty,0);
-  let msg=`🛍️ *Pedido – ${LOJA}*\n`;
-  if(nome) msg+=`👤 *Cliente:* ${nome}\n`;
-  if(end) msg+=`📍 *Endereço:* ${end}\n`;
-  msg+=`\n*Itens do Pedido:*\n`;
-  cart.forEach(c=>{msg+=`  • ${c.emoji||'🛍️'} ${c.name} × ${c.qty} ........................ ${fmt(c.price*c.qty)}\n`;});
-  msg+=`\n🚚 Entrega: *GRÁTIS até 3km*`;
-  msg+=`\n💰 *Total: ${fmt(total)}*`;
-  msg+=`\n💳 *Pagamento:* ${payLabel[selectedPay]}`;
-  msg+=`\n\nAguardo confirmação! 😊`;
-  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank');
+  var nome=document.getElementById('clienteName').value.trim();
+  var end=document.getElementById('clienteEnd').value.trim();
+  var total=cart.reduce(function(s,c){return s+c.price*c.qty;},0);
+  var msg='🛍️ *Pedido – '+LOJA+'*\n';
+  if(nome) msg+='👤 *Cliente:* '+nome+'\n';
+  if(end) msg+='📍 *Endereço:* '+end+'\n';
+  msg+='\n*Itens do Pedido:*\n';
+  cart.forEach(function(c){msg+='  • '+(c.emoji||'🛍️')+' '+c.name+' × '+c.qty+' ........................ '+fmt(c.price*c.qty)+'\n';});
+  msg+='\n🚚 Entrega: *GRÁTIS até 3km*';
+  msg+='\n💰 *Total: '+fmt(total)+'*';
+  msg+='\n💳 *Pagamento:* '+payLabel[selectedPay];
+  msg+='\n\nAguardo confirmação! 😊';
+  window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(msg),'_blank');
 }
 
-// swipe modal
 (function(){
-  let sx=0;
-  const ov=document.getElementById('productModal');
-  ov.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
-  ov.addEventListener('touchend',e=>{if(!mImgs.length)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)mNav(mIdx+(dx<0?1:-1));},{passive:true});
+  var sx=0;
+  var ov=document.getElementById('productModal');
+  ov.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+  ov.addEventListener('touchend',function(e){if(!mImgs.length)return;var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)mNav(mIdx+(dx<0?1:-1));},{passive:true});
 })();
 
 renderCatButtons();
