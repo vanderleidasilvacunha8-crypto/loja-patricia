@@ -3,797 +3,632 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Admin – Loja da Patrícia</title>
+<title>Loja da Patrícia</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --pink:#ff4e8d;--pink-light:#ff80b0;--pink-pale:#fff0f6;
-  --teal:#00c9a7;--orange:#ff7849;--blue:#4e8bff;
-  --bg:#fff8fc;--card:#fff;--text:#2d1a2e;--muted:#9b7fa0;
-  --red:#ff4444;--green:#00c9a7;
-  --radius:16px;--shadow:0 4px 24px rgba(255,78,141,.10);
+:root {
+  --pink: #ff4e8d;
+  --pink-light: #ff80b0;
+  --pink-pale: #fff0f6;
+  --yellow: #ffd93d;
+  --teal: #00c9a7;
+  --blue: #4e8bff;
+  --purple: #a855f7;
+  --orange: #ff7849;
+  --bg: #fff8fc;
+  --card: #ffffff;
+  --text: #2d1a2e;
+  --muted: #9b7fa0;
+  --radius: 18px;
+  --shadow: 0 4px 24px rgba(255,78,141,0.10);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);max-width:480px;margin:0 auto;min-height:100vh;}
+body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);max-width:480px;margin:0 auto;min-height:100vh;overflow-x:hidden;}
 
-/* LOGIN */
-#loginScreen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:linear-gradient(135deg,#ff4e8d,#ff80b0,#ffb347);}
-.login-box{background:#fff;border-radius:24px;padding:32px 24px;width:100%;max-width:360px;box-shadow:0 20px 60px rgba(0,0,0,.2);}
-.login-logo{font-family:'Baloo 2',cursive;font-size:22px;font-weight:900;color:var(--pink);text-align:center;margin-bottom:6px;}
-.login-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:24px;}
-.login-box label{font-size:12px;font-weight:700;color:var(--muted);display:block;margin-bottom:6px;}
-.login-box input{width:100%;border:2px solid #eee;border-radius:12px;padding:12px 16px;font-family:'Quicksand',sans-serif;font-size:15px;color:var(--text);outline:none;margin-bottom:16px;transition:border .18s;}
-.login-box input:focus{border-color:var(--pink);}
-.login-btn{width:100%;background:linear-gradient(90deg,#ff4e8d,#ff7849);color:#fff;border:none;border-radius:12px;padding:14px;font-size:16px;font-weight:800;font-family:'Baloo 2',cursive;cursor:pointer;}
-.login-err{color:var(--red);font-size:13px;text-align:center;margin-top:10px;display:none;}
+/* ── HEADER ── */
+.hero{
+  background: linear-gradient(135deg,#ff4e8d 0%,#ff80b0 40%,#ffb347 100%);
+  padding:24px 18px 56px;
+  position:relative;overflow:hidden;
+}
+.hero-bubbles span{
+  position:absolute;border-radius:50%;opacity:.15;
+}
+.b1{width:120px;height:120px;background:#fff;top:-30px;right:-20px;}
+.b2{width:70px;height:70px;background:#ffd93d;bottom:20px;left:10px;}
+.b3{width:40px;height:40px;background:#fff;top:50px;left:50%;}
 
-/* ADMIN */
-#adminScreen{display:none;}
-.admin-header{background:linear-gradient(90deg,#ff4e8d,#ff7849);padding:18px 16px;display:flex;align-items:center;justify-content:space-between;}
-.admin-header h1{font-family:'Baloo 2',cursive;font-size:18px;font-weight:900;color:#fff;}
-.logout-btn{background:rgba(255,255,255,.2);color:#fff;border:none;border-radius:10px;padding:7px 14px;font-size:12px;font-weight:700;font-family:'Quicksand',sans-serif;cursor:pointer;}
+.hero-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;}
+.logo{font-family:'Baloo 2',cursive;font-size:24px;color:#fff;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.15);}
+.logo span{color:#ffd93d;}
+.open-badge{background:rgba(255,255,255,.25);backdrop-filter:blur(6px);color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;display:flex;align-items:center;gap:5px;}
+.dot{width:7px;height:7px;background:#a8ffca;border-radius:50%;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-/* TABS */
-.tabs{display:flex;background:#fff;border-bottom:2px solid #f5eef9;}
-.tab{flex:1;padding:12px;text-align:center;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;}
-.tab.active{color:var(--pink);border-bottom-color:var(--pink);}
+.hero-body{position:relative;z-index:2;margin-top:14px;}
+.hero-body h1{font-family:'Baloo 2',cursive;font-size:22px;font-weight:900;color:#fff;margin-bottom:4px;}
+.hero-body p{color:rgba(255,255,255,.85);font-size:13px;}
+.hero-tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.hero-tag{background:rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:10px;}
 
-/* STATS */
-.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:16px;}
-.stat-card{background:#fff;border-radius:14px;padding:14px 10px;text-align:center;box-shadow:var(--shadow);}
-.stat-num{font-family:'Baloo 2',cursive;font-size:24px;font-weight:900;color:var(--pink);}
-.stat-label{font-size:11px;color:var(--muted);font-weight:700;}
+/* ── CURVE ── */
+.curve{height:36px;background:var(--bg);border-radius:50% 50% 0 0/36px 36px 0 0;margin-top:-36px;position:relative;z-index:3;}
 
-/* BOTÃO ADICIONAR */
-.add-area{padding:0 16px 16px;}
-.add-btn-big{width:100%;background:linear-gradient(90deg,#00c9a7,#4e8bff);color:#fff;border:none;border-radius:14px;padding:14px;font-size:15px;font-weight:800;font-family:'Baloo 2',cursive;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;}
+/* ── SEARCH ── */
+.search-wrap{padding:0 16px;margin-top:-18px;position:relative;z-index:10;}
+.search-box{background:#fff;border-radius:14px;box-shadow:0 4px 24px rgba(255,78,141,.15);display:flex;align-items:center;padding:12px 16px;gap:10px;}
+.search-box input{border:none;outline:none;flex:1;font-family:'Quicksand',sans-serif;font-size:14px;color:var(--text);background:transparent;}
+.search-box input::placeholder{color:#ccc;}
 
-/* FILTRO CATS */
-.filter-cats{display:flex;gap:8px;padding:0 16px 14px;overflow-x:auto;scrollbar-width:none;}
-.filter-cats::-webkit-scrollbar{display:none;}
-.fcat{background:#fff;border:2px solid #eee;border-radius:10px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;white-space:nowrap;transition:all .18s;flex-shrink:0;}
-.fcat.active{border-color:var(--pink);background:var(--pink-pale);color:var(--pink);}
+/* ── CATS ── */
+.section-label{font-family:'Baloo 2',cursive;font-size:17px;font-weight:800;color:var(--text);padding:18px 16px 10px;}
+.cats{display:flex;gap:10px;padding:0 16px 4px;overflow-x:auto;scrollbar-width:none;}
+.cats::-webkit-scrollbar{display:none;}
+.cat{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;min-width:72px;flex-shrink:0;}
+.cat-icon{
+  width:58px;height:58px;border-radius:18px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;
+  background:#fff;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+  transition:transform .18s,box-shadow .18s;
+  border:2.5px solid transparent;
+}
+.cat.active .cat-icon{border-color:var(--pink);box-shadow:0 4px 16px rgba(255,78,141,.3);transform:scale(1.08);}
+.cat-label{font-size:10px;font-weight:700;color:var(--muted);text-align:center;line-height:1.2;}
+.cat.active .cat-label{color:var(--pink);}
 
-/* LISTA PRODUTOS */
-.prod-list{padding:0 16px 100px;display:flex;flex-direction:column;gap:10px;}
-.prod-item{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;display:flex;align-items:center;gap:12px;}
-.prod-thumb{width:54px;height:54px;border-radius:12px;object-fit:cover;background:#f5eef9;display:flex;align-items:center;justify-content:center;font-size:30px;flex-shrink:0;overflow:hidden;}
-.prod-thumb img{width:100%;height:100%;object-fit:cover;border-radius:12px;}
-.prod-info{flex:1;min-width:0;}
-.prod-name{font-size:14px;font-weight:800;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.prod-meta{font-size:11px;color:var(--muted);margin-top:2px;}
-.prod-price{font-family:'Baloo 2',cursive;font-size:15px;font-weight:900;color:var(--pink);}
-.prod-actions{display:flex;flex-direction:column;gap:6px;flex-shrink:0;}
-.btn-edit{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:7px 12px;font-size:12px;font-weight:700;font-family:'Quicksand',sans-serif;cursor:pointer;}
-.btn-del{background:#fff;color:var(--red);border:2px solid var(--red);border-radius:8px;padding:5px 12px;font-size:12px;font-weight:700;font-family:'Quicksand',sans-serif;cursor:pointer;}
-.prod-badge{display:inline-block;font-size:10px;font-weight:800;padding:2px 7px;border-radius:6px;margin-top:3px;}
-.badge-oferta{background:#fff3e0;color:var(--orange);}
-.badge-novo{background:#e0fff9;color:var(--teal);}
-.empty-list{text-align:center;color:var(--muted);padding:40px 0;font-size:14px;}
+/* ── BANNER FRETE ── */
+.frete-banner{margin:14px 16px 0;background:linear-gradient(120deg,#00c9a7,#4e8bff);border-radius:var(--radius);padding:14px 18px;display:flex;align-items:center;gap:14px;}
+.frete-banner .icon{font-size:34px;}
+.frete-banner .txt h3{color:#fff;font-size:14px;font-weight:800;font-family:'Baloo 2',cursive;}
+.frete-banner .txt p{color:rgba(255,255,255,.85);font-size:12px;}
 
-/* CATEGORIAS TAB */
-.cat-list{padding:16px;display:flex;flex-direction:column;gap:10px;}
-.cat-item{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;}
-.cat-item-left{display:flex;align-items:center;gap:12px;}
-.cat-emoji-big{font-size:32px;}
-.cat-item-name{font-size:15px;font-weight:800;}
-.cat-item-count{font-size:12px;color:var(--muted);}
-.cat-actions{display:flex;gap:8px;}
-.btn-cat-edit{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer;}
-.btn-cat-del{background:#fff;color:var(--red);border:2px solid var(--red);border-radius:8px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer;}
-.cat-fixed-tag{font-size:10px;background:#f0f0f0;color:#999;padding:2px 8px;border-radius:6px;font-weight:700;}
+/* ── PAGAMENTOS ── */
+.pay-banner{margin:10px 16px 0;background:#fff;border-radius:var(--radius);padding:12px 16px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.pay-label{font-size:12px;font-weight:700;color:var(--muted);}
+.pay-chips{display:flex;gap:8px;flex-wrap:wrap;}
+.pay-chip{display:flex;align-items:center;gap:5px;background:var(--pink-pale);color:var(--pink);font-size:12px;font-weight:700;padding:5px 10px;border-radius:10px;}
 
-/* ── FOTO UPLOAD NOVO ── */
-.foto-section-label{font-size:12px;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:6px;margin-bottom:8px;}
-.foto-main-wrap{position:relative;border:2px dashed #f0c0d8;border-radius:14px;overflow:hidden;background:#fff5fa;aspect-ratio:4/3;cursor:pointer;transition:border .2s;}
-.foto-main-wrap:hover{border-color:var(--pink);}
-.foto-main-img{width:100%;height:100%;display:block;}
-.foto-main-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--muted);gap:6px;font-size:13px;}
-.foto-main-placeholder .ico{font-size:36px;}
-.foto-main-placeholder span{font-weight:700;color:var(--pink);}
+/* ── GRID ── */
+.products-wrap{padding:0 16px 110px;}
+.products-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 
-/* botões de ajuste sobre a imagem principal */
-.fit-btns{position:absolute;top:8px;right:8px;display:flex;gap:4px;z-index:2;}
-.fit-btn{background:rgba(45,26,46,.65);color:#fff;border:none;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;font-family:'Quicksand',sans-serif;cursor:pointer;transition:background .15s;}
-.fit-btn.active{background:var(--pink);}
+/* ── CARD ── */
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;position:relative;cursor:pointer;transition:transform .15s;}
+.card:active{transform:scale(.97);}
+.card-img{width:100%;height:118px;display:flex;align-items:center;justify-content:center;font-size:54px;position:relative;}
+.cat-color-info{background:linear-gradient(135deg,#e8f4ff,#f0e8ff);}
+.cat-color-papelaria{background:linear-gradient(135deg,#fff8e1,#fce4ec);}
+.cat-color-roupas{background:linear-gradient(135deg,#fce4ec,#f3e5f5);}
+.cat-color-servicos{background:linear-gradient(135deg,#e8f5e9,#e3f2fd);}
+.cat-color-utilidades{background:linear-gradient(135deg,#fff3e0,#fbe9e7);}
+.cat-color-moda{background:linear-gradient(135deg,#fce4ec,#fff8e1);}
 
-/* badge "ampliar" */
-.zoom-hint{position:absolute;bottom:8px;right:8px;background:rgba(45,26,46,.6);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:8px;pointer-events:none;}
+.card-body{padding:10px 12px 12px;}
+.card-name{font-size:13px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:2px;}
+.card-unit{font-size:11px;color:var(--muted);margin-bottom:8px;}
+.card-footer{display:flex;align-items:center;justify-content:space-between;}
+.card-price{font-size:16px;font-weight:800;color:var(--pink);font-family:'Baloo 2',cursive;}
+.card-price small{font-size:10px;font-weight:600;color:#bbb;display:block;text-decoration:line-through;}
+.add-btn{width:32px;height:32px;background:var(--pink);border:none;border-radius:10px;color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .18s,transform .15s;font-family:'Baloo 2',cursive;line-height:1;}
+.add-btn:active{background:#cc2d68;transform:scale(.88);}
+.badge-novo{position:absolute;top:8px;left:8px;background:var(--teal);color:#fff;font-size:9px;font-weight:800;padding:3px 8px;border-radius:8px;}
+.badge-oferta{position:absolute;top:8px;left:8px;background:var(--orange);color:#fff;font-size:9px;font-weight:800;padding:3px 8px;border-radius:8px;}
 
-/* miniaturas */
-.foto-thumbs{display:flex;gap:8px;margin-top:10px;align-items:center;}
-.thumb-item{position:relative;width:58px;height:52px;border-radius:10px;overflow:hidden;border:2px solid #f0c0d8;flex-shrink:0;cursor:pointer;background:#fff5fa;}
-.thumb-item.selected{border-color:var(--pink);}
-.thumb-item img{width:100%;height:100%;object-fit:contain;display:block;}
-.thumb-del{position:absolute;top:1px;right:1px;background:rgba(255,68,68,.85);color:#fff;border:none;border-radius:5px;width:16px;height:16px;font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;}
-.thumb-add{width:58px;height:52px;border-radius:10px;border:2px dashed #d0b0d8;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);font-size:10px;font-weight:700;gap:2px;transition:border .18s;background:#fff5fa;}
-.thumb-add:hover{border-color:var(--pink);color:var(--pink);}
-.thumb-add .plus{font-size:20px;line-height:1;}
-.foto-count-note{font-size:10px;color:var(--muted);margin-top:5px;text-align:right;}
+/* ── CART BAR ── */
+.cart-bar{
+  position:fixed;bottom:16px;left:50%;transform:translateX(-50%) translateY(20px);
+  width:calc(100% - 32px);max-width:448px;
+  background:linear-gradient(90deg,#ff4e8d,#ff7849);
+  border-radius:16px;padding:14px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 8px 32px rgba(255,78,141,.4);
+  cursor:pointer;transition:opacity .3s,transform .3s;opacity:0;pointer-events:none;z-index:50;
+}
+.cart-bar.visible{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:all;}
+.cart-count{background:#fff;color:var(--pink);font-size:12px;font-weight:800;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;}
+.cart-text{flex:1;text-align:center;color:#fff;font-size:14px;font-weight:800;font-family:'Baloo 2',cursive;}
+.cart-total-bar{color:#ffd93d;font-size:14px;font-weight:800;font-family:'Baloo 2',cursive;}
 
-/* ── LIGHTBOX ── */
-#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:500;display:none;flex-direction:column;align-items:center;justify-content:center;}
-#lightbox.open{display:flex;}
-#lbImg{max-width:94vw;max-height:78vh;object-fit:contain;border-radius:10px;}
-#lbClose{position:fixed;top:16px;right:16px;background:rgba(255,255,255,.18);color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:501;}
-#lbPrev,#lbNext{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:501;}
-#lbPrev{left:10px;}
-#lbNext{right:10px;}
-#lbDots{display:flex;gap:8px;margin-top:16px;}
-.lb-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:background .2s;}
-.lb-dot.active{background:#fff;}
-
-/* MODAL FORM */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:none;align-items:flex-end;justify-content:center;}
-.modal-overlay.open{display:flex;}
-.form-modal{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:480px;padding:24px 20px 40px;max-height:92vh;overflow-y:auto;animation:slideUp .3s ease;}
+/* ── OVERLAY ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:none;align-items:flex-end;justify-content:center;}
+.overlay.open{display:flex;}
+.modal{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:480px;padding:24px 20px 40px;animation:slideUp .3s ease;}
 @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 .modal-handle{width:40px;height:4px;background:#eee;border-radius:4px;margin:0 auto 20px;}
-.form-title{font-family:'Baloo 2',cursive;font-size:20px;font-weight:900;margin-bottom:18px;}
+.modal-emoji{font-size:80px;text-align:center;margin-bottom:10px;}
+.modal-name{font-family:'Baloo 2',cursive;font-size:20px;font-weight:900;text-align:center;}
+.modal-desc{font-size:13px;color:var(--muted);text-align:center;margin:6px 0 14px;line-height:1.5;}
+.modal-price{font-family:'Baloo 2',cursive;font-size:28px;font-weight:900;color:var(--pink);text-align:center;margin-bottom:18px;}
+.qty-control{display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:18px;}
+.qty-btn{width:44px;height:44px;border-radius:14px;border:2px solid var(--pink);background:transparent;font-size:24px;color:var(--pink);cursor:pointer;font-family:'Baloo 2',cursive;font-weight:800;}
+.qty-num{font-size:24px;font-weight:900;min-width:32px;text-align:center;font-family:'Baloo 2',cursive;}
+.modal-add-btn{width:100%;background:linear-gradient(90deg,#ff4e8d,#ff7849);color:#fff;border:none;border-radius:14px;padding:16px;font-size:16px;font-weight:800;font-family:'Baloo 2',cursive;cursor:pointer;}
 
-.form-group{margin-bottom:14px;}
-.form-group label{font-size:12px;font-weight:700;color:var(--muted);display:block;margin-bottom:6px;}
-.form-group input,.form-group select{width:100%;border:2px solid #eee;border-radius:12px;padding:11px 14px;font-family:'Quicksand',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border .18s;background:#fff;}
-.form-group input:focus,.form-group select:focus{border-color:var(--pink);}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+/* ── CHECKOUT ── */
+.checkout-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:flex-end;justify-content:center;}
+.checkout-overlay.open{display:flex;}
+.checkout-modal{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:480px;padding:24px 20px 40px;max-height:85vh;overflow-y:auto;animation:slideUp .3s ease;}
+.checkout-title{font-family:'Baloo 2',cursive;font-size:20px;font-weight:900;margin-bottom:4px;}
+.checkout-sub{font-size:12px;color:var(--muted);margin-bottom:16px;}
 
-.form-save-btn{width:100%;background:linear-gradient(90deg,#ff4e8d,#ff7849);color:#fff;border:none;border-radius:14px;padding:15px;font-size:16px;font-weight:800;font-family:'Baloo 2',cursive;cursor:pointer;margin-top:8px;}
-.form-cancel-btn{width:100%;background:#fff;color:var(--muted);border:2px solid #eee;border-radius:14px;padding:13px;font-size:14px;font-weight:700;font-family:'Quicksand',sans-serif;cursor:pointer;margin-top:8px;}
+.cart-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f5eef9;}
+.cart-item-left{display:flex;align-items:center;gap:8px;}
+.cart-item-emoji{font-size:26px;}
+.cart-item-info{}
+.cart-item-name{font-size:13px;font-weight:700;}
+.cart-item-qty{font-size:11px;color:var(--muted);}
+.cart-item-price{font-size:14px;font-weight:800;color:var(--pink);font-family:'Baloo 2',cursive;}
+.cart-item-remove{background:none;border:none;color:#ddd;font-size:18px;cursor:pointer;padding:0 4px;}
 
-/* CONFIRM DELETE */
-.confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;}
-.confirm-overlay.open{display:flex;}
-.confirm-box{background:#fff;border-radius:20px;padding:28px 24px;width:100%;max-width:340px;text-align:center;}
-.confirm-box h3{font-family:'Baloo 2',cursive;font-size:18px;font-weight:900;margin-bottom:8px;}
-.confirm-box p{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5;}
-.confirm-btns{display:flex;gap:10px;}
-.btn-confirm-del{flex:1;background:var(--red);color:#fff;border:none;border-radius:12px;padding:13px;font-size:14px;font-weight:800;font-family:'Baloo 2',cursive;cursor:pointer;}
-.btn-confirm-cancel{flex:1;background:#fff;color:var(--muted);border:2px solid #eee;border-radius:12px;padding:11px;font-size:14px;font-weight:700;font-family:'Quicksand',sans-serif;cursor:pointer;}
+.checkout-divider{border:none;border-top:2px dashed #f0e0f5;margin:12px 0;}
+.checkout-total-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;}
+.checkout-total-row span:first-child{font-size:13px;color:var(--muted);}
+.checkout-total-row span:last-child{font-size:14px;font-weight:700;font-family:'Baloo 2',cursive;}
+.checkout-total-row.grand span:first-child{font-size:16px;font-weight:800;color:var(--text);}
+.checkout-total-row.grand span:last-child{font-size:20px;font-weight:900;color:var(--pink);}
+.frete-gratis-tag{background:#e8fff5;color:var(--teal);font-size:11px;font-weight:800;padding:2px 8px;border-radius:8px;}
 
-/* TOAST */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#2d1a2e;color:#fff;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:700;opacity:0;transition:all .3s;z-index:600;white-space:nowrap;}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+/* PAY OPTIONS */
+.pay-section{margin:14px 0;}
+.pay-section-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;}
+.pay-options{display:flex;gap:8px;flex-wrap:wrap;}
+.pay-opt{
+  flex:1;min-width:80px;
+  border:2px solid #eee;border-radius:12px;padding:10px 8px;
+  text-align:center;cursor:pointer;transition:border .18s,background .18s;
+  font-size:11px;font-weight:700;color:var(--muted);
+}
+.pay-opt .pay-icon{font-size:22px;display:block;margin-bottom:4px;}
+.pay-opt.selected{border-color:var(--pink);background:var(--pink-pale);color:var(--pink);}
+
+/* NOME CAMPO */
+.input-group{margin:12px 0;}
+.input-group label{font-size:12px;font-weight:700;color:var(--muted);display:block;margin-bottom:5px;}
+.input-group input, .input-group textarea{
+  width:100%;border:2px solid #eee;border-radius:12px;padding:10px 14px;
+  font-family:'Quicksand',sans-serif;font-size:14px;color:var(--text);outline:none;
+  transition:border .18s;
+}
+.input-group input:focus, .input-group textarea:focus{border-color:var(--pink);}
+.input-group textarea{resize:none;height:60px;}
+
+.whatsapp-btn{
+  width:100%;background:#25d366;color:#fff;border:none;border-radius:14px;
+  padding:16px;font-size:16px;font-weight:800;font-family:'Baloo 2',cursive;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;
+  margin-top:16px;
+}
+.empty-cart{text-align:center;color:var(--muted);padding:30px 0;font-size:14px;}
+.no-results{grid-column:1/-1;text-align:center;color:#ccc;padding:32px 0;font-size:14px;}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
-<div id="loginScreen">
-  <div class="login-box">
-    <div class="login-logo">🛍️ Loja da Patrícia</div>
-    <div class="login-sub">Painel Administrativo</div>
-    <label>Senha</label>
-    <input type="password" id="senhaInput" placeholder="Digite a senha...">
-    <button class="login-btn" onclick="login()">Entrar</button>
-    <div class="login-err" id="loginErr">❌ Senha incorreta!</div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bubbles">
+    <span class="b1"></span><span class="b2"></span><span class="b3"></span>
   </div>
-</div>
-
-<!-- ADMIN -->
-<div id="adminScreen">
-  <div class="admin-header">
-    <h1>⚙️ Painel Admin</h1>
-    <button class="logout-btn" onclick="logout()">Sair</button>
+  <div class="hero-top">
+    <div class="logo">Loja da <span>Patrícia</span> 🛍️</div>
+    <div class="open-badge"><div class="dot"></div> Aberto</div>
   </div>
-
-  <div class="tabs">
-    <div class="tab active" id="tab-prod" onclick="switchTab('prod')">🛍️ Produtos</div>
-    <div class="tab" id="tab-cats" onclick="switchTab('cats')">📂 Categorias</div>
-  </div>
-
-  <div id="tabProd">
-    <div class="stats" id="statsArea"></div>
-    <div class="add-area">
-      <button class="add-btn-big" onclick="openForm()">➕ Adicionar Novo Produto</button>
+  <div class="hero-body">
+    <h1>Tudo que você precisa! ✨</h1>
+    <p>Informática · Papelaria · Roupas · Moda · Utilidades</p>
+    <div class="hero-tags">
+      <span class="hero-tag">🚚 Frete Grátis</span>
+      <span class="hero-tag">💳 Cartão</span>
+      <span class="hero-tag">📱 Pix</span>
+      <span class="hero-tag">⭐ 4.9</span>
     </div>
-    <div class="filter-cats" id="filterCats"></div>
-    <div class="prod-list" id="prodList"></div>
   </div>
+</div>
+<div class="curve"></div>
 
-  <div id="tabCats" style="display:none;">
-    <div style="padding:16px;">
-      <button class="add-btn-big" onclick="openCatForm()">➕ Nova Categoria</button>
-    </div>
-    <div class="cat-list" id="catList"></div>
+<!-- SEARCH -->
+<div class="search-wrap">
+  <div class="search-box">
+    <span style="font-size:18px">🔍</span>
+    <input type="text" id="searchInput" placeholder="Buscar produto..." oninput="filterProducts()">
   </div>
 </div>
 
-<!-- ── LIGHTBOX ── -->
-<div id="lightbox" onclick="closeLightbox()">
-  <button id="lbClose" onclick="closeLightbox()">✕</button>
-  <button id="lbPrev" onclick="lbNav(-1);event.stopPropagation()">‹</button>
-  <img id="lbImg" src="" alt="Foto ampliada" onclick="event.stopPropagation()">
-  <div id="lbDots" onclick="event.stopPropagation()"></div>
-  <button id="lbNext" onclick="lbNav(1);event.stopPropagation()">›</button>
+<!-- FRETE -->
+<div class="frete-banner">
+  <div class="icon">🚚</div>
+  <div class="txt">
+    <h3>Entrega GRÁTIS!</h3>
+    <p>Para toda a região · Pedidos pelo WhatsApp</p>
+  </div>
 </div>
 
-<!-- FORM PRODUTO -->
-<div class="modal-overlay" id="formModal">
-  <div class="form-modal">
+<!-- PAGAMENTOS -->
+<div class="pay-banner">
+  <div class="pay-label">Aceitamos:</div>
+  <div class="pay-chips">
+    <div class="pay-chip">📱 Pix</div>
+    <div class="pay-chip">💳 Crédito</div>
+    <div class="pay-chip">💳 Débito</div>
+    <div class="pay-chip">💵 Dinheiro</div>
+  </div>
+</div>
+
+<!-- CATEGORIAS -->
+<div class="section-label">Categorias</div>
+<div class="cats" id="catsEl">
+  <div class="cat active" onclick="filterCat('todos',this)">
+    <div class="cat-icon">🛒</div>
+    <div class="cat-label">Todos</div>
+  </div>
+  <div class="cat" onclick="filterCat('info',this)">
+    <div class="cat-icon">💻</div>
+    <div class="cat-label">Informática</div>
+  </div>
+  <div class="cat" onclick="filterCat('papelaria',this)">
+    <div class="cat-icon">📚</div>
+    <div class="cat-label">Papelaria</div>
+  </div>
+  <div class="cat" onclick="filterCat('roupas',this)">
+    <div class="cat-icon">👕</div>
+    <div class="cat-label">Roupas</div>
+  </div>
+  <div class="cat" onclick="filterCat('servicos',this)">
+    <div class="cat-icon">🖨️</div>
+    <div class="cat-label">Serviços</div>
+  </div>
+  <div class="cat" onclick="filterCat('utilidades',this)">
+    <div class="cat-icon">🏠</div>
+    <div class="cat-label">Utilidades</div>
+  </div>
+  <div class="cat" onclick="filterCat('moda',this)">
+    <div class="cat-icon">👗</div>
+    <div class="cat-label">Moda</div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="section-label" id="sectionLabel">Todos os Produtos</div>
+<div class="products-wrap">
+  <div class="products-grid" id="grid"></div>
+</div>
+
+<!-- CART BAR -->
+<div class="cart-bar" id="cartBar" onclick="openCheckout()">
+  <div class="cart-count" id="cartCount">0</div>
+  <div class="cart-text">Ver Carrinho 🛒</div>
+  <div class="cart-total-bar" id="cartTotalBar">R$ 0,00</div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="overlay" id="productModal" onclick="closeModalBg(event)">
+  <div class="modal">
     <div class="modal-handle"></div>
-    <div class="form-title" id="formTitle">➕ Novo Produto</div>
-
-    <!-- FOTOS (nova seção multi-imagem) -->
-    <div class="form-group">
-      <div class="foto-section-label">📸 Fotos do Produto <small style="color:#ccc;font-weight:500">(até 4 fotos)</small></div>
-
-      <!-- imagem principal grande -->
-      <div class="foto-main-wrap" id="fotoMainWrap" onclick="openLightboxForm()">
-        <img id="fotoMainImg" class="foto-main-img" src="" alt="" style="display:none;object-fit:contain;">
-        <div class="foto-main-placeholder" id="fotoMainPlaceholder">
-          <span class="ico">📷</span>
-          <div>Toque para <span>escolher fotos</span></div>
-          <small style="color:#ccc;font-size:11px">JPG, PNG ou WEBP</small>
-        </div>
-        <!-- botões fit -->
-        <div class="fit-btns" id="fitBtns" style="display:none" onclick="event.stopPropagation()">
-          <button class="fit-btn active" id="btnContain" onclick="setFit('contain')">Mostrar tudo</button>
-          <button class="fit-btn" id="btnCover" onclick="setFit('cover')">Preencher</button>
-        </div>
-        <div class="zoom-hint" id="zoomHint" style="display:none">🔍 Toque p/ ampliar</div>
-      </div>
-
-      <!-- miniaturas + botão adicionar -->
-      <div class="foto-thumbs" id="fotoThumbs"></div>
-      <div class="foto-count-note" id="fotoCountNote"></div>
-
-      <!-- input file oculto (aceita múltiplos) -->
-      <input type="file" id="fotoInput" accept="image/*" multiple style="display:none" onchange="handleFotos(event)">
+    <div class="modal-emoji" id="mEmoji"></div>
+    <div class="modal-name" id="mName"></div>
+    <div class="modal-desc" id="mDesc"></div>
+    <div class="modal-price" id="mPrice"></div>
+    <div class="qty-control">
+      <button class="qty-btn" onclick="changeQty(-1)">−</button>
+      <div class="qty-num" id="qtyNum">1</div>
+      <button class="qty-btn" onclick="changeQty(1)">+</button>
     </div>
-
-    <div class="form-group">
-      <label>Nome do Produto</label>
-      <input type="text" id="fName" placeholder="Ex: Cabo USB-C">
-    </div>
-    <div class="form-group">
-      <label>Descrição</label>
-      <input type="text" id="fDesc" placeholder="Ex: Alta velocidade, 1 metro">
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>Preço (R$)</label>
-        <input type="number" id="fPrice" placeholder="0,00" step="0.01" min="0">
-      </div>
-      <div class="form-group">
-        <label>Preço antigo (R$)</label>
-        <input type="number" id="fOldPrice" placeholder="Opcional" step="0.01" min="0">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>Unidade</label>
-        <select id="fUnit">
-          <option value="un">un (unidade)</option>
-          <option value="kg">kg</option>
-          <option value="par">par</option>
-          <option value="kit">kit</option>
-          <option value="fl">fl (folha)</option>
-          <option value="pág">pág</option>
-          <option value="mç">mç (maço)</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Categoria</label>
-        <select id="fCat"></select>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Destaque</label>
-      <select id="fBadge">
-        <option value="">Nenhum</option>
-        <option value="novo">🆕 NOVO</option>
-        <option value="oferta">🔥 OFERTA</option>
-      </select>
-    </div>
-    <button class="form-save-btn" onclick="saveProduct()">💾 Salvar Produto</button>
-    <button class="form-cancel-btn" onclick="closeForm()">Cancelar</button>
+    <button class="modal-add-btn" onclick="addToCart()">🛒 Adicionar ao Carrinho</button>
   </div>
 </div>
 
-<!-- FORM CATEGORIA -->
-<div class="modal-overlay" id="catModal">
-  <div class="form-modal">
+<!-- CHECKOUT MODAL -->
+<div class="checkout-overlay" id="checkoutOverlay" onclick="closeCheckoutBg(event)">
+  <div class="checkout-modal">
     <div class="modal-handle"></div>
-    <div class="form-title" id="catFormTitle">📂 Nova Categoria</div>
-    <div class="form-group">
-      <label>Emoji da Categoria</label>
-      <input type="text" id="cEmoji" placeholder="Ex: 🎮" maxlength="2" style="font-size:24px;text-align:center;">
+    <div class="checkout-title">🛒 Meu Carrinho</div>
+    <div class="checkout-sub">Revise seu pedido antes de enviar</div>
+    <div id="cartItemsList"></div>
+    <hr class="checkout-divider">
+    <div class="checkout-total-row">
+      <span>Subtotal</span>
+      <span id="subtotalVal">R$ 0,00</span>
     </div>
-    <div class="form-group">
-      <label>Nome da Categoria</label>
-      <input type="text" id="cName" placeholder="Ex: Games, Bebidas, Brinquedos...">
+    <div class="checkout-total-row">
+      <span>Entrega</span>
+      <span class="frete-gratis-tag">✅ GRÁTIS</span>
     </div>
-    <button class="form-save-btn" onclick="saveCat()">💾 Salvar Categoria</button>
-    <button class="form-cancel-btn" onclick="closeCatForm()">Cancelar</button>
+    <div class="checkout-total-row grand">
+      <span>Total</span>
+      <span id="totalVal">R$ 0,00</span>
+    </div>
+
+    <div class="pay-section">
+      <div class="pay-section-title">💳 Forma de Pagamento</div>
+      <div class="pay-options">
+        <div class="pay-opt selected" id="pay-pix" onclick="selectPay('pix')">
+          <span class="pay-icon">📱</span>Pix
+        </div>
+        <div class="pay-opt" id="pay-credito" onclick="selectPay('credito')">
+          <span class="pay-icon">💳</span>Crédito
+        </div>
+        <div class="pay-opt" id="pay-debito" onclick="selectPay('debito')">
+          <span class="pay-icon">💳</span>Débito
+        </div>
+        <div class="pay-opt" id="pay-dinheiro" onclick="selectPay('dinheiro')">
+          <span class="pay-icon">💵</span>Dinheiro
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Seu nome</label>
+      <input type="text" id="clienteName" placeholder="Ex: Maria Silva">
+    </div>
+    <div class="input-group">
+      <label>Endereço de entrega</label>
+      <textarea id="clienteEnd" placeholder="Rua, número, bairro..."></textarea>
+    </div>
+
+    <button class="whatsapp-btn" onclick="sendWhatsApp()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Enviar Pedido pelo WhatsApp
+    </button>
   </div>
 </div>
-
-<!-- CONFIRM DELETE -->
-<div class="confirm-overlay" id="confirmOverlay">
-  <div class="confirm-box">
-    <h3 id="confirmTitle">🗑️ Excluir?</h3>
-    <p id="confirmText"></p>
-    <div class="confirm-btns">
-      <button class="btn-confirm-cancel" onclick="closeConfirm()">Cancelar</button>
-      <button class="btn-confirm-del" onclick="confirmDelete()">Excluir</button>
-    </div>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
 
 <script>
-const SENHA = 'Casa2018@';
+// ══════════════════════════════════════════
+// 🔧 CONFIGURAÇÕES — EDITE AQUI
+// ══════════════════════════════════════════
+const WHATSAPP = '5531989892315'; // Número com DDI+DDD sem + ou espaço
+const LOJA = 'Loja da Patrícia';
 
-const DEFAULT_CATS = [
-  {id:'info',    emoji:'💻', name:'Informática', fixed:true},
-  {id:'papelaria',emoji:'📚',name:'Papelaria',   fixed:true},
-  {id:'roupas',  emoji:'👕', name:'Roupas',      fixed:true},
-  {id:'servicos',emoji:'🖨️', name:'Serviços',    fixed:true},
-  {id:'utilidades',emoji:'🏠',name:'Utilidades', fixed:true},
-  {id:'moda',    emoji:'👗', name:'Moda',        fixed:true},
+// ══════════════════════════════════════════
+// 🛍️ PRODUTOS — Adicione, remova ou edite!
+// cat: 'info' | 'papelaria' | 'roupas' | 'servicos' | 'utilidades' | 'moda'
+// badge: 'novo' | 'oferta' | null
+// oldPrice: coloque um valor ou null
+// ══════════════════════════════════════════
+const products = [
+  // INFORMÁTICA
+  { id:1,  name:'Cabo USB-C 1m',        emoji:'🔌', price:19.90, oldPrice:29.90, unit:'un', cat:'info',      desc:'Compatível com celular, tablet e notebook. Alta velocidade de carregamento.', badge:'oferta' },
+  { id:2,  name:'Mouse Sem Fio',         emoji:'🖱️', price:49.90, oldPrice:null,  unit:'un', cat:'info',      desc:'Conexão USB, pilha inclusa, 1200 DPI. Funciona em qualquer superfície.', badge:'novo' },
+  { id:3,  name:'Pendrive 32GB',         emoji:'💾', price:29.90, oldPrice:39.90, unit:'un', cat:'info',      desc:'Armazenamento rápido e durável. USB 3.0.', badge:'oferta' },
+  { id:4,  name:'Fone de Ouvido',        emoji:'🎧', price:39.90, oldPrice:null,  unit:'un', cat:'info',      desc:'Com microfone, cabo 1,2m, plug P2 universal.' },
+  { id:5,  name:'Carregador 20W',        emoji:'⚡', price:34.90, oldPrice:null,  unit:'un', cat:'info',      desc:'Carregamento rápido para celular. Entrada USB-A e USB-C.', badge:'novo' },
+  { id:6,  name:'Película de Celular',   emoji:'📱', price:15.00, oldPrice:null,  unit:'un', cat:'info',      desc:'Vidro temperado 9H, anti-risco. Vários modelos disponíveis.' },
+
+  // PAPELARIA
+  { id:7,  name:'Caderno Espiral 200f',  emoji:'📓', price:22.90, oldPrice:29.90, unit:'un', cat:'papelaria', desc:'200 folhas pautadas, capa dura colorida.', badge:'oferta' },
+  { id:8,  name:'Caneta Colorida Kit',   emoji:'✏️', price:12.90, oldPrice:null,  unit:'kit', cat:'papelaria', desc:'Kit com 12 cores vibrantes, ponta fina.' },
+  { id:9,  name:'Mochila Escolar',       emoji:'🎒', price:89.90, oldPrice:120.0, unit:'un', cat:'papelaria', desc:'Impermeável, 2 compartimentos, 30 litros.', badge:'oferta' },
+  { id:10, name:'Cola Bastão',           emoji:'🖊️', price:5.90,  oldPrice:null,  unit:'un', cat:'papelaria', desc:'21g, não mancha, ideal para papel e cartolina.' },
+  { id:11, name:'Pasta Arquivo',         emoji:'📂', price:8.90,  oldPrice:null,  unit:'un', cat:'papelaria', desc:'Com elástico, tamanho ofício, várias cores.' },
+
+  // ROUPAS
+  { id:12, name:'Camiseta Básica',       emoji:'👕', price:35.00, oldPrice:49.90, unit:'un', cat:'roupas',    desc:'100% algodão, vários tamanhos P/M/G/GG. Cores variadas.', badge:'oferta' },
+  { id:13, name:'Bermuda Jeans',         emoji:'👖', price:59.90, oldPrice:null,  unit:'un', cat:'roupas',    desc:'Corte moderno, tecido resistente. Tamanhos 36–46.' },
+  { id:14, name:'Meias Kit 6 pares',     emoji:'🧦', price:24.90, oldPrice:34.90, unit:'kit', cat:'roupas',   desc:'Cano curto, algodão misto anti-odor.', badge:'oferta' },
+  { id:15, name:'Blusa Feminina',        emoji:'👚', price:44.90, oldPrice:null,  unit:'un', cat:'roupas',    desc:'Leve e fresquinha para o dia a dia. P/M/G.', badge:'novo' },
+
+  // SERVIÇOS
+  { id:16, name:'Xerox P&B (por folha)', emoji:'🖨️', price:0.50,  oldPrice:null,  unit:'fl', cat:'servicos',  desc:'Impressão preto e branco, A4. Traga o arquivo ou pendrive.' },
+  { id:17, name:'Xerox Colorida',        emoji:'🌈', price:2.00,  oldPrice:null,  unit:'fl', cat:'servicos',  desc:'Impressão colorida A4, alta qualidade.' },
+  { id:18, name:'Plastificação A4',      emoji:'🗂️', price:5.00,  oldPrice:null,  unit:'un', cat:'servicos',  desc:'Laminação brilho ou fosca. Protege documentos.' },
+  { id:19, name:'Formatação PC/Notebook',emoji:'💻', price:80.00, oldPrice:120.0, unit:'un', cat:'servicos',  desc:'Inclui instalação de sistema, drivers e programas básicos.', badge:'oferta' },
+  { id:20, name:'Digitação de Texto',    emoji:'⌨️', price:15.00, oldPrice:null,  unit:'pág',cat:'servicos',  desc:'Por página A4. Orçamento para documentos grandes.' },
+
+  // UTILIDADES
+  { id:21, name:'Pilha AA Kit 4un',      emoji:'🔋', price:12.90, oldPrice:null,  unit:'kit', cat:'utilidades',desc:'Alta durabilidade, marca confiável.' },
+  { id:22, name:'Fita Crepe',            emoji:'📦', price:6.90,  oldPrice:null,  unit:'un', cat:'utilidades', desc:'48mm × 50m, fácil de rasgar e não deixa resíduo.' },
+  { id:23, name:'Extensão 3 tomadas',    emoji:'🔌', price:29.90, oldPrice:39.90, unit:'un', cat:'utilidades', desc:'Cabo 2m, 10A, com fusível de proteção.', badge:'oferta' },
+  { id:24, name:'Sacola Resistente',     emoji:'🛍️', price:3.50,  oldPrice:null,  unit:'un', cat:'utilidades', desc:'Ecobag reforçada, reutilizável, vários tamanhos.' },
+
+  // MODA
+  { id:25, name:'Óculos de Sol',         emoji:'🕶️', price:49.90, oldPrice:79.90, unit:'un', cat:'moda',      desc:'Proteção UV400, armação leve. Vários modelos.', badge:'oferta' },
+  { id:26, name:'Bolsa Feminina',        emoji:'👜', price:79.90, oldPrice:null,  unit:'un', cat:'moda',      desc:'Sintético premium, alça regulável, várias cores.', badge:'novo' },
+  { id:27, name:'Cinto Couro Sintético', emoji:'👒', price:25.00, oldPrice:null,  unit:'un', cat:'moda',      desc:'Tamanhos P/M/G/GG. Masculino e feminino.' },
+  { id:28, name:'Brinco Folheado',       emoji:'💍', price:18.90, oldPrice:29.90, unit:'par', cat:'moda',     desc:'Banho de ouro, hipoalergênico. Vários modelos.', badge:'oferta' },
 ];
 
-const DEFAULT_PRODUCTS = [
-  {id:1,name:'Cabo USB-C 1m',imgs:[],emoji:'🔌',price:19.90,oldPrice:29.90,unit:'un',cat:'info',desc:'Compatível com celular, tablet e notebook.',badge:'oferta'},
-  {id:2,name:'Mouse Sem Fio',imgs:[],emoji:'🖱️',price:49.90,oldPrice:null,unit:'un',cat:'info',desc:'Conexão USB, pilha inclusa, 1200 DPI.',badge:'novo'},
-  {id:3,name:'Pendrive 32GB',imgs:[],emoji:'💾',price:29.90,oldPrice:39.90,unit:'un',cat:'info',desc:'Armazenamento rápido e durável.',badge:'oferta'},
-  {id:4,name:'Fone de Ouvido',imgs:[],emoji:'🎧',price:39.90,oldPrice:null,unit:'un',cat:'info',desc:'Com microfone, cabo 1,2m.'},
-  {id:5,name:'Carregador 20W',imgs:[],emoji:'⚡',price:34.90,oldPrice:null,unit:'un',cat:'info',desc:'Carregamento rápido.',badge:'novo'},
-  {id:6,name:'Película de Celular',imgs:[],emoji:'📱',price:15.00,oldPrice:null,unit:'un',cat:'info',desc:'Vidro temperado 9H.'},
-  {id:7,name:'Caderno Espiral 200f',imgs:[],emoji:'📓',price:22.90,oldPrice:29.90,unit:'un',cat:'papelaria',desc:'200 folhas pautadas.',badge:'oferta'},
-  {id:8,name:'Caneta Colorida Kit',imgs:[],emoji:'✏️',price:12.90,oldPrice:null,unit:'kit',cat:'papelaria',desc:'Kit com 12 cores.'},
-  {id:9,name:'Mochila Escolar',imgs:[],emoji:'🎒',price:89.90,oldPrice:120.0,unit:'un',cat:'papelaria',desc:'Impermeável, 30 litros.',badge:'oferta'},
-  {id:10,name:'Cola Bastão',imgs:[],emoji:'🖊️',price:5.90,oldPrice:null,unit:'un',cat:'papelaria',desc:'21g, não mancha.'},
-  {id:11,name:'Pasta Arquivo',imgs:[],emoji:'📂',price:8.90,oldPrice:null,unit:'un',cat:'papelaria',desc:'Com elástico, tamanho ofício.'},
-  {id:12,name:'Camiseta Básica',imgs:[],emoji:'👕',price:35.00,oldPrice:49.90,unit:'un',cat:'roupas',desc:'100% algodão, P/M/G/GG.',badge:'oferta'},
-  {id:13,name:'Bermuda Jeans',imgs:[],emoji:'👖',price:59.90,oldPrice:null,unit:'un',cat:'roupas',desc:'Corte moderno.'},
-  {id:14,name:'Meias Kit 6 pares',imgs:[],emoji:'🧦',price:24.90,oldPrice:34.90,unit:'kit',cat:'roupas',desc:'Cano curto, algodão misto.',badge:'oferta'},
-  {id:15,name:'Blusa Feminina',imgs:[],emoji:'👚',price:44.90,oldPrice:null,unit:'un',cat:'roupas',desc:'Leve para o dia a dia.',badge:'novo'},
-  {id:16,name:'Xerox P&B',imgs:[],emoji:'🖨️',price:0.50,oldPrice:null,unit:'fl',cat:'servicos',desc:'Por folha A4.'},
-  {id:17,name:'Xerox Colorida',imgs:[],emoji:'🌈',price:2.00,oldPrice:null,unit:'fl',cat:'servicos',desc:'Impressão colorida A4.'},
-  {id:18,name:'Plastificação A4',imgs:[],emoji:'📂',price:5.00,oldPrice:null,unit:'un',cat:'servicos',desc:'Laminação brilho ou fosca.'},
-  {id:19,name:'Formatação PC/Notebook',imgs:[],emoji:'💻',price:80.00,oldPrice:120.0,unit:'un',cat:'servicos',desc:'Sistema, drivers e programas.',badge:'oferta'},
-  {id:20,name:'Digitação de Texto',imgs:[],emoji:'⌨️',price:15.00,oldPrice:null,unit:'pág',cat:'servicos',desc:'Por página A4.'},
-  {id:21,name:'Pilha AA Kit 4un',imgs:[],emoji:'🔋',price:12.90,oldPrice:null,unit:'kit',cat:'utilidades',desc:'Alta durabilidade.'},
-  {id:22,name:'Fita Crepe',imgs:[],emoji:'📦',price:6.90,oldPrice:null,unit:'un',cat:'utilidades',desc:'48mm × 50m.'},
-  {id:23,name:'Extensão 3 tomadas',imgs:[],emoji:'🔌',price:29.90,oldPrice:39.90,unit:'un',cat:'utilidades',desc:'Cabo 2m, 10A.',badge:'oferta'},
-  {id:24,name:'Sacola Resistente',imgs:[],emoji:'🛍️',price:3.50,oldPrice:null,unit:'un',cat:'utilidades',desc:'Ecobag reforçada.'},
-  {id:25,name:'Óculos de Sol',imgs:[],emoji:'🕶️',price:49.90,oldPrice:79.90,unit:'un',cat:'moda',desc:'Proteção UV400.',badge:'oferta'},
-  {id:26,name:'Bolsa Feminina',imgs:[],emoji:'👜',price:79.90,oldPrice:null,unit:'un',cat:'moda',desc:'Sintético premium.',badge:'novo'},
-  {id:27,name:'Cinto Couro Sintético',imgs:[],emoji:'👒',price:25.00,oldPrice:null,unit:'un',cat:'moda',desc:'P/M/G/GG.'},
-  {id:28,name:'Brinco Folheado',imgs:[],emoji:'💍',price:18.90,oldPrice:29.90,unit:'par',cat:'moda',desc:'Banho de ouro.',badge:'oferta'},
-];
-
-let products=[], categories=[], filterCat='todos', editingId=null, deletingId=null, deletingType='prod', editingCatId=null, currentTab='prod';
-
-// Estado das fotos no formulário
-let formImgs = [];      // array de base64 strings
-let formImgFit = 'contain';  // 'contain' ou 'cover'
-let formMainIdx = 0;    // qual foto está sendo exibida como principal
-
-// Estado do lightbox
-let lbImgs = [];
-let lbIdx = 0;
-let lbSource = 'form'; // 'form' ou 'prod' (aberto de onde)
-
-function saveStorage(){
-  localStorage.setItem('loja_patricia_products', JSON.stringify(products));
-  localStorage.setItem('loja_patricia_cats', JSON.stringify(categories));
+// ── carregar produtos e categorias do admin (localStorage) ──
+function loadProducts(){
+  const saved = localStorage.getItem('loja_patricia_products');
+  if(saved){ try{ return JSON.parse(saved); }catch(e){} }
+  return products;
 }
-function loadStorage(){
-  const p=localStorage.getItem('loja_patricia_products');
-  const c=localStorage.getItem('loja_patricia_cats');
-  products = p ? JSON.parse(p) : JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
-  categories = c ? JSON.parse(c) : JSON.parse(JSON.stringify(DEFAULT_CATS));
+function loadCategories(){
+  const saved = localStorage.getItem('loja_patricia_cats');
+  if(saved){ try{ return JSON.parse(saved); }catch(e){} }
+  return [{id:'info',emoji:'💻',name:'Informática'},{id:'papelaria',emoji:'📚',name:'Papelaria'},{id:'roupas',emoji:'👕',name:'Roupas'},{id:'servicos',emoji:'🖨️',name:'Serviços'},{id:'utilidades',emoji:'🏠',name:'Utilidades'},{id:'moda',emoji:'👗',name:'Moda'}];
 }
 
-function login(){
-  if(document.getElementById('senhaInput').value===SENHA){
-    document.getElementById('loginScreen').style.display='none';
-    document.getElementById('adminScreen').style.display='block';
-    loadStorage(); renderAll();
-  } else {
-    document.getElementById('loginErr').style.display='block';
-    document.getElementById('senhaInput').value='';
+// Recarrega dados toda vez que a aba fica visível novamente
+// (útil quando admin e loja são abertos na mesma origem)
+document.addEventListener('visibilitychange', function(){
+  if(document.visibilityState === 'visible'){
+    const savedP = localStorage.getItem('loja_patricia_products');
+    const savedC = localStorage.getItem('loja_patricia_cats');
+    if(savedP) try {
+      const parsed = JSON.parse(savedP);
+      allProducts.length = 0;
+      parsed.forEach(p => allProducts.push(p));
+    } catch(e){}
+    if(savedC) try {
+      const parsedC = JSON.parse(savedC);
+      allCategories.length = 0;
+      parsedC.forEach(c => allCategories.push(c));
+    } catch(e){}
+    renderCatButtons();
+    renderProducts();
   }
-}
-function logout(){
-  document.getElementById('adminScreen').style.display='none';
-  document.getElementById('loginScreen').style.display='flex';
-  document.getElementById('senhaInput').value='';
-}
+});
+let allProducts = loadProducts();
+let allCategories = loadCategories();
 
-function switchTab(t){
-  currentTab=t;
-  document.getElementById('tabProd').style.display = t==='prod'?'block':'none';
-  document.getElementById('tabCats').style.display = t==='cats'?'block':'none';
-  document.getElementById('tab-prod').classList.toggle('active', t==='prod');
-  document.getElementById('tab-cats').classList.toggle('active', t==='cats');
-  if(t==='cats') renderCatList();
-}
+// ── estado ──
+let cart = [];
+let currentCat = 'todos';
+let currentSearch = '';
+let modalProduct = null;
+let modalQty = 1;
+let selectedPay = 'pix';
 
-function renderAll(){ renderStats(); renderFilterCats(); renderList(); }
+function getCatLabel(id){ const c=allCategories.find(x=>x.id===id); return c?c.emoji+' '+c.name:id; }
+const catColors = {info:'cat-color-info',papelaria:'cat-color-papelaria',roupas:'cat-color-roupas',servicos:'cat-color-servicos',utilidades:'cat-color-utilidades',moda:'cat-color-moda'};
 
-function renderStats(){
-  document.getElementById('statsArea').innerHTML=`
-    <div class="stat-card"><div class="stat-num">${products.length}</div><div class="stat-label">Produtos</div></div>
-    <div class="stat-card"><div class="stat-num">${categories.length}</div><div class="stat-label">Categorias</div></div>
-    <div class="stat-card"><div class="stat-num">${products.filter(p=>p.badge).length}</div><div class="stat-label">Em Destaque</div></div>
-  `;
+function fmt(v){ return 'R$ ' + v.toFixed(2).replace('.',','); }
+
+// ── render categorias dinâmicas ──
+function renderCatButtons(){
+  const el=document.getElementById('catsEl');
+  el.innerHTML=`<div class="cat active" id="cat-todos" onclick="filterCat('todos',this)"><div class="cat-icon">🛒</div><div class="cat-label">Todos</div></div>`
+    +allCategories.map(c=>`<div class="cat" id="cat-${c.id}" onclick="filterCat('${c.id}',this)"><div class="cat-icon">${c.emoji}</div><div class="cat-label">${c.name}</div></div>`).join('');
 }
 
-function getCatName(id){
-  const c=categories.find(x=>x.id===id);
-  return c ? c.emoji+' '+c.name : id;
-}
-
-function renderFilterCats(){
-  const fc=document.getElementById('filterCats');
-  fc.innerHTML=`<div class="fcat ${filterCat==='todos'?'active':''}" onclick="setFilter('todos')">🛒 Todos</div>`
-    + categories.map(c=>`<div class="fcat ${filterCat===c.id?'active':''}" onclick="setFilter('${c.id}')">${c.emoji} ${c.name}</div>`).join('');
-}
-
-function renderList(){
-  let list = filterCat==='todos' ? products : products.filter(p=>p.cat===filterCat);
-  if(!list.length){ document.getElementById('prodList').innerHTML='<div class="empty-list">Nenhum produto aqui 😕</div>'; return; }
-  document.getElementById('prodList').innerHTML = list.map(p=>{
-    const imgs = p.imgs && p.imgs.length ? p.imgs : [];
-    const thumbSrc = imgs[0] || null;
+// ── render ──
+function renderProducts(){
+  const grid = document.getElementById('grid');
+  let list = allProducts;
+  if(currentCat !== 'todos') list = list.filter(p=>p.cat===currentCat);
+  if(currentSearch) list = list.filter(p=>p.name.toLowerCase().includes(currentSearch.toLowerCase()));
+  document.getElementById('sectionLabel').textContent = currentCat==='todos'?'Todos os Produtos':getCatLabel(currentCat);
+  if(!list.length){ grid.innerHTML='<div class="no-results">Nenhum produto encontrado 😕</div>'; return; }
+  grid.innerHTML = list.map(p=>{
+    const thumbSrc = (p.imgs && p.imgs.length) ? p.imgs[0] : (p.img || null);
+    const fit = p.imgFit || 'contain';
     return `
-    <div class="prod-item">
-      <div class="prod-thumb" ${imgs.length?`onclick="openLightboxProd(${p.id})" style="cursor:pointer"`:''}">
-        ${thumbSrc ? `<img src="${thumbSrc}" alt="${p.name}" style="object-fit:${p.imgFit||'contain'}">` : (p.emoji||'🛍️')}
+    <div class="card" onclick="openModal(${p.id})">
+      ${p.badge==='novo'?'<div class="badge-novo">NOVO</div>':p.badge==='oferta'?'<div class="badge-oferta">OFERTA</div>':''}
+      <div class="card-img ${thumbSrc?'':catColors[p.cat]||''}">
+        ${thumbSrc ? `<img src="${thumbSrc}" style="width:100%;height:100%;object-fit:${fit};display:block;" alt="${p.name}">` : (p.emoji||'🛍️')}
       </div>
-      <div class="prod-info">
-        <div class="prod-name">${p.name}</div>
-        <div class="prod-meta">${getCatName(p.cat)} · por ${p.unit}${imgs.length>1?' · '+imgs.length+' fotos':''}</div>
-        <div class="prod-price">R$ ${p.price.toFixed(2).replace('.',',')}${p.oldPrice?` <small style="text-decoration:line-through;color:#ccc;font-size:11px">R$ ${p.oldPrice.toFixed(2).replace('.',',')}</small>`:''}</div>
-        ${p.badge?`<span class="prod-badge badge-${p.badge}">${p.badge==='novo'?'🆕 NOVO':'🔥 OFERTA'}</span>`:''}
-      </div>
-      <div class="prod-actions">
-        <button class="btn-edit" onclick="openEdit(${p.id})">✏️ Editar</button>
-        <button class="btn-del" onclick="openConfirmDelete(${p.id},'prod')">🗑️ Excluir</button>
+      <div class="card-body">
+        <div class="card-name">${p.name}</div>
+        <div class="card-unit">por ${p.unit}</div>
+        <div class="card-footer">
+          <div class="card-price">
+            ${p.oldPrice?`<small>${fmt(p.oldPrice)}</small>`:''}
+            ${fmt(p.price)}
+          </div>
+          <button class="add-btn" onclick="event.stopPropagation();quickAdd(${p.id})">+</button>
+        </div>
       </div>
     </div>`;
   }).join('');
 }
 
-function renderCatList(){
-  document.getElementById('catList').innerHTML = categories.map(c=>`
-    <div class="cat-item">
-      <div class="cat-item-left">
-        <div class="cat-emoji-big">${c.emoji}</div>
-        <div>
-          <div class="cat-item-name">${c.name}</div>
-          <div class="cat-item-count">${products.filter(p=>p.cat===c.id).length} produtos</div>
+// ── filtros ──
+function filterCat(cat, el){
+  currentCat=cat;
+  document.querySelectorAll('.cat').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  renderProducts();
+}
+function filterProducts(){ currentSearch=document.getElementById('searchInput').value; renderProducts(); }
+
+// ── modal produto ──
+function openModal(id){
+  const p=allProducts.find(x=>x.id===id);
+  modalProduct=p; modalQty=1;
+  const mEmoji=document.getElementById('mEmoji');
+  const mSrc = (p.imgs && p.imgs.length) ? p.imgs[0] : (p.img || null);
+  const mFit = p.imgFit || 'contain';
+  if(mSrc){ mEmoji.innerHTML=`<img src="${mSrc}" style="width:100px;height:100px;object-fit:${mFit};border-radius:16px;" alt="${p.name}">`; }
+  else { mEmoji.textContent=p.emoji||'🛍️'; }
+  document.getElementById('mName').textContent=p.name;
+  document.getElementById('mDesc').textContent=p.desc||'';
+  document.getElementById('mPrice').textContent=fmt(p.price)+' / '+p.unit;
+  document.getElementById('qtyNum').textContent=1;
+  document.getElementById('productModal').classList.add('open');
+}
+function closeModalBg(e){ if(e.target===document.getElementById('productModal')) document.getElementById('productModal').classList.remove('open'); }
+function changeQty(d){ modalQty=Math.max(1,modalQty+d); document.getElementById('qtyNum').textContent=modalQty; }
+function addToCart(){
+  if(!modalProduct)return;
+  const ex=cart.find(c=>c.id===modalProduct.id);
+  if(ex) ex.qty+=modalQty; else cart.push({...modalProduct,qty:modalQty});
+  document.getElementById('productModal').classList.remove('open');
+  updateBar();
+}
+function quickAdd(id){
+  const p=allProducts.find(x=>x.id===id);
+  const ex=cart.find(c=>c.id===id);
+  if(ex) ex.qty++; else cart.push({...p,qty:1});
+  updateBar();
+}
+
+// ── barra carrinho ──
+function updateBar(){
+  const total=cart.reduce((s,c)=>s+c.price*c.qty,0);
+  const count=cart.reduce((s,c)=>s+c.qty,0);
+  document.getElementById('cartCount').textContent=count;
+  document.getElementById('cartTotalBar').textContent=fmt(total);
+  const bar=document.getElementById('cartBar');
+  count>0?bar.classList.add('visible'):bar.classList.remove('visible');
+}
+
+// ── checkout ──
+function openCheckout(){
+  const el=document.getElementById('cartItemsList');
+  if(!cart.length){ el.innerHTML='<div class="empty-cart">🛒 Carrinho vazio<br>Adicione produtos para continuar!</div>'; }
+  else {
+    el.innerHTML=cart.map(c=>{
+      const cSrc = (c.imgs && c.imgs.length) ? c.imgs[0] : (c.img || null);
+      const cFit = c.imgFit || 'contain';
+      const cThumb = cSrc
+        ? `<img src="${cSrc}" style="width:36px;height:36px;object-fit:${cFit};border-radius:8px;" alt="${c.name}">`
+        : `<span style="font-size:26px">${c.emoji||'🛍️'}</span>`;
+      return `
+      <div class="cart-item">
+        <div class="cart-item-left">
+          <div class="cart-item-emoji">${cThumb}</div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${c.name}</div>
+            <div class="cart-item-qty">${c.qty}× ${fmt(c.price)} / ${c.unit}</div>
+          </div>
         </div>
-      </div>
-      <div class="cat-actions">
-        ${c.fixed?'<span class="cat-fixed-tag">padrão</span>':''}
-        <button class="btn-cat-edit" onclick="openEditCat('${c.id}')">✏️</button>
-        ${!c.fixed?`<button class="btn-cat-del" onclick="openConfirmDelete('${c.id}','cat')">🗑️</button>`:''}
-      </div>
-    </div>
-  `).join('');
-}
-
-function setFilter(cat){ filterCat=cat; renderFilterCats(); renderList(); }
-
-// ── GESTÃO DE FOTOS NO FORM ──────────────────────────────────────
-
-function handleFotos(e){
-  const files = Array.from(e.target.files);
-  const slots = 4 - formImgs.length;
-  const toLoad = files.slice(0, slots);
-  if(!toLoad.length){ showToast('⚠️ Máximo de 4 fotos!'); return; }
-
-  let loaded = 0;
-  toLoad.forEach(file=>{
-    const reader = new FileReader();
-    reader.onload = ev => {
-      formImgs.push(ev.target.result);
-      loaded++;
-      if(loaded === toLoad.length){
-        formMainIdx = 0;
-        renderFotoSection();
-      }
-    };
-    reader.readAsDataURL(file);
-  });
-  e.target.value = ''; // reset para poder selecionar a mesma imagem novamente
-}
-
-function triggerFotoInput(){
-  document.getElementById('fotoInput').click();
-}
-
-function setMainThumb(idx){
-  formMainIdx = idx;
-  renderFotoSection();
-}
-
-function removeFormImg(idx, e){
-  e.stopPropagation();
-  formImgs.splice(idx, 1);
-  if(formMainIdx >= formImgs.length) formMainIdx = Math.max(0, formImgs.length-1);
-  renderFotoSection();
-}
-
-function setFit(mode){
-  formImgFit = mode;
-  const img = document.getElementById('fotoMainImg');
-  img.style.objectFit = mode;
-  document.getElementById('btnContain').classList.toggle('active', mode==='contain');
-  document.getElementById('btnCover').classList.toggle('active', mode==='cover');
-}
-
-function renderFotoSection(){
-  const mainImg  = document.getElementById('fotoMainImg');
-  const placeholder = document.getElementById('fotoMainPlaceholder');
-  const fitBtns  = document.getElementById('fitBtns');
-  const zoomHint = document.getElementById('zoomHint');
-  const thumbRow = document.getElementById('fotoThumbs');
-  const countNote= document.getElementById('fotoCountNote');
-
-  if(formImgs.length === 0){
-    mainImg.style.display='none';
-    mainImg.src='';
-    placeholder.style.display='flex';
-    fitBtns.style.display='none';
-    zoomHint.style.display='none';
-    // principal wrap vira botão de adicionar
-    document.getElementById('fotoMainWrap').onclick = triggerFotoInput;
-  } else {
-    mainImg.src = formImgs[formMainIdx];
-    mainImg.style.display='block';
-    mainImg.style.objectFit = formImgFit;
-    placeholder.style.display='none';
-    fitBtns.style.display='flex';
-    zoomHint.style.display='block';
-    document.getElementById('fotoMainWrap').onclick = openLightboxForm;
-    // sincroniza botões fit
-    document.getElementById('btnContain').classList.toggle('active', formImgFit==='contain');
-    document.getElementById('btnCover').classList.toggle('active', formImgFit==='cover');
+        <div style="display:flex;align-items:center;gap:6px;">
+          <div class="cart-item-price">${fmt(c.price*c.qty)}</div>
+          <button class="cart-item-remove" onclick="removeItem(${c.id})">✕</button>
+        </div>
+      </div>`;
+    }).join('');
   }
+  const total=cart.reduce((s,c)=>s+c.price*c.qty,0);
+  document.getElementById('subtotalVal').textContent=fmt(total);
+  document.getElementById('totalVal').textContent=fmt(total);
+  document.getElementById('checkoutOverlay').classList.add('open');
+}
+function closeCheckoutBg(e){ if(e.target===document.getElementById('checkoutOverlay')) document.getElementById('checkoutOverlay').classList.remove('open'); }
+function removeItem(id){ cart=cart.filter(c=>c.id!==id); openCheckout(); updateBar(); }
 
-  // miniaturas
-  thumbRow.innerHTML = '';
-  formImgs.forEach((src, i)=>{
-    const wrap = document.createElement('div');
-    wrap.className = 'thumb-item' + (i===formMainIdx?' selected':'');
-    wrap.onclick = () => setMainThumb(i);
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = 'Foto '+(i+1);
-    const del = document.createElement('button');
-    del.className = 'thumb-del';
-    del.textContent = '✕';
-    del.title = 'Remover foto';
-    del.onclick = (ev) => removeFormImg(i, ev);
-    wrap.appendChild(img);
-    wrap.appendChild(del);
-    thumbRow.appendChild(wrap);
-  });
-
-  // botão adicionar (se tiver espaço)
-  if(formImgs.length < 4){
-    const add = document.createElement('div');
-    add.className = 'thumb-add';
-    add.title = 'Adicionar foto';
-    add.onclick = triggerFotoInput;
-    add.innerHTML = '<span class="plus">+</span><span>Foto</span>';
-    thumbRow.appendChild(add);
-  }
-
-  countNote.textContent = formImgs.length > 0 ? formImgs.length+'/4 fotos adicionadas' : '';
+// ── pagamento ──
+function selectPay(p){
+  selectedPay=p;
+  ['pix','credito','debito','dinheiro'].forEach(x=>document.getElementById('pay-'+x).classList.remove('selected'));
+  document.getElementById('pay-'+p).classList.add('selected');
 }
 
-// ── LIGHTBOX ──────────────────────────────────────────────────────
-
-function openLightboxForm(){
-  if(formImgs.length===0) return;
-  lbImgs = formImgs;
-  lbIdx = formMainIdx;
-  lbSource = 'form';
-  showLightbox();
+// ── whatsapp ──
+const payLabel={pix:'📱 Pix',credito:'💳 Cartão de Crédito',debito:'💳 Cartão de Débito',dinheiro:'💵 Dinheiro'};
+function sendWhatsApp(){
+  if(!cart.length){ alert('Adicione produtos ao carrinho primeiro!'); return; }
+  const nome=document.getElementById('clienteName').value.trim();
+  const end=document.getElementById('clienteEnd').value.trim();
+  const total=cart.reduce((s,c)=>s+c.price*c.qty,0);
+  let msg=`🛍️ *Pedido – ${LOJA}*\n`;
+  if(nome) msg+=`👤 *Cliente:* ${nome}\n`;
+  if(end) msg+=`📍 *Endereço:* ${end}\n`;
+  msg+=`\n*Itens do Pedido:*\n`;
+  cart.forEach(c=>{ msg+=`  • ${c.emoji||'🛍️'} ${c.name} × ${c.qty} ........................ ${fmt(c.price*c.qty)}\n`; });
+  msg+=`\n🚚 Entrega: *GRÁTIS*`;
+  msg+=`\n💰 *Total: ${fmt(total)}*`;
+  msg+=`\n💳 *Pagamento:* ${payLabel[selectedPay]}`;
+  msg+=`\n\nAguardo confirmação! 😊`;
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-function openLightboxProd(prodId){
-  const p = products.find(x=>x.id===prodId);
-  if(!p || !p.imgs || !p.imgs.length) return;
-  lbImgs = p.imgs;
-  lbIdx = 0;
-  lbSource = 'prod';
-  showLightbox();
-}
-
-function showLightbox(){
-  document.getElementById('lbImg').src = lbImgs[lbIdx];
-  renderLbDots();
-  document.getElementById('lbPrev').style.display = lbImgs.length>1?'flex':'none';
-  document.getElementById('lbNext').style.display = lbImgs.length>1?'flex':'none';
-  document.getElementById('lightbox').classList.add('open');
-}
-
-function closeLightbox(){
-  document.getElementById('lightbox').classList.remove('open');
-}
-
-function lbNav(dir){
-  lbIdx = (lbIdx + dir + lbImgs.length) % lbImgs.length;
-  document.getElementById('lbImg').src = lbImgs[lbIdx];
-  // se lightbox aberto do form, sincroniza miniatura selecionada
-  if(lbSource==='form'){
-    formMainIdx = lbIdx;
-    renderFotoSection();
-  }
-  renderLbDots();
-}
-
-function renderLbDots(){
-  const el = document.getElementById('lbDots');
-  el.innerHTML = '';
-  lbImgs.forEach((_,i)=>{
-    const d = document.createElement('div');
-    d.className = 'lb-dot' + (i===lbIdx?' active':'');
-    d.onclick = () => { lbIdx=i; document.getElementById('lbImg').src=lbImgs[i]; if(lbSource==='form'){formMainIdx=i;renderFotoSection();} renderLbDots(); };
-    el.appendChild(d);
-  });
-}
-
-// ── FORM PRODUTO ──────────────────────────────────────────────────
-
-function populateCatSelect(){
-  const sel=document.getElementById('fCat');
-  sel.innerHTML=categories.map(c=>`<option value="${c.id}">${c.emoji} ${c.name}</option>`).join('');
-}
-
-function resetFormFotos(){
-  formImgs=[];
-  formMainIdx=0;
-  formImgFit='contain';
-  document.getElementById('fotoInput').value='';
-  renderFotoSection();
-}
-
-function openForm(){
-  editingId=null;
-  document.getElementById('formTitle').textContent='➕ Novo Produto';
-  document.getElementById('fName').value='';
-  document.getElementById('fDesc').value='';
-  document.getElementById('fPrice').value='';
-  document.getElementById('fOldPrice').value='';
-  document.getElementById('fUnit').value='un';
-  document.getElementById('fBadge').value='';
-  resetFormFotos();
-  populateCatSelect();
-  document.getElementById('formModal').classList.add('open');
-}
-
-function openEdit(id){
-  const p=products.find(x=>x.id===id);
-  editingId=id;
-  document.getElementById('formTitle').textContent='✏️ Editar Produto';
-  document.getElementById('fName').value=p.name;
-  document.getElementById('fDesc').value=p.desc||'';
-  document.getElementById('fPrice').value=p.price;
-  document.getElementById('fOldPrice').value=p.oldPrice||'';
-  document.getElementById('fUnit').value=p.unit;
-  document.getElementById('fBadge').value=p.badge||'';
-  // carregar fotos existentes
-  formImgs = p.imgs ? [...p.imgs] : (p.img ? [p.img] : []);
-  formMainIdx = 0;
-  formImgFit = p.imgFit || 'contain';
-  document.getElementById('fotoInput').value='';
-  renderFotoSection();
-  populateCatSelect();
-  document.getElementById('fCat').value=p.cat;
-  document.getElementById('formModal').classList.add('open');
-}
-
-function closeForm(){ document.getElementById('formModal').classList.remove('open'); }
-
-function saveProduct(){
-  const name=document.getElementById('fName').value.trim();
-  const price=parseFloat(document.getElementById('fPrice').value);
-  if(!name){ showToast('⚠️ Digite o nome!'); return; }
-  if(isNaN(price)||price<0){ showToast('⚠️ Preço inválido!'); return; }
-
-  const prod={
-    id: editingId||Date.now(),
-    name,
-    imgs: [...formImgs],
-    imgFit: formImgFit,
-    emoji: formImgs.length ? null : (editingId ? products.find(x=>x.id===editingId)?.emoji||'🛍️' : '🛍️'),
-    price,
-    oldPrice: parseFloat(document.getElementById('fOldPrice').value)||null,
-    unit: document.getElementById('fUnit').value,
-    cat: document.getElementById('fCat').value,
-    desc: document.getElementById('fDesc').value.trim(),
-    badge: document.getElementById('fBadge').value||null,
-  };
-
-  if(editingId){ const i=products.findIndex(x=>x.id===editingId); products[i]=prod; showToast('✅ Produto atualizado!'); }
-  else { products.push(prod); showToast('✅ Produto adicionado!'); }
-  saveStorage(); closeForm(); renderAll();
-}
-
-// ── FORM CATEGORIA ────────────────────────────────────────────────
-
-function openCatForm(){
-  editingCatId=null;
-  document.getElementById('catFormTitle').textContent='📂 Nova Categoria';
-  document.getElementById('cEmoji').value='';
-  document.getElementById('cName').value='';
-  document.getElementById('catModal').classList.add('open');
-}
-function openEditCat(id){
-  const c=categories.find(x=>x.id===id);
-  editingCatId=id;
-  document.getElementById('catFormTitle').textContent='✏️ Editar Categoria';
-  document.getElementById('cEmoji').value=c.emoji;
-  document.getElementById('cName').value=c.name;
-  document.getElementById('catModal').classList.add('open');
-}
-function closeCatForm(){ document.getElementById('catModal').classList.remove('open'); }
-function saveCat(){
-  const emoji=document.getElementById('cEmoji').value.trim()||'📦';
-  const name=document.getElementById('cName').value.trim();
-  if(!name){ showToast('⚠️ Digite o nome da categoria!'); return; }
-  if(editingCatId){
-    const i=categories.findIndex(x=>x.id===editingCatId);
-    categories[i]={...categories[i], emoji, name};
-    showToast('✅ Categoria atualizada!');
-  } else {
-    const id='cat_'+Date.now();
-    categories.push({id, emoji, name, fixed:false});
-    showToast('✅ Categoria criada!');
-  }
-  saveStorage(); closeCatForm(); renderAll(); renderCatList();
-}
-
-// ── DELETE ────────────────────────────────────────────────────────
-
-function openConfirmDelete(id,type){
-  deletingId=id; deletingType=type;
-  if(type==='prod'){
-    const p=products.find(x=>x.id===id);
-    document.getElementById('confirmTitle').textContent='🗑️ Excluir Produto?';
-    document.getElementById('confirmText').textContent=`Tem certeza que quer excluir "${p.name}"?`;
-  } else {
-    const c=categories.find(x=>x.id===id);
-    const count=products.filter(p=>p.cat===id).length;
-    document.getElementById('confirmTitle').textContent='🗑️ Excluir Categoria?';
-    document.getElementById('confirmText').textContent=`Excluir "${c.name}"? Os ${count} produtos desta categoria ficarão sem categoria.`;
-  }
-  document.getElementById('confirmOverlay').classList.add('open');
-}
-function closeConfirm(){ document.getElementById('confirmOverlay').classList.remove('open'); }
-function confirmDelete(){
-  if(deletingType==='prod'){ products=products.filter(x=>x.id!==deletingId); showToast('🗑️ Produto excluído!'); }
-  else { categories=categories.filter(x=>x.id!==deletingId); showToast('🗑️ Categoria excluída!'); renderCatList(); }
-  saveStorage(); closeConfirm(); renderAll();
-}
-
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2500);
-}
-
-// swipe no lightbox (mobile)
-(function(){
-  let sx=0;
-  const lb = document.getElementById('lightbox');
-  lb.addEventListener('touchstart',e=>{ sx=e.touches[0].clientX; },{passive:true});
-  lb.addEventListener('touchend',e=>{
-    const dx = e.changedTouches[0].clientX - sx;
-    if(Math.abs(dx)>50){ lbNav(dx<0?1:-1); }
-  },{passive:true});
-})();
-
-document.getElementById('senhaInput').addEventListener('keydown',e=>{ if(e.key==='Enter') login(); });
+renderCatButtons();
+renderProducts();
 </script>
 </body>
 </html>
