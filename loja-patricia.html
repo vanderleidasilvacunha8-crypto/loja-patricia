@@ -38,7 +38,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
 /* CURVE */
 .curve{height:42px;background:var(--bg);border-radius:50% 50% 0 0/42px 42px 0 0;margin-top:-42px;position:relative;z-index:3;}
 
-/* SEARCH — fundo amarelo */
+/* SEARCH */
 .search-wrap{padding:0 16px;margin-top:-22px;position:relative;z-index:10;}
 .search-box{background:#ffd93d;border-radius:16px;box-shadow:0 6px 24px rgba(255,217,61,.35);display:flex;align-items:center;padding:13px 18px;gap:10px;border:2px solid #f5c800;}
 .search-box input{border:none;outline:none;flex:1;font-family:'Quicksand',sans-serif;font-size:14px;color:#2d1a2e;background:transparent;font-weight:700;}
@@ -57,7 +57,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
 .pay-row{display:flex;gap:8px;padding:10px 16px 0;flex-wrap:wrap;}
 .pay-chip{display:flex;align-items:center;gap:5px;background:#fff;color:var(--pink);font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;box-shadow:0 2px 8px rgba(255,78,141,.10);border:1.5px solid #ffd6ea;}
 
-/* CATEGORIAS — estilo original mas letras maiores */
+/* CATEGORIAS */
 .section-label{font-family:'Baloo 2',cursive;font-size:18px;font-weight:900;color:var(--text);padding:18px 16px 10px;}
 .cats{display:flex;gap:10px;padding:0 16px 4px;overflow-x:auto;scrollbar-width:none;}
 .cats::-webkit-scrollbar{display:none;}
@@ -163,20 +163,49 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
 .empty-cart{text-align:center;color:var(--muted);padding:30px 0;font-size:14px;}
 .no-results{grid-column:1/-1;text-align:center;color:#ccc;padding:32px 0;font-size:14px;}
 
-/* MODAL FRETE */
+/* ══════════════════════════════════════════
+   MODAL FRETE — NOVO (CEP + Bairro)
+══════════════════════════════════════════ */
 .frete-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:300;display:none;align-items:center;justify-content:center;padding:20px;}
 .frete-overlay.open{display:flex;}
-.frete-box{background:#fff;border-radius:24px;padding:28px 22px;width:100%;max-width:360px;text-align:center;}
-.frete-box h2{font-family:'Baloo 2',cursive;font-size:20px;font-weight:900;margin-bottom:8px;}
-.frete-box p{font-size:13px;color:var(--muted);margin-bottom:18px;line-height:1.6;}
+.frete-box{background:#fff;border-radius:24px;padding:28px 22px;width:100%;max-width:360px;text-align:center;animation:popIn .28s ease;}
+@keyframes popIn{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.frete-box h2{font-family:'Baloo 2',cursive;font-size:20px;font-weight:900;margin-bottom:6px;}
+.frete-box .frete-sub{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;}
+.frete-box .frete-sub b{color:var(--pink);}
+
+/* abas CEP / Bairro */
+.frete-tabs{display:flex;background:#f5eef9;border-radius:12px;padding:3px;margin-bottom:16px;}
+.ftab{flex:1;padding:9px;text-align:center;font-size:13px;font-weight:700;color:var(--muted);border-radius:9px;cursor:pointer;transition:all .18s;}
+.ftab.active{background:#fff;color:var(--pink);box-shadow:0 2px 8px rgba(255,78,141,.15);}
+
+/* campo CEP */
+.cep-row{display:flex;gap:8px;margin-bottom:14px;}
+.cep-input{flex:1;border:2px solid #eee;border-radius:12px;padding:11px 14px;font-family:'Quicksand',sans-serif;font-size:16px;color:var(--text);outline:none;transition:border .18s;letter-spacing:2px;text-align:center;}
+.cep-input:focus{border-color:var(--teal);}
+.frete-check-btn{background:var(--teal);color:#fff;border:none;border-radius:12px;padding:11px 18px;font-size:13px;font-weight:800;font-family:'Baloo 2',cursive;cursor:pointer;white-space:nowrap;transition:opacity .18s;}
+.frete-check-btn:disabled{opacity:.5;cursor:not-allowed;}
+
+/* campo bairro */
 .frete-input-wrap{display:flex;gap:8px;margin-bottom:14px;}
 .frete-input-wrap input{flex:1;border:2px solid #eee;border-radius:12px;padding:11px 14px;font-family:'Quicksand',sans-serif;font-size:14px;outline:none;transition:border .18s;}
 .frete-input-wrap input:focus{border-color:var(--teal);}
-.frete-check-btn{background:var(--teal);color:#fff;border:none;border-radius:12px;padding:11px 18px;font-size:13px;font-weight:800;font-family:'Baloo 2',cursive;cursor:pointer;white-space:nowrap;}
-.frete-resultado{border-radius:14px;padding:14px;font-size:14px;font-weight:700;margin-bottom:14px;display:none;}
-.frete-resultado.gratis{background:#e8fff5;color:#00856b;}
-.frete-resultado.pago{background:#fff3e0;color:#e65100;}
-.frete-fechar{width:100%;background:#fff;color:var(--muted);border:2px solid #eee;border-radius:12px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;}
+
+/* resultado */
+.frete-resultado{border-radius:14px;padding:14px 16px;font-size:14px;font-weight:700;margin-bottom:14px;display:none;text-align:left;}
+.frete-resultado.gratis{background:#e8fff5;color:#00856b;display:block;}
+.frete-resultado.pago{background:#fff3e0;color:#c05a00;display:block;}
+.frete-resultado.erro{background:#fff0f0;color:#c00;display:block;}
+.frete-res-icon{font-size:22px;margin-bottom:4px;}
+.frete-res-title{font-size:15px;font-weight:900;font-family:'Baloo 2',cursive;margin-bottom:4px;}
+.frete-res-detail{font-size:12px;font-weight:600;opacity:.85;line-height:1.4;}
+.frete-res-end{font-size:12px;background:rgba(0,0,0,.05);border-radius:8px;padding:8px 10px;margin-top:8px;opacity:.85;}
+
+.frete-fechar{width:100%;background:#fff;color:var(--muted);border:2px solid #eee;border-radius:12px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Quicksand',sans-serif;}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#2d1a2e;color:#fff;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:700;opacity:0;transition:all .3s;z-index:999;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 </style>
 </head>
 <body>
@@ -252,6 +281,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
   <div class="cart-total-bar" id="cartTotalBar">R$ 0,00</div>
 </div>
 
+<!-- MODAL PRODUTO (botão voltar corrigido via history.pushState) -->
 <div class="overlay" id="productModal" onclick="closeModalBg(event)">
   <div class="modal">
     <div class="modal-handle"></div>
@@ -270,6 +300,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
   </div>
 </div>
 
+<!-- MODAL CHECKOUT -->
 <div class="checkout-overlay" id="checkoutOverlay" onclick="closeCheckoutBg(event)">
   <div class="checkout-modal">
     <div class="modal-handle" style="margin:0 auto 20px;"></div>
@@ -298,23 +329,61 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
   </div>
 </div>
 
+<!-- ══════════════════════════════════════════
+     MODAL FRETE NOVO — CEP + Bairro
+══════════════════════════════════════════ -->
 <div class="frete-overlay" id="freteOverlay">
   <div class="frete-box">
     <div style="font-size:48px;margin-bottom:8px;">🚚</div>
     <h2>Verificar Frete</h2>
-    <p>Digite seu bairro para saber se está na área de <strong>entrega gratuita</strong> (até 3km).</p>
-    <div class="frete-input-wrap">
-      <input type="text" id="freteEnd" placeholder="Seu bairro...">
-      <button class="frete-check-btn" onclick="verificarFrete()">Verificar</button>
+    <p class="frete-sub">Calcule pelo <b>CEP</b> ou pelo nome do bairro.<br>Entrega <b>gratuita</b> até 3km!</p>
+
+    <!-- abas -->
+    <div class="frete-tabs">
+      <div class="ftab active" id="ftabCep" onclick="switchFreteTab('cep')">📮 Por CEP</div>
+      <div class="ftab" id="ftabBairro" onclick="switchFreteTab('bairro')">🏠 Por Bairro</div>
     </div>
-    <div class="frete-resultado" id="freteResultado"></div>
+
+    <!-- aba CEP -->
+    <div id="ftCep">
+      <div class="cep-row">
+        <input class="cep-input" type="tel" id="freteEnd" placeholder="00000-000" maxlength="9"
+               oninput="maskCep(this)" onkeydown="if(event.key==='Enter')verificarFreteCep()">
+        <button class="frete-check-btn" id="cepBtn" onclick="verificarFreteCep()">Verificar</button>
+      </div>
+    </div>
+
+    <!-- aba bairro -->
+    <div id="ftBairro" style="display:none">
+      <div class="frete-input-wrap">
+        <input type="text" id="freteEndBairro" placeholder="Seu bairro..."
+               onkeydown="if(event.key==='Enter')verificarFrete()">
+        <button class="frete-check-btn" onclick="verificarFrete()">Verificar</button>
+      </div>
+    </div>
+
+    <!-- resultado -->
+    <div class="frete-resultado" id="freteResultado">
+      <div class="frete-res-icon" id="fResIcon"></div>
+      <div class="frete-res-title" id="fResTitle"></div>
+      <div class="frete-res-detail" id="fResDetail"></div>
+      <div class="frete-res-end" id="fResEnd" style="display:none"></div>
+    </div>
+
     <button class="frete-fechar" onclick="fecharFrete()">Fechar</button>
   </div>
 </div>
 
+<div class="toast" id="toast"></div>
+
 <script>
 const WHATSAPP = '5531989892315';
 const LOJA = 'Loja da Patrícia';
+
+/* ── CONFIG FRETE ── */
+const LOJA_LAT = -19.7695;   // coordenadas do CEP 33930-330 (Ribeirão das Neves)
+const LOJA_LNG = -44.0820;
+const DIST_GRATIS_KM = 3;
 
 const BAIRROS_GRATIS = [
   'ribeirao das neves','ribeirão das neves','neves',
@@ -324,6 +393,7 @@ const BAIRROS_GRATIS = [
   'paulo vi','paulo 6','veneza','alterosas','savassi'
 ];
 
+/* ── PRODUTOS / CATEGORIAS ── */
 const products = [
   {id:1,name:'Cabo USB-C 1m',emoji:'🔌',price:19.90,oldPrice:29.90,unit:'un',cat:'info',desc:'Compatível com celular, tablet e notebook.',badge:'oferta'},
   {id:2,name:'Mouse Sem Fio',emoji:'🖱️',price:49.90,oldPrice:null,unit:'un',cat:'info',desc:'Conexão USB, pilha inclusa, 1200 DPI.',badge:'novo'},
@@ -355,8 +425,8 @@ const products = [
   {id:28,name:'Brinco Folheado',emoji:'💍',price:18.90,oldPrice:29.90,unit:'par',cat:'moda',desc:'Banho de ouro.',badge:'oferta'}
 ];
 
-function loadProducts(){const s=localStorage.getItem('loja_patricia_products');if(s){try{return JSON.parse(s);}catch(e){}}return products;}
-function loadCategories(){const s=localStorage.getItem('loja_patricia_cats');if(s){try{return JSON.parse(s);}catch(e){}}return [{id:'info',emoji:'💻',name:'Informática'},{id:'papelaria',emoji:'📚',name:'Papelaria'},{id:'roupas',emoji:'👕',name:'Roupas'},{id:'servicos',emoji:'🖨️',name:'Serviços'},{id:'utilidades',emoji:'🏠',name:'Utilidades'},{id:'moda',emoji:'👗',name:'Moda'}];}
+function loadProducts(){var s=localStorage.getItem('loja_patricia_products');if(s){try{return JSON.parse(s);}catch(e){}}return products;}
+function loadCategories(){var s=localStorage.getItem('loja_patricia_cats');if(s){try{return JSON.parse(s);}catch(e){}}return [{id:'info',emoji:'💻',name:'Informática'},{id:'papelaria',emoji:'📚',name:'Papelaria'},{id:'roupas',emoji:'👕',name:'Roupas'},{id:'servicos',emoji:'🖨️',name:'Serviços'},{id:'utilidades',emoji:'🏠',name:'Utilidades'},{id:'moda',emoji:'👗',name:'Moda'}];}
 
 document.addEventListener('visibilitychange',function(){
   if(document.visibilityState==='visible'){
@@ -440,6 +510,7 @@ function renderModalFoto(){
 }
 function mNav(i){mIdx=((i%mImgs.length)+mImgs.length)%mImgs.length;renderModalFoto();}
 
+/* ── MODAL PRODUTO — abre com pushState para corrigir botão voltar ── */
 function openModal(id){
   var p=allProducts.find(function(x){return x.id===id;});
   modalProduct=p;modalQty=1;
@@ -451,14 +522,22 @@ function openModal(id){
   document.getElementById('mPrice').innerHTML=fmt(p.price)+' / '+p.unit+oldPriceHtml;
   document.getElementById('qtyNum').textContent=1;
   document.getElementById('productModal').classList.add('open');
+  /* ✅ FIX BOTÃO VOLTAR: registra estado no histórico */
+  history.pushState({modal:'produto'}, '');
 }
-function closeModalBg(e){if(e.target===document.getElementById('productModal'))document.getElementById('productModal').classList.remove('open');}
+
+function closeModal(){
+  document.getElementById('productModal').classList.remove('open');
+}
+function closeModalBg(e){
+  if(e.target===document.getElementById('productModal')) closeModal();
+}
 function changeQty(d){modalQty=Math.max(1,modalQty+d);document.getElementById('qtyNum').textContent=modalQty;}
 function addToCart(){
   if(!modalProduct)return;
   var ex=cart.find(function(c){return c.id===modalProduct.id;});
   if(ex)ex.qty+=modalQty;else cart.push(Object.assign({},modalProduct,{qty:modalQty}));
-  document.getElementById('productModal').classList.remove('open');
+  closeModal();
   updateBar();
 }
 function quickAdd(id){
@@ -493,8 +572,13 @@ function openCheckout(){
   document.getElementById('subtotalVal').textContent=fmt(total);
   document.getElementById('totalVal').textContent=fmt(total);
   document.getElementById('checkoutOverlay').classList.add('open');
+  history.pushState({modal:'checkout'}, '');
 }
-function closeCheckoutBg(e){if(e.target===document.getElementById('checkoutOverlay'))document.getElementById('checkoutOverlay').classList.remove('open');}
+function closeCheckoutBg(e){
+  if(e.target===document.getElementById('checkoutOverlay')){
+    document.getElementById('checkoutOverlay').classList.remove('open');
+  }
+}
 function removeItem(id){cart=cart.filter(function(c){return c.id!==id;});openCheckout();updateBar();}
 function selectPay(p){
   selectedPay=p;
@@ -502,23 +586,164 @@ function selectPay(p){
   document.getElementById('pay-'+p).classList.add('selected');
 }
 
-function abrirFrete(){document.getElementById('freteOverlay').classList.add('open');}
-function fecharFrete(){document.getElementById('freteOverlay').classList.remove('open');document.getElementById('freteResultado').style.display='none';}
-function verificarFrete(){
-  var end=document.getElementById('freteEnd').value.trim().toLowerCase();
-  if(!end)return;
-  var res=document.getElementById('freteResultado');
-  var gratis=BAIRROS_GRATIS.some(function(b){return end.indexOf(b)>=0||b.indexOf(end)>=0;});
-  res.style.display='block';
-  if(gratis){
-    res.className='frete-resultado gratis';
-    res.innerHTML='✅ Ótima notícia! Seu endereço está dentro da área de <strong>frete grátis</strong> (até 3km)! 🎉';
-  } else {
-    res.className='frete-resultado pago';
-    res.innerHTML='📍 Seu endereço pode estar fora da área de frete grátis. Entre em contato pelo WhatsApp para confirmar!';
+/* ══════════════════════════════════════════
+   FRETE — NOVO COM CEP
+══════════════════════════════════════════ */
+var freteTabAtual = 'cep';
+
+function abrirFrete(){
+  document.getElementById('freteOverlay').classList.add('open');
+  history.pushState({modal:'frete'}, '');
+  setTimeout(function(){document.getElementById('freteEnd').focus();}, 300);
+}
+function fecharFrete(){
+  document.getElementById('freteOverlay').classList.remove('open');
+  limparResultadoFrete();
+}
+
+function switchFreteTab(tab){
+  freteTabAtual = tab;
+  document.getElementById('ftCep').style.display    = tab==='cep'    ? 'block':'none';
+  document.getElementById('ftBairro').style.display = tab==='bairro' ? 'block':'none';
+  document.getElementById('ftabCep').classList.toggle('active', tab==='cep');
+  document.getElementById('ftabBairro').classList.toggle('active', tab==='bairro');
+  limparResultadoFrete();
+}
+
+function maskCep(el){
+  var v = el.value.replace(/\D/g,'').slice(0,8);
+  if(v.length > 5) v = v.slice(0,5)+'-'+v.slice(5);
+  el.value = v;
+}
+
+async function verificarFreteCep(){
+  var raw = document.getElementById('freteEnd').value.replace(/\D/g,'');
+  if(raw.length !== 8){ showToast('⚠️ Digite um CEP com 8 dígitos!'); return; }
+
+  var btn = document.getElementById('cepBtn');
+  btn.disabled = true;
+  btn.textContent = 'Buscando…';
+  limparResultadoFrete();
+
+  try {
+    /* 1. ViaCEP — endereço */
+    var res = await fetch('https://viacep.com.br/ws/'+raw+'/json/');
+    var data = await res.json();
+    if(data.erro){ mostrarErroFrete('CEP não encontrado. Verifique e tente novamente.'); return; }
+
+    /* 2. Nominatim — coordenadas */
+    var q = encodeURIComponent((data.logradouro||'')+', '+(data.bairro||'')+', '+data.localidade+', '+data.uf+', Brasil');
+    var geoRes = await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q='+q,
+      {headers:{'Accept-Language':'pt-BR'}});
+    var geo = await geoRes.json();
+
+    var distKm = null;
+    if(geo && geo.length){
+      distKm = haversine(LOJA_LAT, LOJA_LNG, parseFloat(geo[0].lat), parseFloat(geo[0].lon));
+    }
+
+    var endStr = (data.logradouro ? data.logradouro+', ' : '')+data.bairro+' – '+data.localidade+'/'+data.uf;
+    exibirResultadoCep(data, distKm, endStr);
+
+  } catch(err){
+    mostrarErroFrete('Erro ao consultar. Verifique sua conexão.');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Verificar';
   }
 }
 
+function exibirResultadoCep(data, distKm, endStr){
+  var el   = document.getElementById('freteResultado');
+  var icon = document.getElementById('fResIcon');
+  var tit  = document.getElementById('fResTitle');
+  var det  = document.getElementById('fResDetail');
+  var end  = document.getElementById('fResEnd');
+
+  end.textContent = '📍 '+endStr;
+  end.style.display = 'block';
+
+  if(distKm === null){
+    /* fallback por bairro quando Nominatim não retorna */
+    var bNorm = (data.bairro||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    var isFree = BAIRROS_GRATIS.some(function(b){ return bNorm.indexOf(b)>=0||b.indexOf(bNorm)>=0; });
+    el.className = 'frete-resultado '+(isFree?'gratis':'pago');
+    icon.textContent = isFree?'🎉':'📦';
+    tit.textContent  = isFree?'Frete Grátis! 🎁':'Verificar com a loja';
+    det.textContent  = isFree
+      ? 'Seu bairro está na área de entrega gratuita!'
+      : 'Não conseguimos calcular a distância exata. Entre em contato pelo WhatsApp!';
+  } else if(distKm <= DIST_GRATIS_KM){
+    el.className = 'frete-resultado gratis';
+    icon.textContent = '🎉';
+    tit.textContent  = 'Frete Grátis! 🎁';
+    det.innerHTML    = 'Você está a <strong>'+distKm.toFixed(1).replace('.',',')+'&nbsp;km</strong> da loja — dentro da área gratuita!';
+  } else {
+    el.className = 'frete-resultado pago';
+    icon.textContent = '📦';
+    tit.textContent  = 'Fora da área de frete grátis';
+    det.innerHTML    = 'Você está a <strong>'+distKm.toFixed(1).replace('.',',')+'&nbsp;km</strong> da loja (limite: '+DIST_GRATIS_KM+' km).<br>Entre em contato pelo WhatsApp para combinar o frete! 💬';
+  }
+}
+
+/* busca por bairro (original, mantida) */
+function verificarFrete(){
+  var end=document.getElementById('freteEndBairro').value.trim().toLowerCase()
+          .normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  if(!end){ showToast('⚠️ Digite o nome do seu bairro!'); return; }
+
+  var el   = document.getElementById('freteResultado');
+  var icon = document.getElementById('fResIcon');
+  var tit  = document.getElementById('fResTitle');
+  var det  = document.getElementById('fResDetail');
+  document.getElementById('fResEnd').style.display = 'none';
+
+  var gratis=BAIRROS_GRATIS.some(function(b){return end.indexOf(b)>=0||b.indexOf(end)>=0;});
+  el.className='frete-resultado '+(gratis?'gratis':'pago');
+  icon.textContent = gratis?'🎉':'📍';
+  tit.textContent  = gratis?'Frete Grátis! 🎁':'Fora da área gratuita';
+  det.textContent  = gratis
+    ? 'Seu bairro está na área de entrega gratuita! 🎉'
+    : 'Seu endereço pode estar fora da área de frete grátis. Entre em contato pelo WhatsApp para confirmar!';
+}
+
+function mostrarErroFrete(msg){
+  var el = document.getElementById('freteResultado');
+  el.className = 'frete-resultado erro';
+  document.getElementById('fResIcon').textContent  = '❌';
+  document.getElementById('fResTitle').textContent = 'Ops!';
+  document.getElementById('fResDetail').textContent = msg;
+  document.getElementById('fResEnd').style.display = 'none';
+}
+
+function limparResultadoFrete(){
+  document.getElementById('freteResultado').className = 'frete-resultado';
+}
+
+/* Haversine — distância real em km */
+function haversine(lat1,lng1,lat2,lng2){
+  var R=6371, dL=(lat2-lat1)*Math.PI/180, dN=(lng2-lng1)*Math.PI/180;
+  var a=Math.sin(dL/2)*Math.sin(dL/2)+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dN/2)*Math.sin(dN/2);
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+
+/* ══════════════════════════════════════════
+   BOTÃO VOLTAR — intercepta TODOS os modais
+══════════════════════════════════════════ */
+window.addEventListener('popstate', function(e){
+  if(document.getElementById('productModal').classList.contains('open')){
+    document.getElementById('productModal').classList.remove('open'); return;
+  }
+  if(document.getElementById('checkoutOverlay').classList.contains('open')){
+    document.getElementById('checkoutOverlay').classList.remove('open'); return;
+  }
+  if(document.getElementById('freteOverlay').classList.contains('open')){
+    document.getElementById('freteOverlay').classList.remove('open');
+    limparResultadoFrete(); return;
+  }
+});
+
+/* WhatsApp */
 var payLabel={pix:'📱 Pix',credito:'💳 Cartão de Crédito',debito:'💳 Cartão de Débito',dinheiro:'💵 Dinheiro'};
 function sendWhatsApp(){
   if(!cart.length){alert('Adicione produtos ao carrinho primeiro!');return;}
@@ -537,6 +762,13 @@ function sendWhatsApp(){
   window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(msg),'_blank');
 }
 
+function showToast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2800);
+}
+
+/* swipe no modal de produto */
 (function(){
   var sx=0;
   var ov=document.getElementById('productModal');
