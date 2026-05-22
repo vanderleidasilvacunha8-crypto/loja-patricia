@@ -381,9 +381,30 @@ const WHATSAPP = '5531989892315';
 const LOJA = 'Loja da Patrícia';
 
 /* ── CONFIG FRETE ── */
-const LOJA_LAT = -19.7695;   // coordenadas do CEP 33930-330 (Ribeirão das Neves)
-const LOJA_LNG = -44.0820;
+const LOJA_CEP_NUM  = '33930330'; // CEP da loja (sem traço)
 const DIST_GRATIS_KM = 3;
+
+// Coordenadas da loja — carregadas automaticamente na inicialização
+let LOJA_LAT = -19.7780; // fallback Justinópolis/Ribeirão das Neves
+let LOJA_LNG = -44.0750;
+
+// Busca as coordenadas reais do CEP da loja ao carregar a página
+(async function carregarCoordenadasLoja(){
+  try {
+    const r = await fetch('https://viacep.com.br/ws/'+LOJA_CEP_NUM+'/json/');
+    const d = await r.json();
+    if(!d.erro){
+      const q = encodeURIComponent((d.logradouro||'')+', '+(d.bairro||'')+', '+d.localidade+', '+d.uf+', Brasil');
+      const g = await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q='+q,
+        {headers:{'Accept-Language':'pt-BR'}});
+      const geo = await g.json();
+      if(geo && geo.length){
+        LOJA_LAT = parseFloat(geo[0].lat);
+        LOJA_LNG = parseFloat(geo[0].lon);
+      }
+    }
+  } catch(e){ /* usa fallback */ }
+})();
 
 const BAIRROS_GRATIS = [
   'ribeirao das neves','ribeirão das neves','neves',
