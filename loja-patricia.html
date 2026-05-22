@@ -174,12 +174,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
 .frete-box .frete-sub{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;}
 .frete-box .frete-sub b{color:var(--pink);}
 
-/* abas CEP / Bairro */
-.frete-tabs{display:flex;background:#f5eef9;border-radius:12px;padding:3px;margin-bottom:16px;}
-.ftab{flex:1;padding:9px;text-align:center;font-size:13px;font-weight:700;color:var(--muted);border-radius:9px;cursor:pointer;transition:all .18s;}
-.ftab.active{background:#fff;color:var(--pink);box-shadow:0 2px 8px rgba(255,78,141,.15);}
-
-/* campo CEP */
+/* campo bairro — removido */
 .cep-row{display:flex;gap:8px;margin-bottom:14px;}
 .cep-input{flex:1;border:2px solid #eee;border-radius:12px;padding:11px 14px;font-family:'Quicksand',sans-serif;font-size:16px;color:var(--text);outline:none;transition:border .18s;letter-spacing:2px;text-align:center;}
 .cep-input:focus{border-color:var(--teal);}
@@ -336,30 +331,12 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);m
   <div class="frete-box">
     <div style="font-size:48px;margin-bottom:8px;">🚚</div>
     <h2>Verificar Frete</h2>
-    <p class="frete-sub">Calcule pelo <b>CEP</b> ou pelo nome do bairro.<br>Entrega <b>gratuita</b> até 3km!</p>
+    <p class="frete-sub">Digite seu <b>CEP</b> para calcular a distância.<br>Entrega <b>gratuita</b> até 3km!</p>
 
-    <!-- abas -->
-    <div class="frete-tabs">
-      <div class="ftab active" id="ftabCep" onclick="switchFreteTab('cep')">📮 Por CEP</div>
-      <div class="ftab" id="ftabBairro" onclick="switchFreteTab('bairro')">🏠 Por Bairro</div>
-    </div>
-
-    <!-- aba CEP -->
-    <div id="ftCep">
-      <div class="cep-row">
-        <input class="cep-input" type="tel" id="freteEnd" placeholder="00000-000" maxlength="9"
-               oninput="maskCep(this)" onkeydown="if(event.key==='Enter')verificarFreteCep()">
-        <button class="frete-check-btn" id="cepBtn" onclick="verificarFreteCep()">Verificar</button>
-      </div>
-    </div>
-
-    <!-- aba bairro -->
-    <div id="ftBairro" style="display:none">
-      <div class="frete-input-wrap">
-        <input type="text" id="freteEndBairro" placeholder="Seu bairro..."
-               onkeydown="if(event.key==='Enter')verificarFrete()">
-        <button class="frete-check-btn" onclick="verificarFrete()">Verificar</button>
-      </div>
+    <div class="cep-row">
+      <input class="cep-input" type="tel" id="freteEnd" placeholder="00000-000" maxlength="9"
+             oninput="maskCep(this)" onkeydown="if(event.key==='Enter')verificarFreteCep()">
+      <button class="frete-check-btn" id="cepBtn" onclick="verificarFreteCep()">Verificar</button>
     </div>
 
     <!-- resultado -->
@@ -405,14 +382,6 @@ let LOJA_LNG = -44.0750;
     }
   } catch(e){ /* usa fallback */ }
 })();
-
-const BAIRROS_GRATIS = [
-  'ribeirao das neves','ribeirão das neves','neves',
-  'justinopolis','justinópolis',
-  'areias','sevilha','beira rio','bom jesus','campos de sao pedro',
-  'novo horizonte','jardim colonial','copacabana','europa',
-  'paulo vi','paulo 6','veneza','alterosas','savassi'
-];
 
 /* ── PRODUTOS / CATEGORIAS ── */
 const products = [
@@ -610,8 +579,6 @@ function selectPay(p){
 /* ══════════════════════════════════════════
    FRETE — NOVO COM CEP
 ══════════════════════════════════════════ */
-var freteTabAtual = 'cep';
-
 function abrirFrete(){
   document.getElementById('freteOverlay').classList.add('open');
   history.pushState({modal:'frete'}, '');
@@ -622,14 +589,6 @@ function fecharFrete(){
   limparResultadoFrete();
 }
 
-function switchFreteTab(tab){
-  freteTabAtual = tab;
-  document.getElementById('ftCep').style.display    = tab==='cep'    ? 'block':'none';
-  document.getElementById('ftBairro').style.display = tab==='bairro' ? 'block':'none';
-  document.getElementById('ftabCep').classList.toggle('active', tab==='cep');
-  document.getElementById('ftabBairro').classList.toggle('active', tab==='bairro');
-  limparResultadoFrete();
-}
 
 function maskCep(el){
   var v = el.value.replace(/\D/g,'').slice(0,8);
@@ -707,26 +666,6 @@ function exibirResultadoCep(data, distKm, endStr){
   }
 }
 
-/* busca por bairro (original, mantida) */
-function verificarFrete(){
-  var end=document.getElementById('freteEndBairro').value.trim().toLowerCase()
-          .normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  if(!end){ showToast('⚠️ Digite o nome do seu bairro!'); return; }
-
-  var el   = document.getElementById('freteResultado');
-  var icon = document.getElementById('fResIcon');
-  var tit  = document.getElementById('fResTitle');
-  var det  = document.getElementById('fResDetail');
-  document.getElementById('fResEnd').style.display = 'none';
-
-  var gratis=BAIRROS_GRATIS.some(function(b){return end.indexOf(b)>=0||b.indexOf(end)>=0;});
-  el.className='frete-resultado '+(gratis?'gratis':'pago');
-  icon.textContent = gratis?'🎉':'📍';
-  tit.textContent  = gratis?'Frete Grátis! 🎁':'Fora da área gratuita';
-  det.textContent  = gratis
-    ? 'Seu bairro está na área de entrega gratuita! 🎉'
-    : 'Seu endereço pode estar fora da área de frete grátis. Entre em contato pelo WhatsApp para confirmar!';
-}
 
 function mostrarErroFrete(msg){
   var el = document.getElementById('freteResultado');
